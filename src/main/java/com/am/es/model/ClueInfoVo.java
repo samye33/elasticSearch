@@ -5,7 +5,7 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
 import java.util.Date;
 
-@Document(indexName = "clue_info_project", type = "clue_info")
+@Document(indexName = "clue_info_es", type = "clue_info")
 public class ClueInfoVo implements Serializable {
     private Integer id;
 

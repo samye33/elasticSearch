@@ -1,11 +1,11 @@
 package com.am.es.controller;
 
+import com.am.es.entity.CustomContacts;
 import com.am.es.entity.SysUsers;
 import com.am.es.model.ClueInfoVo;
 import com.am.es.model.CustomInfoVo;
 import com.am.es.model.ElasticSearchResponse;
-import com.am.es.service.impl.ClueInfoServiceImpl;
-import com.am.es.service.impl.CustomInfoServiceImpl;
+import com.am.es.service.impl.*;
 import com.am.es.utils.EncapCommonUtils;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
@@ -16,7 +16,6 @@ import org.elasticsearch.search.sort.SortOrder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
@@ -40,20 +39,55 @@ public class ElasticTest {
     @Autowired
     private CustomInfoServiceImpl customInfoService;
 
+    @Autowired
+    private ClueTurnRecordServiceImpl clueTurnRecordService;
+
+    @Autowired
+    private ListenInvitationInfoServiceImpl listenInvitationInfoService;
+
+    @Autowired
+    private CustomContactsImpl customContactsImpl;
+
+    @Autowired
+    private CustomContactInfoDeatailImpl customContactInfoDeatail;
+
 
     @GetMapping("/add")
     public ElasticSearchResponse listDepartments(HttpServletRequest request, HttpServletResponse response) {
         ElasticSearchResponse res = new ElasticSearchResponse();
         long starttime = System.currentTimeMillis();
         try {
-            List<Integer> clueList = new ArrayList<Integer>();
-            clueList.add(19);
-            clueList.add(20);
-            clueInfoService.saveClueInfoList(clueList);
-            List<Integer> customList = new ArrayList<Integer>();
-            customList.add(27);
-            customList.add(28);
-            customInfoService.saveCustomInfoList(customList);
+            List<Integer> clueTurnRecordList = new ArrayList<Integer>();
+            clueTurnRecordList.add(33743662);
+            clueTurnRecordList.add(33743663);
+            clueTurnRecordService.saveClueTurnRecordList(clueTurnRecordList);
+            List<Integer> listenList = new ArrayList<Integer>();
+            listenList.add(290);
+            listenList.add(293);
+            listenInvitationInfoService.saveListenInvitationInfoList(listenList);
+            List<Integer> contactsList = new ArrayList<Integer>();
+            contactsList.add(87778);
+            contactsList.add(87779);
+            contactsList.add(87780);
+            contactsList.add(87781);
+            contactsList.add(87782);
+            contactsList.add(87783);
+            customContactsImpl.saveCustomContactsList(contactsList);
+            List<Integer> contactInfoList = new ArrayList<Integer>();
+            contactInfoList.add(11576779);
+            contactInfoList.add(11576780);
+            contactInfoList.add(11576781);
+            contactInfoList.add(11576782);
+            contactInfoList.add(11576783);
+            contactInfoList.add(11576784);
+            contactInfoList.add(11576785);
+            contactInfoList.add(11576786);
+            contactInfoList.add(11576787);
+            contactInfoList.add(11576788);
+            contactInfoList.add(11576789);
+            contactInfoList.add(11576790);
+            contactInfoList.add(11576791);
+            customContactInfoDeatail.saveCustomContactInfoDeatailList(contactInfoList);
         } catch (Exception e) {
             logger.error("", e);
         }

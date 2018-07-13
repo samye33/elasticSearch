@@ -5,7 +5,7 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
 import java.util.Date;
 
-@Document(indexName = "custom_contacts_project", type = "custom_contacts")
+@Document(indexName = "custom_contacts_es", type = "custom_contacts")
 public class CustomContactsVo implements Serializable {
     private Integer id;
 

@@ -9,7 +9,6 @@ import java.util.List;
 /**
  * @Author sam.ye
  */
-@Document(indexName = "projectname", type = "response", indexStoreType = "fs", shards = 5, replicas = 1, refreshInterval = "-1")
 public class ElasticSearchResponse implements Serializable {
 
     private Integer status;

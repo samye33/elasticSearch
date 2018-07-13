@@ -15,7 +15,7 @@ public class ListenInvitationInfoServiceImpl {
     @Autowired
     private ListenInvitationInfoMapper listenInvitationInfoMapper;
 
-    public void saveCustomContactInfoDeatailList(List<Integer> customerList) {
+    public void saveListenInvitationInfoList(List<Integer> customerList) {
         //根据传入的list 用户id查询对应的list
         List<ListenInvitationInfoVo> list = listenInvitationInfoMapper.selectListByPrimaryKeyList(customerList);
         //将需要更改的查出来

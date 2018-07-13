@@ -17,7 +17,7 @@ public class ClueTurnRecordServiceImpl {
     @Autowired
     private SearchClueTurnRecordRepository searchClueTurnRecordRepository;
 
-    public void saveClueInfoList(List<Integer> clueInfoList) {
+    public void saveClueTurnRecordList(List<Integer> clueInfoList) {
         //根据传入的list 用户id查询对应的list
         List<ClueTurnRecordVo> list = clueTurnRecordMapper.selectListByPrimaryKeyList(clueInfoList);
         //将需要更改的查出来
