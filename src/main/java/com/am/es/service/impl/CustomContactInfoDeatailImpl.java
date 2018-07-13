@@ -4,9 +4,10 @@ import com.am.es.dao.CustomContactInfoDetailMapper;
 import com.am.es.model.CustomContactInfoDetailVo;
 import com.am.es.service.SearchCustomContactInfoDetailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
-
+@Component
 public class CustomContactInfoDeatailImpl {
     @Autowired
     private SearchCustomContactInfoDetailRepository searchCustomContactInfoDetailRepository;

@@ -24,6 +24,7 @@
 		</javaClientGenerator><!-- 生成DAO的包名和位置-->
 
 		<!--需要逆向的表 -->
-		<table tableName="clue_status"></table>
+		<table tableName="listen_invitation_feed_back"></table>
+		<table tableName="listen_invitation_info"></table>
 	</context>
 </generatorConfiguration>

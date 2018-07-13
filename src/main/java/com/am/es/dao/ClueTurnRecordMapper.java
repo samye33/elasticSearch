@@ -3,6 +3,8 @@ package com.am.es.dao;
 import com.am.es.entity.ClueTurnRecord;
 import com.am.es.entity.ClueTurnRecordExample;
 import java.util.List;
+
+import com.am.es.model.ClueTurnRecordVo;
 import org.apache.ibatis.annotations.Param;
 
 public interface ClueTurnRecordMapper {
@@ -27,4 +29,6 @@ public interface ClueTurnRecordMapper {
     int updateByPrimaryKeySelective(ClueTurnRecord record);
 
     int updateByPrimaryKey(ClueTurnRecord record);
+
+    List<ClueTurnRecordVo> selectListByPrimaryKeyList(List<Integer> clueInfoList);
 }

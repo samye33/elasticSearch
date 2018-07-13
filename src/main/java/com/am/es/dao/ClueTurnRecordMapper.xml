@@ -415,4 +415,13 @@
       current_user_type = #{currentUserType,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectListByPrimaryKeyList" parameterType="java.util.List" resultType="com.am.es.model.ClueTurnRecordVo">
+    SELECT * FROM clue_turn_record
+    <where>
+      id IN
+      <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
+        #{item}
+      </foreach>
+    </where>
+  </select>
 </mapper>
