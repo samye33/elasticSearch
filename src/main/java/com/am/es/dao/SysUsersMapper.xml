@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.am.es.dao.SysUsersMapper">
+    <resultMap id="BaseResultMap" type="com.am.es.entity.SysUsers">
+        <id column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="user_id" property="id" jdbcType="INTEGER"/>
+        <result column="work_no" property="workNo" jdbcType="VARCHAR"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="pass_word" property="passWord" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="e_name" property="eName" jdbcType="VARCHAR"/>
+        <result column="true_name" property="trueName" jdbcType="VARCHAR"/>
+        <result column="sex" property="sex" jdbcType="INTEGER"/>
+        <result column="education" property="education" jdbcType="VARCHAR"/>
+        <result column="graduate" property="graduate" jdbcType="VARCHAR"/>
+        <result column="birthday" property="birthday" jdbcType="TIMESTAMP"/>
+        <result column="qq" property="qq" jdbcType="VARCHAR"/>
+        <result column="skype" property="skype" jdbcType="VARCHAR"/>
+        <result column="mobile" property="mobile" jdbcType="VARCHAR"/>
+        <result column="home_tel" property="homeTel" jdbcType="VARCHAR"/>
+        <result column="home_addr" property="homeAddr" jdbcType="VARCHAR"/>
+        <result column="office_addr" property="officeAddr" jdbcType="VARCHAR"/>
+        <result column="office_name" property="officeName" jdbcType="VARCHAR"/>
+        <result column="isleave" property="isleave" jdbcType="INTEGER"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="avatar" property="avatar" jdbcType="VARCHAR"/>
+        <result column="account_type" property="accountType" jdbcType="INTEGER"/>
+        <result column="is_public" property="isPublic" jdbcType="INTEGER"/>
+        <result column="course_types" property="courseTypes" jdbcType="VARCHAR"/>
+        <result column="we_chat" property="weChat" jdbcType="VARCHAR"/>
+        <result column="we_chatImg_url" property="weChatimgUrl" jdbcType="VARCHAR"/>
+        <result column="cardI_img_url" property="cardiImgUrl" jdbcType="VARCHAR"/>
+        <result column="video_url" property="videoUrl" jdbcType="VARCHAR"/>
+        <result column="create_id" property="createId" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="flag" property="flag" jdbcType="INTEGER"/>
+        <result column="higher_level_id" property="higherLevelId" jdbcType="INTEGER"/>
+        <result column="is_use_callphone" property="isUseCallphone" jdbcType="INTEGER"/>
+        <result column="ext_no" property="extNo" jdbcType="VARCHAR"/>
+        <result column="agent_no" property="agentNo" jdbcType="VARCHAR"/>
+        <result column="agent_job_no" property="agentJobNo" jdbcType="VARCHAR"/>
+        <result column="agent_job_type" property="agentJobType" jdbcType="VARCHAR"/>
+        <result column="tr_hot_line" property="trHotLine" jdbcType="VARCHAR"/>
+        <result column="tr_agent_no" property="trAgentNo" jdbcType="VARCHAR"/>
+        <result column="tr_pwd" property="trPwd" jdbcType="VARCHAR"/>
+        <result column="tr_bind_tel" property="trBindTel" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    user_id, work_no, user_name, pass_word, email, e_name, true_name, sex, education, 
+    graduate, birthday, qq, skype, mobile, home_tel, home_addr, office_addr, office_name, 
+    isleave, remark, avatar, account_type, is_public, course_types, we_chat, we_chatImg_url, 
+    cardI_img_url, video_url, create_id, create_time, update_time, flag, higher_level_id, 
+    is_use_callphone, ext_no, agent_no, agent_job_no, agent_job_type, tr_hot_line, tr_agent_no, 
+    tr_pwd, tr_bind_tel
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_users
+        where user_id = #{userId,jdbcType=INTEGER}
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+    SELECT * FROM  sys_users WHERE  flag=1
+
+  </select>
+</mapper>

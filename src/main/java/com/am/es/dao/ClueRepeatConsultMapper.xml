@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.am.es.dao.ClueRepeatConsultMapper" >
+  <resultMap id="BaseResultMap" type="com.am.es.entity.ClueRepeatConsult" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="clue_id" property="clueId" jdbcType="INTEGER" />
+    <result column="consult_channel_id" property="consultChannelId" jdbcType="INTEGER" />
+    <result column="consult_user" property="consultUser" jdbcType="INTEGER" />
+    <result column="consult_time" property="consultTime" jdbcType="TIMESTAMP" />
+    <result column="consult_way" property="consultWay" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.am.es.entity.ClueRepeatConsult" extends="BaseResultMap" >
+    <result column="consult_content" property="consultContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, clue_id, consult_channel_id, consult_user, consult_time, consult_way, create_time, 
+    create_by
+  </sql>
+  <sql id="Blob_Column_List" >
+    consult_content
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.am.es.entity.ClueRepeatConsultExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from clue_repeat_consult
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.am.es.entity.ClueRepeatConsultExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from clue_repeat_consult
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from clue_repeat_consult
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from clue_repeat_consult
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.am.es.entity.ClueRepeatConsultExample" >
+    delete from clue_repeat_consult
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.am.es.entity.ClueRepeatConsult" >
+    insert into clue_repeat_consult (id, clue_id, consult_channel_id, 
+      consult_user, consult_time, consult_way, 
+      create_time, create_by, consult_content
+      )
+    values (#{id,jdbcType=INTEGER}, #{clueId,jdbcType=INTEGER}, #{consultChannelId,jdbcType=INTEGER}, 
+      #{consultUser,jdbcType=INTEGER}, #{consultTime,jdbcType=TIMESTAMP}, #{consultWay,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=INTEGER}, #{consultContent,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.am.es.entity.ClueRepeatConsult" >
+    insert into clue_repeat_consult
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="clueId != null" >
+        clue_id,
+      </if>
+      <if test="consultChannelId != null" >
+        consult_channel_id,
+      </if>
+      <if test="consultUser != null" >
+        consult_user,
+      </if>
+      <if test="consultTime != null" >
+        consult_time,
+      </if>
+      <if test="consultWay != null" >
+        consult_way,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="consultContent != null" >
+        consult_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="clueId != null" >
+        #{clueId,jdbcType=INTEGER},
+      </if>
+      <if test="consultChannelId != null" >
+        #{consultChannelId,jdbcType=INTEGER},
+      </if>
+      <if test="consultUser != null" >
+        #{consultUser,jdbcType=INTEGER},
+      </if>
+      <if test="consultTime != null" >
+        #{consultTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="consultWay != null" >
+        #{consultWay,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="consultContent != null" >
+        #{consultContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.am.es.entity.ClueRepeatConsultExample" resultType="java.lang.Integer" >
+    select count(*) from clue_repeat_consult
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update clue_repeat_consult
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.clueId != null" >
+        clue_id = #{record.clueId,jdbcType=INTEGER},
+      </if>
+      <if test="record.consultChannelId != null" >
+        consult_channel_id = #{record.consultChannelId,jdbcType=INTEGER},
+      </if>
+      <if test="record.consultUser != null" >
+        consult_user = #{record.consultUser,jdbcType=INTEGER},
+      </if>
+      <if test="record.consultTime != null" >
+        consult_time = #{record.consultTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.consultWay != null" >
+        consult_way = #{record.consultWay,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createBy != null" >
+        create_by = #{record.createBy,jdbcType=INTEGER},
+      </if>
+      <if test="record.consultContent != null" >
+        consult_content = #{record.consultContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update clue_repeat_consult
+    set id = #{record.id,jdbcType=INTEGER},
+      clue_id = #{record.clueId,jdbcType=INTEGER},
+      consult_channel_id = #{record.consultChannelId,jdbcType=INTEGER},
+      consult_user = #{record.consultUser,jdbcType=INTEGER},
+      consult_time = #{record.consultTime,jdbcType=TIMESTAMP},
+      consult_way = #{record.consultWay,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      create_by = #{record.createBy,jdbcType=INTEGER},
+      consult_content = #{record.consultContent,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update clue_repeat_consult
+    set id = #{record.id,jdbcType=INTEGER},
+      clue_id = #{record.clueId,jdbcType=INTEGER},
+      consult_channel_id = #{record.consultChannelId,jdbcType=INTEGER},
+      consult_user = #{record.consultUser,jdbcType=INTEGER},
+      consult_time = #{record.consultTime,jdbcType=TIMESTAMP},
+      consult_way = #{record.consultWay,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      create_by = #{record.createBy,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.am.es.entity.ClueRepeatConsult" >
+    update clue_repeat_consult
+    <set >
+      <if test="clueId != null" >
+        clue_id = #{clueId,jdbcType=INTEGER},
+      </if>
+      <if test="consultChannelId != null" >
+        consult_channel_id = #{consultChannelId,jdbcType=INTEGER},
+      </if>
+      <if test="consultUser != null" >
+        consult_user = #{consultUser,jdbcType=INTEGER},
+      </if>
+      <if test="consultTime != null" >
+        consult_time = #{consultTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="consultWay != null" >
+        consult_way = #{consultWay,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="consultContent != null" >
+        consult_content = #{consultContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.am.es.entity.ClueRepeatConsult" >
+    update clue_repeat_consult
+    set clue_id = #{clueId,jdbcType=INTEGER},
+      consult_channel_id = #{consultChannelId,jdbcType=INTEGER},
+      consult_user = #{consultUser,jdbcType=INTEGER},
+      consult_time = #{consultTime,jdbcType=TIMESTAMP},
+      consult_way = #{consultWay,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=INTEGER},
+      consult_content = #{consultContent,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.am.es.entity.ClueRepeatConsult" >
+    update clue_repeat_consult
+    set clue_id = #{clueId,jdbcType=INTEGER},
+      consult_channel_id = #{consultChannelId,jdbcType=INTEGER},
+      consult_user = #{consultUser,jdbcType=INTEGER},
+      consult_time = #{consultTime,jdbcType=TIMESTAMP},
+      consult_way = #{consultWay,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

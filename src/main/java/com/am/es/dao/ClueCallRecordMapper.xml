@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.am.es.dao.ClueCallRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.am.es.entity.ClueCallRecord" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="record_id" property="recordId" jdbcType="INTEGER" />
+    <result column="clue_guid" property="clueGuid" jdbcType="VARCHAR" />
+    <result column="has_update" property="hasUpdate" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, record_id, clue_guid, has_update, create_time, create_by, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.am.es.entity.ClueCallRecordExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from clue_call_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from clue_call_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from clue_call_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.am.es.entity.ClueCallRecordExample" >
+    delete from clue_call_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.am.es.entity.ClueCallRecord" >
+    insert into clue_call_record (id, record_id, clue_guid, 
+      has_update, create_time, create_by, 
+      update_time)
+    values (#{id,jdbcType=INTEGER}, #{recordId,jdbcType=INTEGER}, #{clueGuid,jdbcType=VARCHAR}, 
+      #{hasUpdate,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.am.es.entity.ClueCallRecord" >
+    insert into clue_call_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="recordId != null" >
+        record_id,
+      </if>
+      <if test="clueGuid != null" >
+        clue_guid,
+      </if>
+      <if test="hasUpdate != null" >
+        has_update,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="recordId != null" >
+        #{recordId,jdbcType=INTEGER},
+      </if>
+      <if test="clueGuid != null" >
+        #{clueGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="hasUpdate != null" >
+        #{hasUpdate,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.am.es.entity.ClueCallRecordExample" resultType="java.lang.Integer" >
+    select count(*) from clue_call_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update clue_call_record
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.recordId != null" >
+        record_id = #{record.recordId,jdbcType=INTEGER},
+      </if>
+      <if test="record.clueGuid != null" >
+        clue_guid = #{record.clueGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hasUpdate != null" >
+        has_update = #{record.hasUpdate,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createBy != null" >
+        create_by = #{record.createBy,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update clue_call_record
+    set id = #{record.id,jdbcType=INTEGER},
+      record_id = #{record.recordId,jdbcType=INTEGER},
+      clue_guid = #{record.clueGuid,jdbcType=VARCHAR},
+      has_update = #{record.hasUpdate,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      create_by = #{record.createBy,jdbcType=INTEGER},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.am.es.entity.ClueCallRecord" >
+    update clue_call_record
+    <set >
+      <if test="recordId != null" >
+        record_id = #{recordId,jdbcType=INTEGER},
+      </if>
+      <if test="clueGuid != null" >
+        clue_guid = #{clueGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="hasUpdate != null" >
+        has_update = #{hasUpdate,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.am.es.entity.ClueCallRecord" >
+    update clue_call_record
+    set record_id = #{recordId,jdbcType=INTEGER},
+      clue_guid = #{clueGuid,jdbcType=VARCHAR},
+      has_update = #{hasUpdate,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.am.es.dao.ClueCanFollowMapper" >
+  <resultMap id="BaseResultMap" type="com.am.es.entity.ClueCanFollow" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="clue_guid" property="clueGuid" jdbcType="VARCHAR" />
+    <result column="clue_no" property="clueNo" jdbcType="VARCHAR" />
+    <result column="custom_guid" property="customGuid" jdbcType="VARCHAR" />
+    <result column="custom_no" property="customNo" jdbcType="VARCHAR" />
+    <result column="clue_stage" property="clueStage" jdbcType="INTEGER" />
+    <result column="clue_channel_code" property="clueChannelCode" jdbcType="INTEGER" />
+    <result column="clue_status" property="clueStatus" jdbcType="VARCHAR" />
+    <result column="clue_quality" property="clueQuality" jdbcType="INTEGER" />
+    <result column="last_owner" property="lastOwner" jdbcType="INTEGER" />
+    <result column="last_communicate_time" property="lastCommunicateTime" jdbcType="TIMESTAMP" />
+    <result column="course_type" property="courseType" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="INTEGER" />
+    <result column="clue_owner" property="clueOwner" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, clue_guid, clue_no, custom_guid, custom_no, clue_stage, clue_channel_code, clue_status, 
+    clue_quality, last_owner, last_communicate_time, course_type, create_time, create_by, 
+    update_time, update_by, clue_owner
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.am.es.entity.ClueCanFollowExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from clue_can_follow
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from clue_can_follow
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from clue_can_follow
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.am.es.entity.ClueCanFollowExample" >
+    delete from clue_can_follow
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.am.es.entity.ClueCanFollow" >
+    insert into clue_can_follow (id, clue_guid, clue_no, 
+      custom_guid, custom_no, clue_stage, 
+      clue_channel_code, clue_status, clue_quality, 
+      last_owner, last_communicate_time, course_type, 
+      create_time, create_by, update_time, 
+      update_by, clue_owner)
+    values (#{id,jdbcType=INTEGER}, #{clueGuid,jdbcType=VARCHAR}, #{clueNo,jdbcType=VARCHAR}, 
+      #{customGuid,jdbcType=VARCHAR}, #{customNo,jdbcType=VARCHAR}, #{clueStage,jdbcType=INTEGER}, 
+      #{clueChannelCode,jdbcType=INTEGER}, #{clueStatus,jdbcType=VARCHAR}, #{clueQuality,jdbcType=INTEGER}, 
+      #{lastOwner,jdbcType=INTEGER}, #{lastCommunicateTime,jdbcType=TIMESTAMP}, #{courseType,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateBy,jdbcType=INTEGER}, #{clueOwner,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.am.es.entity.ClueCanFollow" >
+    insert into clue_can_follow
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="clueGuid != null" >
+        clue_guid,
+      </if>
+      <if test="clueNo != null" >
+        clue_no,
+      </if>
+      <if test="customGuid != null" >
+        custom_guid,
+      </if>
+      <if test="customNo != null" >
+        custom_no,
+      </if>
+      <if test="clueStage != null" >
+        clue_stage,
+      </if>
+      <if test="clueChannelCode != null" >
+        clue_channel_code,
+      </if>
+      <if test="clueStatus != null" >
+        clue_status,
+      </if>
+      <if test="clueQuality != null" >
+        clue_quality,
+      </if>
+      <if test="lastOwner != null" >
+        last_owner,
+      </if>
+      <if test="lastCommunicateTime != null" >
+        last_communicate_time,
+      </if>
+      <if test="courseType != null" >
+        course_type,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateBy != null" >
+        update_by,
+      </if>
+      <if test="clueOwner != null" >
+        clue_owner,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="clueGuid != null" >
+        #{clueGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="clueNo != null" >
+        #{clueNo,jdbcType=VARCHAR},
+      </if>
+      <if test="customGuid != null" >
+        #{customGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="customNo != null" >
+        #{customNo,jdbcType=VARCHAR},
+      </if>
+      <if test="clueStage != null" >
+        #{clueStage,jdbcType=INTEGER},
+      </if>
+      <if test="clueChannelCode != null" >
+        #{clueChannelCode,jdbcType=INTEGER},
+      </if>
+      <if test="clueStatus != null" >
+        #{clueStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="clueQuality != null" >
+        #{clueQuality,jdbcType=INTEGER},
+      </if>
+      <if test="lastOwner != null" >
+        #{lastOwner,jdbcType=INTEGER},
+      </if>
+      <if test="lastCommunicateTime != null" >
+        #{lastCommunicateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="courseType != null" >
+        #{courseType,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=INTEGER},
+      </if>
+      <if test="clueOwner != null" >
+        #{clueOwner,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.am.es.entity.ClueCanFollowExample" resultType="java.lang.Integer" >
+    select count(*) from clue_can_follow
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update clue_can_follow
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.clueGuid != null" >
+        clue_guid = #{record.clueGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clueNo != null" >
+        clue_no = #{record.clueNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customGuid != null" >
+        custom_guid = #{record.customGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customNo != null" >
+        custom_no = #{record.customNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clueStage != null" >
+        clue_stage = #{record.clueStage,jdbcType=INTEGER},
+      </if>
+      <if test="record.clueChannelCode != null" >
+        clue_channel_code = #{record.clueChannelCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.clueStatus != null" >
+        clue_status = #{record.clueStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clueQuality != null" >
+        clue_quality = #{record.clueQuality,jdbcType=INTEGER},
+      </if>
+      <if test="record.lastOwner != null" >
+        last_owner = #{record.lastOwner,jdbcType=INTEGER},
+      </if>
+      <if test="record.lastCommunicateTime != null" >
+        last_communicate_time = #{record.lastCommunicateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.courseType != null" >
+        course_type = #{record.courseType,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createBy != null" >
+        create_by = #{record.createBy,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateBy != null" >
+        update_by = #{record.updateBy,jdbcType=INTEGER},
+      </if>
+      <if test="record.clueOwner != null" >
+        clue_owner = #{record.clueOwner,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update clue_can_follow
+    set id = #{record.id,jdbcType=INTEGER},
+      clue_guid = #{record.clueGuid,jdbcType=VARCHAR},
+      clue_no = #{record.clueNo,jdbcType=VARCHAR},
+      custom_guid = #{record.customGuid,jdbcType=VARCHAR},
+      custom_no = #{record.customNo,jdbcType=VARCHAR},
+      clue_stage = #{record.clueStage,jdbcType=INTEGER},
+      clue_channel_code = #{record.clueChannelCode,jdbcType=INTEGER},
+      clue_status = #{record.clueStatus,jdbcType=VARCHAR},
+      clue_quality = #{record.clueQuality,jdbcType=INTEGER},
+      last_owner = #{record.lastOwner,jdbcType=INTEGER},
+      last_communicate_time = #{record.lastCommunicateTime,jdbcType=TIMESTAMP},
+      course_type = #{record.courseType,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      create_by = #{record.createBy,jdbcType=INTEGER},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      update_by = #{record.updateBy,jdbcType=INTEGER},
+      clue_owner = #{record.clueOwner,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.am.es.entity.ClueCanFollow" >
+    update clue_can_follow
+    <set >
+      <if test="clueGuid != null" >
+        clue_guid = #{clueGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="clueNo != null" >
+        clue_no = #{clueNo,jdbcType=VARCHAR},
+      </if>
+      <if test="customGuid != null" >
+        custom_guid = #{customGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="customNo != null" >
+        custom_no = #{customNo,jdbcType=VARCHAR},
+      </if>
+      <if test="clueStage != null" >
+        clue_stage = #{clueStage,jdbcType=INTEGER},
+      </if>
+      <if test="clueChannelCode != null" >
+        clue_channel_code = #{clueChannelCode,jdbcType=INTEGER},
+      </if>
+      <if test="clueStatus != null" >
+        clue_status = #{clueStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="clueQuality != null" >
+        clue_quality = #{clueQuality,jdbcType=INTEGER},
+      </if>
+      <if test="lastOwner != null" >
+        last_owner = #{lastOwner,jdbcType=INTEGER},
+      </if>
+      <if test="lastCommunicateTime != null" >
+        last_communicate_time = #{lastCommunicateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="courseType != null" >
+        course_type = #{courseType,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=INTEGER},
+      </if>
+      <if test="clueOwner != null" >
+        clue_owner = #{clueOwner,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.am.es.entity.ClueCanFollow" >
+    update clue_can_follow
+    set clue_guid = #{clueGuid,jdbcType=VARCHAR},
+      clue_no = #{clueNo,jdbcType=VARCHAR},
+      custom_guid = #{customGuid,jdbcType=VARCHAR},
+      custom_no = #{customNo,jdbcType=VARCHAR},
+      clue_stage = #{clueStage,jdbcType=INTEGER},
+      clue_channel_code = #{clueChannelCode,jdbcType=INTEGER},
+      clue_status = #{clueStatus,jdbcType=VARCHAR},
+      clue_quality = #{clueQuality,jdbcType=INTEGER},
+      last_owner = #{lastOwner,jdbcType=INTEGER},
+      last_communicate_time = #{lastCommunicateTime,jdbcType=TIMESTAMP},
+      course_type = #{courseType,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=INTEGER},
+      clue_owner = #{clueOwner,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
