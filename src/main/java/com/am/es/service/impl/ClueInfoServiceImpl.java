@@ -1,8 +1,7 @@
 package com.am.es.service.impl;
 
-import com.am.es.dao.ClueInfoMapper;
+import com.am.es.cluedao.ClueInfoMapper;
 import com.am.es.model.ClueInfoVo;
-import com.am.es.model.CustomInfoVo;
 import com.am.es.service.SearchClueInfoRepository;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;

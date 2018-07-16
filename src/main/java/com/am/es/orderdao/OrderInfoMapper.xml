@@ -1,0 +1,734 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.am.es.orderdao.OrderInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.am.es.orderentity.OrderInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="course_type" property="courseType" jdbcType="INTEGER" />
+    <result column="source" property="source" jdbcType="INTEGER" />
+    <result column="cost_price" property="costPrice" jdbcType="DECIMAL" />
+    <result column="discount_amount" property="discountAmount" jdbcType="DECIMAL" />
+    <result column="paid_amount" property="paidAmount" jdbcType="DECIMAL" />
+    <result column="order_status" property="orderStatus" jdbcType="INTEGER" />
+    <result column="order_type" property="orderType" jdbcType="INTEGER" />
+    <result column="owner" property="owner" jdbcType="INTEGER" />
+    <result column="first_pay_time" property="firstPayTime" jdbcType="TIMESTAMP" />
+    <result column="completion_pay_time" property="completionPayTime" jdbcType="TIMESTAMP" />
+    <result column="customize_deposit_amount" property="customizeDepositAmount" jdbcType="DECIMAL" />
+    <result column="customize_deposit_user_id" property="customizeDepositUserId" jdbcType="INTEGER" />
+    <result column="is_deposit" property="isDeposit" jdbcType="INTEGER" />
+    <result column="deposit_amount" property="depositAmount" jdbcType="INTEGER" />
+    <result column="recommender" property="recommender" jdbcType="VARCHAR" />
+    <result column="is_need_audit" property="isNeedAudit" jdbcType="INTEGER" />
+    <result column="source_channel_code" property="sourceChannelCode" jdbcType="VARCHAR" />
+    <result column="channel_code_sub" property="channelCodeSub" jdbcType="VARCHAR" />
+    <result column="sign_up_school_id" property="signUpSchoolId" jdbcType="INTEGER" />
+    <result column="attend_school_id" property="attendSchoolId" jdbcType="INTEGER" />
+    <result column="school" property="school" jdbcType="VARCHAR" />
+    <result column="enrollment_year" property="enrollmentYear" jdbcType="TIMESTAMP" />
+    <result column="age" property="age" jdbcType="INTEGER" />
+    <result column="grade" property="grade" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="agreement_remark" property="agreementRemark" jdbcType="VARCHAR" />
+    <result column="is_push_eds" property="isPushEds" jdbcType="INTEGER" />
+    <result column="create_id" property="createId" jdbcType="INTEGER" />
+    <result column="update_id" property="updateId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <resultMap id="BaseResultVoMap" type="com.am.es.model.OrderInfoVo">
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="course_type" property="courseType" jdbcType="INTEGER" />
+    <result column="source" property="source" jdbcType="INTEGER" />
+    <result column="cost_price" property="costPrice" jdbcType="DECIMAL" />
+    <result column="discount_amount" property="discountAmount" jdbcType="DECIMAL" />
+    <result column="paid_amount" property="paidAmount" jdbcType="DECIMAL" />
+    <result column="order_status" property="orderStatus" jdbcType="INTEGER" />
+    <result column="order_type" property="orderType" jdbcType="INTEGER" />
+    <result column="owner" property="owner" jdbcType="INTEGER" />
+    <result column="first_pay_time" property="firstPayTime" jdbcType="TIMESTAMP" />
+    <result column="completion_pay_time" property="completionPayTime" jdbcType="TIMESTAMP" />
+    <result column="customize_deposit_amount" property="customizeDepositAmount" jdbcType="DECIMAL" />
+    <result column="customize_deposit_user_id" property="customizeDepositUserId" jdbcType="INTEGER" />
+    <result column="is_deposit" property="isDeposit" jdbcType="INTEGER" />
+    <result column="deposit_amount" property="depositAmount" jdbcType="INTEGER" />
+    <result column="recommender" property="recommender" jdbcType="VARCHAR" />
+    <result column="is_need_audit" property="isNeedAudit" jdbcType="INTEGER" />
+    <result column="source_channel_code" property="sourceChannelCode" jdbcType="VARCHAR" />
+    <result column="channel_code_sub" property="channelCodeSub" jdbcType="VARCHAR" />
+    <result column="sign_up_school_id" property="signUpSchoolId" jdbcType="INTEGER" />
+    <result column="attend_school_id" property="attendSchoolId" jdbcType="INTEGER" />
+    <result column="school" property="school" jdbcType="VARCHAR" />
+    <result column="enrollment_year" property="enrollmentYear" jdbcType="TIMESTAMP" />
+    <result column="age" property="age" jdbcType="INTEGER" />
+    <result column="grade" property="grade" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="agreement_remark" property="agreementRemark" jdbcType="VARCHAR" />
+    <result column="is_push_eds" property="isPushEds" jdbcType="INTEGER" />
+    <result column="create_id" property="createId" jdbcType="INTEGER" />
+    <result column="update_id" property="updateId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <association property="orderClueCustomStudentRelationVo" javaType="com.am.es.model.OrderClueCustomStudentRelationVo">
+      <id column="order_clue_id" property="id" jdbcType="INTEGER" />
+      <result column="order_clue_order_no" property="orderNo" jdbcType="VARCHAR" />
+      <result column="clue_no" property="clueNo" jdbcType="VARCHAR" />
+      <result column="clue_guid" property="clueGuid" jdbcType="VARCHAR" />
+      <result column="custom_no" property="customNo" jdbcType="VARCHAR" />
+      <result column="custom_guid" property="customGuid" jdbcType="VARCHAR" />
+      <result column="student_no" property="studentNo" jdbcType="VARCHAR" />
+      <result column="ucenter_uid" property="ucenterUid" jdbcType="INTEGER" />
+      <result column="v_order_no" property="vOrderNo" jdbcType="VARCHAR" />
+      <result column="order_clue_create_id" property="createId" jdbcType="INTEGER" />
+      <result column="order_clue_create_time" property="createTime" jdbcType="TIMESTAMP" />
+      <result column="order_clue_update_time" property="updateTime" jdbcType="TIMESTAMP" />
+      <result column="flag" property="flag" jdbcType="INTEGER" />
+    </association>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, order_no, course_type, source, cost_price, discount_amount, paid_amount, order_status, 
+    order_type, owner, first_pay_time, completion_pay_time, customize_deposit_amount, 
+    customize_deposit_user_id, is_deposit, deposit_amount, recommender, is_need_audit, 
+    source_channel_code, channel_code_sub, sign_up_school_id, attend_school_id, school, 
+    enrollment_year, age, grade, remark, agreement_remark, is_push_eds, create_id, update_id, 
+    create_time, update_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.am.es.orderentity.OrderInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from order_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.am.es.orderentity.OrderInfoExample" >
+    delete from order_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.am.es.orderentity.OrderInfo" >
+    insert into order_info (id, order_no, course_type, 
+      source, cost_price, discount_amount, 
+      paid_amount, order_status, order_type, 
+      owner, first_pay_time, completion_pay_time, 
+      customize_deposit_amount, customize_deposit_user_id, 
+      is_deposit, deposit_amount, recommender, 
+      is_need_audit, source_channel_code, channel_code_sub, 
+      sign_up_school_id, attend_school_id, school, 
+      enrollment_year, age, grade, 
+      remark, agreement_remark, is_push_eds, 
+      create_id, update_id, create_time, 
+      update_time)
+    values (#{id,jdbcType=INTEGER}, #{orderNo,jdbcType=VARCHAR}, #{courseType,jdbcType=INTEGER}, 
+      #{source,jdbcType=INTEGER}, #{costPrice,jdbcType=DECIMAL}, #{discountAmount,jdbcType=DECIMAL}, 
+      #{paidAmount,jdbcType=DECIMAL}, #{orderStatus,jdbcType=INTEGER}, #{orderType,jdbcType=INTEGER}, 
+      #{owner,jdbcType=INTEGER}, #{firstPayTime,jdbcType=TIMESTAMP}, #{completionPayTime,jdbcType=TIMESTAMP}, 
+      #{customizeDepositAmount,jdbcType=DECIMAL}, #{customizeDepositUserId,jdbcType=INTEGER}, 
+      #{isDeposit,jdbcType=INTEGER}, #{depositAmount,jdbcType=INTEGER}, #{recommender,jdbcType=VARCHAR}, 
+      #{isNeedAudit,jdbcType=INTEGER}, #{sourceChannelCode,jdbcType=VARCHAR}, #{channelCodeSub,jdbcType=VARCHAR}, 
+      #{signUpSchoolId,jdbcType=INTEGER}, #{attendSchoolId,jdbcType=INTEGER}, #{school,jdbcType=VARCHAR}, 
+      #{enrollmentYear,jdbcType=TIMESTAMP}, #{age,jdbcType=INTEGER}, #{grade,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{agreementRemark,jdbcType=VARCHAR}, #{isPushEds,jdbcType=INTEGER}, 
+      #{createId,jdbcType=INTEGER}, #{updateId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.am.es.orderentity.OrderInfo" >
+    insert into order_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="courseType != null" >
+        course_type,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="costPrice != null" >
+        cost_price,
+      </if>
+      <if test="discountAmount != null" >
+        discount_amount,
+      </if>
+      <if test="paidAmount != null" >
+        paid_amount,
+      </if>
+      <if test="orderStatus != null" >
+        order_status,
+      </if>
+      <if test="orderType != null" >
+        order_type,
+      </if>
+      <if test="owner != null" >
+        owner,
+      </if>
+      <if test="firstPayTime != null" >
+        first_pay_time,
+      </if>
+      <if test="completionPayTime != null" >
+        completion_pay_time,
+      </if>
+      <if test="customizeDepositAmount != null" >
+        customize_deposit_amount,
+      </if>
+      <if test="customizeDepositUserId != null" >
+        customize_deposit_user_id,
+      </if>
+      <if test="isDeposit != null" >
+        is_deposit,
+      </if>
+      <if test="depositAmount != null" >
+        deposit_amount,
+      </if>
+      <if test="recommender != null" >
+        recommender,
+      </if>
+      <if test="isNeedAudit != null" >
+        is_need_audit,
+      </if>
+      <if test="sourceChannelCode != null" >
+        source_channel_code,
+      </if>
+      <if test="channelCodeSub != null" >
+        channel_code_sub,
+      </if>
+      <if test="signUpSchoolId != null" >
+        sign_up_school_id,
+      </if>
+      <if test="attendSchoolId != null" >
+        attend_school_id,
+      </if>
+      <if test="school != null" >
+        school,
+      </if>
+      <if test="enrollmentYear != null" >
+        enrollment_year,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="grade != null" >
+        grade,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="agreementRemark != null" >
+        agreement_remark,
+      </if>
+      <if test="isPushEds != null" >
+        is_push_eds,
+      </if>
+      <if test="createId != null" >
+        create_id,
+      </if>
+      <if test="updateId != null" >
+        update_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="courseType != null" >
+        #{courseType,jdbcType=INTEGER},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=INTEGER},
+      </if>
+      <if test="costPrice != null" >
+        #{costPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="discountAmount != null" >
+        #{discountAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="paidAmount != null" >
+        #{paidAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="orderStatus != null" >
+        #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="orderType != null" >
+        #{orderType,jdbcType=INTEGER},
+      </if>
+      <if test="owner != null" >
+        #{owner,jdbcType=INTEGER},
+      </if>
+      <if test="firstPayTime != null" >
+        #{firstPayTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="completionPayTime != null" >
+        #{completionPayTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customizeDepositAmount != null" >
+        #{customizeDepositAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="customizeDepositUserId != null" >
+        #{customizeDepositUserId,jdbcType=INTEGER},
+      </if>
+      <if test="isDeposit != null" >
+        #{isDeposit,jdbcType=INTEGER},
+      </if>
+      <if test="depositAmount != null" >
+        #{depositAmount,jdbcType=INTEGER},
+      </if>
+      <if test="recommender != null" >
+        #{recommender,jdbcType=VARCHAR},
+      </if>
+      <if test="isNeedAudit != null" >
+        #{isNeedAudit,jdbcType=INTEGER},
+      </if>
+      <if test="sourceChannelCode != null" >
+        #{sourceChannelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="channelCodeSub != null" >
+        #{channelCodeSub,jdbcType=VARCHAR},
+      </if>
+      <if test="signUpSchoolId != null" >
+        #{signUpSchoolId,jdbcType=INTEGER},
+      </if>
+      <if test="attendSchoolId != null" >
+        #{attendSchoolId,jdbcType=INTEGER},
+      </if>
+      <if test="school != null" >
+        #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="enrollmentYear != null" >
+        #{enrollmentYear,jdbcType=TIMESTAMP},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="grade != null" >
+        #{grade,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="agreementRemark != null" >
+        #{agreementRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="isPushEds != null" >
+        #{isPushEds,jdbcType=INTEGER},
+      </if>
+      <if test="createId != null" >
+        #{createId,jdbcType=INTEGER},
+      </if>
+      <if test="updateId != null" >
+        #{updateId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.am.es.orderentity.OrderInfoExample" resultType="java.lang.Integer" >
+    select count(*) from order_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update order_info
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderNo != null" >
+        order_no = #{record.orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.courseType != null" >
+        course_type = #{record.courseType,jdbcType=INTEGER},
+      </if>
+      <if test="record.source != null" >
+        source = #{record.source,jdbcType=INTEGER},
+      </if>
+      <if test="record.costPrice != null" >
+        cost_price = #{record.costPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.discountAmount != null" >
+        discount_amount = #{record.discountAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.paidAmount != null" >
+        paid_amount = #{record.paidAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.orderStatus != null" >
+        order_status = #{record.orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderType != null" >
+        order_type = #{record.orderType,jdbcType=INTEGER},
+      </if>
+      <if test="record.owner != null" >
+        owner = #{record.owner,jdbcType=INTEGER},
+      </if>
+      <if test="record.firstPayTime != null" >
+        first_pay_time = #{record.firstPayTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.completionPayTime != null" >
+        completion_pay_time = #{record.completionPayTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.customizeDepositAmount != null" >
+        customize_deposit_amount = #{record.customizeDepositAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.customizeDepositUserId != null" >
+        customize_deposit_user_id = #{record.customizeDepositUserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.isDeposit != null" >
+        is_deposit = #{record.isDeposit,jdbcType=INTEGER},
+      </if>
+      <if test="record.depositAmount != null" >
+        deposit_amount = #{record.depositAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.recommender != null" >
+        recommender = #{record.recommender,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isNeedAudit != null" >
+        is_need_audit = #{record.isNeedAudit,jdbcType=INTEGER},
+      </if>
+      <if test="record.sourceChannelCode != null" >
+        source_channel_code = #{record.sourceChannelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.channelCodeSub != null" >
+        channel_code_sub = #{record.channelCodeSub,jdbcType=VARCHAR},
+      </if>
+      <if test="record.signUpSchoolId != null" >
+        sign_up_school_id = #{record.signUpSchoolId,jdbcType=INTEGER},
+      </if>
+      <if test="record.attendSchoolId != null" >
+        attend_school_id = #{record.attendSchoolId,jdbcType=INTEGER},
+      </if>
+      <if test="record.school != null" >
+        school = #{record.school,jdbcType=VARCHAR},
+      </if>
+      <if test="record.enrollmentYear != null" >
+        enrollment_year = #{record.enrollmentYear,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.age != null" >
+        age = #{record.age,jdbcType=INTEGER},
+      </if>
+      <if test="record.grade != null" >
+        grade = #{record.grade,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.agreementRemark != null" >
+        agreement_remark = #{record.agreementRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isPushEds != null" >
+        is_push_eds = #{record.isPushEds,jdbcType=INTEGER},
+      </if>
+      <if test="record.createId != null" >
+        create_id = #{record.createId,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateId != null" >
+        update_id = #{record.updateId,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update order_info
+    set id = #{record.id,jdbcType=INTEGER},
+      order_no = #{record.orderNo,jdbcType=VARCHAR},
+      course_type = #{record.courseType,jdbcType=INTEGER},
+      source = #{record.source,jdbcType=INTEGER},
+      cost_price = #{record.costPrice,jdbcType=DECIMAL},
+      discount_amount = #{record.discountAmount,jdbcType=DECIMAL},
+      paid_amount = #{record.paidAmount,jdbcType=DECIMAL},
+      order_status = #{record.orderStatus,jdbcType=INTEGER},
+      order_type = #{record.orderType,jdbcType=INTEGER},
+      owner = #{record.owner,jdbcType=INTEGER},
+      first_pay_time = #{record.firstPayTime,jdbcType=TIMESTAMP},
+      completion_pay_time = #{record.completionPayTime,jdbcType=TIMESTAMP},
+      customize_deposit_amount = #{record.customizeDepositAmount,jdbcType=DECIMAL},
+      customize_deposit_user_id = #{record.customizeDepositUserId,jdbcType=INTEGER},
+      is_deposit = #{record.isDeposit,jdbcType=INTEGER},
+      deposit_amount = #{record.depositAmount,jdbcType=INTEGER},
+      recommender = #{record.recommender,jdbcType=VARCHAR},
+      is_need_audit = #{record.isNeedAudit,jdbcType=INTEGER},
+      source_channel_code = #{record.sourceChannelCode,jdbcType=VARCHAR},
+      channel_code_sub = #{record.channelCodeSub,jdbcType=VARCHAR},
+      sign_up_school_id = #{record.signUpSchoolId,jdbcType=INTEGER},
+      attend_school_id = #{record.attendSchoolId,jdbcType=INTEGER},
+      school = #{record.school,jdbcType=VARCHAR},
+      enrollment_year = #{record.enrollmentYear,jdbcType=TIMESTAMP},
+      age = #{record.age,jdbcType=INTEGER},
+      grade = #{record.grade,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      agreement_remark = #{record.agreementRemark,jdbcType=VARCHAR},
+      is_push_eds = #{record.isPushEds,jdbcType=INTEGER},
+      create_id = #{record.createId,jdbcType=INTEGER},
+      update_id = #{record.updateId,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.am.es.orderentity.OrderInfo" >
+    update order_info
+    <set >
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="courseType != null" >
+        course_type = #{courseType,jdbcType=INTEGER},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=INTEGER},
+      </if>
+      <if test="costPrice != null" >
+        cost_price = #{costPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="discountAmount != null" >
+        discount_amount = #{discountAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="paidAmount != null" >
+        paid_amount = #{paidAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="orderStatus != null" >
+        order_status = #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="orderType != null" >
+        order_type = #{orderType,jdbcType=INTEGER},
+      </if>
+      <if test="owner != null" >
+        owner = #{owner,jdbcType=INTEGER},
+      </if>
+      <if test="firstPayTime != null" >
+        first_pay_time = #{firstPayTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="completionPayTime != null" >
+        completion_pay_time = #{completionPayTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customizeDepositAmount != null" >
+        customize_deposit_amount = #{customizeDepositAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="customizeDepositUserId != null" >
+        customize_deposit_user_id = #{customizeDepositUserId,jdbcType=INTEGER},
+      </if>
+      <if test="isDeposit != null" >
+        is_deposit = #{isDeposit,jdbcType=INTEGER},
+      </if>
+      <if test="depositAmount != null" >
+        deposit_amount = #{depositAmount,jdbcType=INTEGER},
+      </if>
+      <if test="recommender != null" >
+        recommender = #{recommender,jdbcType=VARCHAR},
+      </if>
+      <if test="isNeedAudit != null" >
+        is_need_audit = #{isNeedAudit,jdbcType=INTEGER},
+      </if>
+      <if test="sourceChannelCode != null" >
+        source_channel_code = #{sourceChannelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="channelCodeSub != null" >
+        channel_code_sub = #{channelCodeSub,jdbcType=VARCHAR},
+      </if>
+      <if test="signUpSchoolId != null" >
+        sign_up_school_id = #{signUpSchoolId,jdbcType=INTEGER},
+      </if>
+      <if test="attendSchoolId != null" >
+        attend_school_id = #{attendSchoolId,jdbcType=INTEGER},
+      </if>
+      <if test="school != null" >
+        school = #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="enrollmentYear != null" >
+        enrollment_year = #{enrollmentYear,jdbcType=TIMESTAMP},
+      </if>
+      <if test="age != null" >
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="grade != null" >
+        grade = #{grade,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="agreementRemark != null" >
+        agreement_remark = #{agreementRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="isPushEds != null" >
+        is_push_eds = #{isPushEds,jdbcType=INTEGER},
+      </if>
+      <if test="createId != null" >
+        create_id = #{createId,jdbcType=INTEGER},
+      </if>
+      <if test="updateId != null" >
+        update_id = #{updateId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.am.es.orderentity.OrderInfo" >
+    update order_info
+    set order_no = #{orderNo,jdbcType=VARCHAR},
+      course_type = #{courseType,jdbcType=INTEGER},
+      source = #{source,jdbcType=INTEGER},
+      cost_price = #{costPrice,jdbcType=DECIMAL},
+      discount_amount = #{discountAmount,jdbcType=DECIMAL},
+      paid_amount = #{paidAmount,jdbcType=DECIMAL},
+      order_status = #{orderStatus,jdbcType=INTEGER},
+      order_type = #{orderType,jdbcType=INTEGER},
+      owner = #{owner,jdbcType=INTEGER},
+      first_pay_time = #{firstPayTime,jdbcType=TIMESTAMP},
+      completion_pay_time = #{completionPayTime,jdbcType=TIMESTAMP},
+      customize_deposit_amount = #{customizeDepositAmount,jdbcType=DECIMAL},
+      customize_deposit_user_id = #{customizeDepositUserId,jdbcType=INTEGER},
+      is_deposit = #{isDeposit,jdbcType=INTEGER},
+      deposit_amount = #{depositAmount,jdbcType=INTEGER},
+      recommender = #{recommender,jdbcType=VARCHAR},
+      is_need_audit = #{isNeedAudit,jdbcType=INTEGER},
+      source_channel_code = #{sourceChannelCode,jdbcType=VARCHAR},
+      channel_code_sub = #{channelCodeSub,jdbcType=VARCHAR},
+      sign_up_school_id = #{signUpSchoolId,jdbcType=INTEGER},
+      attend_school_id = #{attendSchoolId,jdbcType=INTEGER},
+      school = #{school,jdbcType=VARCHAR},
+      enrollment_year = #{enrollmentYear,jdbcType=TIMESTAMP},
+      age = #{age,jdbcType=INTEGER},
+      grade = #{grade,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      agreement_remark = #{agreementRemark,jdbcType=VARCHAR},
+      is_push_eds = #{isPushEds,jdbcType=INTEGER},
+      create_id = #{createId,jdbcType=INTEGER},
+      update_id = #{updateId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectListByPrimaryKeyList" parameterType="java.util.List" resultMap="BaseResultVoMap">
+    SELECT
+      order_info.*, order_clue.id order_clue_id,
+      order_clue.order_no order_clue_order_no,
+      order_clue.clue_no,
+      order_clue.clue_guid,
+      order_clue.custom_no,
+      order_clue.custom_guid,
+      order_clue.student_no,
+      order_clue.ucenter_uid,
+      order_clue.v_order_no,
+      order_clue.create_id order_clue_create_id,
+      order_clue.create_time order_clue_create_time,
+      order_clue.update_time order_clue_update_time,
+      order_clue.flag
+    FROM
+      order_info
+    LEFT JOIN
+      order_clue_custom_student_relation order_clue ON order_info.order_no = order_clue.order_no
+    <where>
+      order_info.id IN
+      <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
+        #{item}
+      </foreach>
+    </where>
+  </select>
+</mapper>

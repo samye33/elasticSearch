@@ -1,6 +1,6 @@
 package com.am.es.service.impl;
 
-import com.am.es.dao.CustomContactInfoDetailMapper;
+import com.am.es.cluedao.CustomContactInfoDetailMapper;
 import com.am.es.model.CustomContactInfoDetailVo;
 import com.am.es.service.SearchCustomContactInfoDetailRepository;
 import org.springframework.beans.factory.annotation.Autowired;

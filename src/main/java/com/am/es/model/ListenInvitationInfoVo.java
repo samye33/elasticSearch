@@ -5,7 +5,7 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
 import java.util.Date;
 
-@Document(indexName = "listen_invitation_info_es", type = "listen_invitation_info")
+@Document(indexName = "listen_invitation_info_es", type = "listen_invitation_info",refreshInterval = "-1")
 public class ListenInvitationInfoVo implements Serializable {
     private Integer id;
 

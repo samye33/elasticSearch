@@ -7,6 +7,11 @@ spring:
       username: root
       password: aomengzhibo123
       driver-class-name: com.mysql.jdbc.Driver
+    ds2:
+      jdbc-url: jdbc:mysql://c.all-dream.com:3306/crmorder?useUnicode=true&characterEncoding=utf8&useSSL=false
+      username: root
+      password: aomengzhibo123
+      driver-class-name: com.mysql.jdbc.Driver
 
   data:
     elasticsearch:

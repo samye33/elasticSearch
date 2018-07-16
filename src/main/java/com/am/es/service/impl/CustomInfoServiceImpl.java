@@ -1,6 +1,6 @@
 package com.am.es.service.impl;
 
-import com.am.es.dao.CustomInfoMapper;
+import com.am.es.cluedao.CustomInfoMapper;
 import com.am.es.model.CustomInfoVo;
 import com.am.es.service.SearchCustomInfoRepository;
 import org.elasticsearch.index.query.*;

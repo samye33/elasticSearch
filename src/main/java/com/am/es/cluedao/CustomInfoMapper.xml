@@ -1,0 +1,682 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.am.es.cluedao.CustomInfoMapper">
+    <resultMap id="BaseResultMap" type="com.am.es.clueentity.CustomInfo">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="custom_no" property="customNo" jdbcType="VARCHAR"/>
+        <result column="true_name" property="trueName" jdbcType="VARCHAR"/>
+        <result column="parent_name" property="parentName" jdbcType="VARCHAR"/>
+        <result column="e_name" property="eName" jdbcType="VARCHAR"/>
+        <result column="gender" property="gender" jdbcType="INTEGER"/>
+        <result column="country" property="country" jdbcType="VARCHAR"/>
+        <result column="country_code" property="countryCode" jdbcType="VARCHAR"/>
+        <result column="main_phone" property="mainPhone" jdbcType="VARCHAR"/>
+        <result column="born_date" property="bornDate" jdbcType="TIMESTAMP"/>
+        <result column="profession" property="profession" jdbcType="VARCHAR"/>
+        <result column="province" property="province" jdbcType="VARCHAR"/>
+        <result column="is_abroad" property="isAbroad" jdbcType="INTEGER"/>
+        <result column="city" property="city" jdbcType="VARCHAR"/>
+        <result column="school" property="school" jdbcType="VARCHAR"/>
+        <result column="major" property="major" jdbcType="VARCHAR"/>
+        <result column="qualification" property="qualification" jdbcType="INTEGER"/>
+        <result column="enrollment_year" property="enrollmentYear" jdbcType="TIMESTAMP"/>
+        <result column="graduation_time" property="graduationTime" jdbcType="TIMESTAMP"/>
+        <result column="u_center_uid" property="uCenterUid" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="create_by" property="createBy" jdbcType="INTEGER"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="update_by" property="updateBy" jdbcType="INTEGER"/>
+        <result column="custom_pic" property="customPic" jdbcType="VARCHAR"/>
+        <result column="wx_nick" property="wxNick" jdbcType="VARCHAR"/>
+        <result column="wx_img" property="wxImg" jdbcType="VARCHAR"/>
+        <result column="wx_id" property="wxId" jdbcType="VARCHAR"/>
+        <result column="wx_user_name" property="wxUserName" jdbcType="VARCHAR"/>
+        <result column="wx_union_id" property="wxUnionId" jdbcType="VARCHAR"/>
+        <result column="urgent_name" property="urgentName" jdbcType="VARCHAR"/>
+        <result column="urgent_phone" property="urgentPhone" jdbcType="VARCHAR"/>
+        <result column="has_deal" property="hasDeal" jdbcType="INTEGER"/>
+        <result column="show_main_phone" property="showMainPhone" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    id, custom_no, true_name, parent_name, e_name, gender, country, country_code, main_phone, 
+    born_date, profession, province, is_abroad, city, school, major, qualification, enrollment_year, 
+    graduation_time, u_center_uid, create_time, create_by, update_time, update_by, custom_pic, 
+    wx_nick, wx_img, wx_id, wx_user_name, wx_union_id, urgent_name, urgent_phone, has_deal, 
+    show_main_phone
+  </sql>
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.am.es.clueentity.CustomInfoExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from custom_info
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from custom_info
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from custom_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <delete id="deleteByExample" parameterType="com.am.es.clueentity.CustomInfoExample">
+        delete from custom_info
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.am.es.clueentity.CustomInfo">
+    insert into custom_info (id, custom_no, true_name, 
+      parent_name, e_name, gender, 
+      country, country_code, main_phone, 
+      born_date, profession, province, 
+      is_abroad, city, school, 
+      major, qualification, enrollment_year, 
+      graduation_time, u_center_uid, create_time, 
+      create_by, update_time, update_by, 
+      custom_pic, wx_nick, wx_img, 
+      wx_id, wx_user_name, wx_union_id, 
+      urgent_name, urgent_phone, has_deal, 
+      show_main_phone)
+    values (#{id,jdbcType=INTEGER}, #{customNo,jdbcType=VARCHAR}, #{trueName,jdbcType=VARCHAR}, 
+      #{parentName,jdbcType=VARCHAR}, #{eName,jdbcType=VARCHAR}, #{gender,jdbcType=INTEGER}, 
+      #{country,jdbcType=VARCHAR}, #{countryCode,jdbcType=VARCHAR}, #{mainPhone,jdbcType=VARCHAR}, 
+      #{bornDate,jdbcType=TIMESTAMP}, #{profession,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, 
+      #{isAbroad,jdbcType=INTEGER}, #{city,jdbcType=VARCHAR}, #{school,jdbcType=VARCHAR}, 
+      #{major,jdbcType=VARCHAR}, #{qualification,jdbcType=INTEGER}, #{enrollmentYear,jdbcType=TIMESTAMP}, 
+      #{graduationTime,jdbcType=TIMESTAMP}, #{uCenterUid,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createBy,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=INTEGER}, 
+      #{customPic,jdbcType=VARCHAR}, #{wxNick,jdbcType=VARCHAR}, #{wxImg,jdbcType=VARCHAR}, 
+      #{wxId,jdbcType=VARCHAR}, #{wxUserName,jdbcType=VARCHAR}, #{wxUnionId,jdbcType=VARCHAR}, 
+      #{urgentName,jdbcType=VARCHAR}, #{urgentPhone,jdbcType=VARCHAR}, #{hasDeal,jdbcType=INTEGER}, 
+      #{showMainPhone,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.am.es.clueentity.CustomInfo">
+        insert into custom_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="customNo != null">
+                custom_no,
+            </if>
+            <if test="trueName != null">
+                true_name,
+            </if>
+            <if test="parentName != null">
+                parent_name,
+            </if>
+            <if test="eName != null">
+                e_name,
+            </if>
+            <if test="gender != null">
+                gender,
+            </if>
+            <if test="country != null">
+                country,
+            </if>
+            <if test="countryCode != null">
+                country_code,
+            </if>
+            <if test="mainPhone != null">
+                main_phone,
+            </if>
+            <if test="bornDate != null">
+                born_date,
+            </if>
+            <if test="profession != null">
+                profession,
+            </if>
+            <if test="province != null">
+                province,
+            </if>
+            <if test="isAbroad != null">
+                is_abroad,
+            </if>
+            <if test="city != null">
+                city,
+            </if>
+            <if test="school != null">
+                school,
+            </if>
+            <if test="major != null">
+                major,
+            </if>
+            <if test="qualification != null">
+                qualification,
+            </if>
+            <if test="enrollmentYear != null">
+                enrollment_year,
+            </if>
+            <if test="graduationTime != null">
+                graduation_time,
+            </if>
+            <if test="uCenterUid != null">
+                u_center_uid,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="createBy != null">
+                create_by,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="updateBy != null">
+                update_by,
+            </if>
+            <if test="customPic != null">
+                custom_pic,
+            </if>
+            <if test="wxNick != null">
+                wx_nick,
+            </if>
+            <if test="wxImg != null">
+                wx_img,
+            </if>
+            <if test="wxId != null">
+                wx_id,
+            </if>
+            <if test="wxUserName != null">
+                wx_user_name,
+            </if>
+            <if test="wxUnionId != null">
+                wx_union_id,
+            </if>
+            <if test="urgentName != null">
+                urgent_name,
+            </if>
+            <if test="urgentPhone != null">
+                urgent_phone,
+            </if>
+            <if test="hasDeal != null">
+                has_deal,
+            </if>
+            <if test="showMainPhone != null">
+                show_main_phone,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="customNo != null">
+                #{customNo,jdbcType=VARCHAR},
+            </if>
+            <if test="trueName != null">
+                #{trueName,jdbcType=VARCHAR},
+            </if>
+            <if test="parentName != null">
+                #{parentName,jdbcType=VARCHAR},
+            </if>
+            <if test="eName != null">
+                #{eName,jdbcType=VARCHAR},
+            </if>
+            <if test="gender != null">
+                #{gender,jdbcType=INTEGER},
+            </if>
+            <if test="country != null">
+                #{country,jdbcType=VARCHAR},
+            </if>
+            <if test="countryCode != null">
+                #{countryCode,jdbcType=VARCHAR},
+            </if>
+            <if test="mainPhone != null">
+                #{mainPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="bornDate != null">
+                #{bornDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="profession != null">
+                #{profession,jdbcType=VARCHAR},
+            </if>
+            <if test="province != null">
+                #{province,jdbcType=VARCHAR},
+            </if>
+            <if test="isAbroad != null">
+                #{isAbroad,jdbcType=INTEGER},
+            </if>
+            <if test="city != null">
+                #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="school != null">
+                #{school,jdbcType=VARCHAR},
+            </if>
+            <if test="major != null">
+                #{major,jdbcType=VARCHAR},
+            </if>
+            <if test="qualification != null">
+                #{qualification,jdbcType=INTEGER},
+            </if>
+            <if test="enrollmentYear != null">
+                #{enrollmentYear,jdbcType=TIMESTAMP},
+            </if>
+            <if test="graduationTime != null">
+                #{graduationTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="uCenterUid != null">
+                #{uCenterUid,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createBy != null">
+                #{createBy,jdbcType=INTEGER},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null">
+                #{updateBy,jdbcType=INTEGER},
+            </if>
+            <if test="customPic != null">
+                #{customPic,jdbcType=VARCHAR},
+            </if>
+            <if test="wxNick != null">
+                #{wxNick,jdbcType=VARCHAR},
+            </if>
+            <if test="wxImg != null">
+                #{wxImg,jdbcType=VARCHAR},
+            </if>
+            <if test="wxId != null">
+                #{wxId,jdbcType=VARCHAR},
+            </if>
+            <if test="wxUserName != null">
+                #{wxUserName,jdbcType=VARCHAR},
+            </if>
+            <if test="wxUnionId != null">
+                #{wxUnionId,jdbcType=VARCHAR},
+            </if>
+            <if test="urgentName != null">
+                #{urgentName,jdbcType=VARCHAR},
+            </if>
+            <if test="urgentPhone != null">
+                #{urgentPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="hasDeal != null">
+                #{hasDeal,jdbcType=INTEGER},
+            </if>
+            <if test="showMainPhone != null">
+                #{showMainPhone,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.am.es.clueentity.CustomInfoExample" resultType="java.lang.Integer">
+        select count(*) from custom_info
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update custom_info
+        <set>
+            <if test="record.id != null">
+                id = #{record.id,jdbcType=INTEGER},
+            </if>
+            <if test="record.customNo != null">
+                custom_no = #{record.customNo,jdbcType=VARCHAR},
+            </if>
+            <if test="record.trueName != null">
+                true_name = #{record.trueName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.parentName != null">
+                parent_name = #{record.parentName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.eName != null">
+                e_name = #{record.eName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.gender != null">
+                gender = #{record.gender,jdbcType=INTEGER},
+            </if>
+            <if test="record.country != null">
+                country = #{record.country,jdbcType=VARCHAR},
+            </if>
+            <if test="record.countryCode != null">
+                country_code = #{record.countryCode,jdbcType=VARCHAR},
+            </if>
+            <if test="record.mainPhone != null">
+                main_phone = #{record.mainPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="record.bornDate != null">
+                born_date = #{record.bornDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.profession != null">
+                profession = #{record.profession,jdbcType=VARCHAR},
+            </if>
+            <if test="record.province != null">
+                province = #{record.province,jdbcType=VARCHAR},
+            </if>
+            <if test="record.isAbroad != null">
+                is_abroad = #{record.isAbroad,jdbcType=INTEGER},
+            </if>
+            <if test="record.city != null">
+                city = #{record.city,jdbcType=VARCHAR},
+            </if>
+            <if test="record.school != null">
+                school = #{record.school,jdbcType=VARCHAR},
+            </if>
+            <if test="record.major != null">
+                major = #{record.major,jdbcType=VARCHAR},
+            </if>
+            <if test="record.qualification != null">
+                qualification = #{record.qualification,jdbcType=INTEGER},
+            </if>
+            <if test="record.enrollmentYear != null">
+                enrollment_year = #{record.enrollmentYear,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.graduationTime != null">
+                graduation_time = #{record.graduationTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.uCenterUid != null">
+                u_center_uid = #{record.uCenterUid,jdbcType=INTEGER},
+            </if>
+            <if test="record.createTime != null">
+                create_time = #{record.createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.createBy != null">
+                create_by = #{record.createBy,jdbcType=INTEGER},
+            </if>
+            <if test="record.updateTime != null">
+                update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.updateBy != null">
+                update_by = #{record.updateBy,jdbcType=INTEGER},
+            </if>
+            <if test="record.customPic != null">
+                custom_pic = #{record.customPic,jdbcType=VARCHAR},
+            </if>
+            <if test="record.wxNick != null">
+                wx_nick = #{record.wxNick,jdbcType=VARCHAR},
+            </if>
+            <if test="record.wxImg != null">
+                wx_img = #{record.wxImg,jdbcType=VARCHAR},
+            </if>
+            <if test="record.wxId != null">
+                wx_id = #{record.wxId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.wxUserName != null">
+                wx_user_name = #{record.wxUserName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.wxUnionId != null">
+                wx_union_id = #{record.wxUnionId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.urgentName != null">
+                urgent_name = #{record.urgentName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.urgentPhone != null">
+                urgent_phone = #{record.urgentPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="record.hasDeal != null">
+                has_deal = #{record.hasDeal,jdbcType=INTEGER},
+            </if>
+            <if test="record.showMainPhone != null">
+                show_main_phone = #{record.showMainPhone,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update custom_info
+        set id = #{record.id,jdbcType=INTEGER},
+        custom_no = #{record.customNo,jdbcType=VARCHAR},
+        true_name = #{record.trueName,jdbcType=VARCHAR},
+        parent_name = #{record.parentName,jdbcType=VARCHAR},
+        e_name = #{record.eName,jdbcType=VARCHAR},
+        gender = #{record.gender,jdbcType=INTEGER},
+        country = #{record.country,jdbcType=VARCHAR},
+        country_code = #{record.countryCode,jdbcType=VARCHAR},
+        main_phone = #{record.mainPhone,jdbcType=VARCHAR},
+        born_date = #{record.bornDate,jdbcType=TIMESTAMP},
+        profession = #{record.profession,jdbcType=VARCHAR},
+        province = #{record.province,jdbcType=VARCHAR},
+        is_abroad = #{record.isAbroad,jdbcType=INTEGER},
+        city = #{record.city,jdbcType=VARCHAR},
+        school = #{record.school,jdbcType=VARCHAR},
+        major = #{record.major,jdbcType=VARCHAR},
+        qualification = #{record.qualification,jdbcType=INTEGER},
+        enrollment_year = #{record.enrollmentYear,jdbcType=TIMESTAMP},
+        graduation_time = #{record.graduationTime,jdbcType=TIMESTAMP},
+        u_center_uid = #{record.uCenterUid,jdbcType=INTEGER},
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+        create_by = #{record.createBy,jdbcType=INTEGER},
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+        update_by = #{record.updateBy,jdbcType=INTEGER},
+        custom_pic = #{record.customPic,jdbcType=VARCHAR},
+        wx_nick = #{record.wxNick,jdbcType=VARCHAR},
+        wx_img = #{record.wxImg,jdbcType=VARCHAR},
+        wx_id = #{record.wxId,jdbcType=VARCHAR},
+        wx_user_name = #{record.wxUserName,jdbcType=VARCHAR},
+        wx_union_id = #{record.wxUnionId,jdbcType=VARCHAR},
+        urgent_name = #{record.urgentName,jdbcType=VARCHAR},
+        urgent_phone = #{record.urgentPhone,jdbcType=VARCHAR},
+        has_deal = #{record.hasDeal,jdbcType=INTEGER},
+        show_main_phone = #{record.showMainPhone,jdbcType=VARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.am.es.clueentity.CustomInfo">
+        update custom_info
+        <set>
+            <if test="customNo != null">
+                custom_no = #{customNo,jdbcType=VARCHAR},
+            </if>
+            <if test="trueName != null">
+                true_name = #{trueName,jdbcType=VARCHAR},
+            </if>
+            <if test="parentName != null">
+                parent_name = #{parentName,jdbcType=VARCHAR},
+            </if>
+            <if test="eName != null">
+                e_name = #{eName,jdbcType=VARCHAR},
+            </if>
+            <if test="gender != null">
+                gender = #{gender,jdbcType=INTEGER},
+            </if>
+            <if test="country != null">
+                country = #{country,jdbcType=VARCHAR},
+            </if>
+            <if test="countryCode != null">
+                country_code = #{countryCode,jdbcType=VARCHAR},
+            </if>
+            <if test="mainPhone != null">
+                main_phone = #{mainPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="bornDate != null">
+                born_date = #{bornDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="profession != null">
+                profession = #{profession,jdbcType=VARCHAR},
+            </if>
+            <if test="province != null">
+                province = #{province,jdbcType=VARCHAR},
+            </if>
+            <if test="isAbroad != null">
+                is_abroad = #{isAbroad,jdbcType=INTEGER},
+            </if>
+            <if test="city != null">
+                city = #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="school != null">
+                school = #{school,jdbcType=VARCHAR},
+            </if>
+            <if test="major != null">
+                major = #{major,jdbcType=VARCHAR},
+            </if>
+            <if test="qualification != null">
+                qualification = #{qualification,jdbcType=INTEGER},
+            </if>
+            <if test="enrollmentYear != null">
+                enrollment_year = #{enrollmentYear,jdbcType=TIMESTAMP},
+            </if>
+            <if test="graduationTime != null">
+                graduation_time = #{graduationTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="uCenterUid != null">
+                u_center_uid = #{uCenterUid,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createBy != null">
+                create_by = #{createBy,jdbcType=INTEGER},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null">
+                update_by = #{updateBy,jdbcType=INTEGER},
+            </if>
+            <if test="customPic != null">
+                custom_pic = #{customPic,jdbcType=VARCHAR},
+            </if>
+            <if test="wxNick != null">
+                wx_nick = #{wxNick,jdbcType=VARCHAR},
+            </if>
+            <if test="wxImg != null">
+                wx_img = #{wxImg,jdbcType=VARCHAR},
+            </if>
+            <if test="wxId != null">
+                wx_id = #{wxId,jdbcType=VARCHAR},
+            </if>
+            <if test="wxUserName != null">
+                wx_user_name = #{wxUserName,jdbcType=VARCHAR},
+            </if>
+            <if test="wxUnionId != null">
+                wx_union_id = #{wxUnionId,jdbcType=VARCHAR},
+            </if>
+            <if test="urgentName != null">
+                urgent_name = #{urgentName,jdbcType=VARCHAR},
+            </if>
+            <if test="urgentPhone != null">
+                urgent_phone = #{urgentPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="hasDeal != null">
+                has_deal = #{hasDeal,jdbcType=INTEGER},
+            </if>
+            <if test="showMainPhone != null">
+                show_main_phone = #{showMainPhone,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.am.es.clueentity.CustomInfo">
+    update custom_info
+    set custom_no = #{customNo,jdbcType=VARCHAR},
+      true_name = #{trueName,jdbcType=VARCHAR},
+      parent_name = #{parentName,jdbcType=VARCHAR},
+      e_name = #{eName,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=INTEGER},
+      country = #{country,jdbcType=VARCHAR},
+      country_code = #{countryCode,jdbcType=VARCHAR},
+      main_phone = #{mainPhone,jdbcType=VARCHAR},
+      born_date = #{bornDate,jdbcType=TIMESTAMP},
+      profession = #{profession,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      is_abroad = #{isAbroad,jdbcType=INTEGER},
+      city = #{city,jdbcType=VARCHAR},
+      school = #{school,jdbcType=VARCHAR},
+      major = #{major,jdbcType=VARCHAR},
+      qualification = #{qualification,jdbcType=INTEGER},
+      enrollment_year = #{enrollmentYear,jdbcType=TIMESTAMP},
+      graduation_time = #{graduationTime,jdbcType=TIMESTAMP},
+      u_center_uid = #{uCenterUid,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=INTEGER},
+      custom_pic = #{customPic,jdbcType=VARCHAR},
+      wx_nick = #{wxNick,jdbcType=VARCHAR},
+      wx_img = #{wxImg,jdbcType=VARCHAR},
+      wx_id = #{wxId,jdbcType=VARCHAR},
+      wx_user_name = #{wxUserName,jdbcType=VARCHAR},
+      wx_union_id = #{wxUnionId,jdbcType=VARCHAR},
+      urgent_name = #{urgentName,jdbcType=VARCHAR},
+      urgent_phone = #{urgentPhone,jdbcType=VARCHAR},
+      has_deal = #{hasDeal,jdbcType=INTEGER},
+      show_main_phone = #{showMainPhone,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+    <select id="selectListByPrimaryKeyList" parameterType="java.util.List" resultType="com.am.es.model.CustomInfoVo">
+        SELECT * FROM custom_info
+        <where>
+            id IN
+            <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
+            #{item}
+            </foreach>
+        </where>
+    </select>
+</mapper>

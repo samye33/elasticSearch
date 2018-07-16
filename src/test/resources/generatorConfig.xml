@@ -1,30 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
-	<context id="MySQLTables" targetRuntime="MyBatis3">
-		<plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
-		<commentGenerator>
-			<property name="javaFileEncoding" value="UTF-8" /><!--指定文件编码 -->
-			<property name="suppressDate" value="true" /><!-- 是否生成注释代时间戳 -->
-			<property name="suppressAllComments" value="true" /><!-- 是否去除自动生成的注释 true：是 ： false:否 -->
-		</commentGenerator>
+    <context id="MySQLTables" targetRuntime="MyBatis3">
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
+        <commentGenerator>
+            <property name="javaFileEncoding" value="UTF-8"/><!--指定文件编码 -->
+            <property name="suppressDate" value="true"/><!-- 是否生成注释代时间戳 -->
+            <property name="suppressAllComments" value="true"/><!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+        </commentGenerator>
 
-		<!--数据库连接配置 -->
-		<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://c.all-dream.com/crmclues" userId="root" password="aomengzhibo123" /> <!--数据库链接URL，用户名、密码 -->
+        <!--数据库连接配置 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://c.all-dream.com/crmorder"
+                        userId="root" password="aomengzhibo123"/> <!--数据库链接URL，用户名、密码 -->
 
-		<!--各种输出配置 -->
-		<javaModelGenerator targetPackage="com.am.es.entity" targetProject="src\main\java\">
-			<property name="enableSubPackages" value="true" />
-		</javaModelGenerator><!-- 实体类 model -->
-		<sqlMapGenerator targetPackage="com.am.es.dao" targetProject="src\main\java\">
-			<property name="enableSubPackages" value="true" />
-		</sqlMapGenerator><!-- 生成映射文件的包名和位置-->
-		<javaClientGenerator targetPackage="com.am.es.dao" targetProject="src\main\java\" type="XMLMAPPER">
-			<property name="enableSubPackages" value="true" />
-		</javaClientGenerator><!-- 生成DAO的包名和位置-->
+        <!--各种输出配置 -->
+        <javaModelGenerator targetPackage="com.am.es.orderentity" targetProject="src\main\java\">
+            <property name="enableSubPackages" value="true"/>
+        </javaModelGenerator><!-- 实体类 model -->
+        <sqlMapGenerator targetPackage="com.am.es.orderdao" targetProject="src\main\java\">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator><!-- 生成映射文件的包名和位置-->
+        <javaClientGenerator targetPackage="com.am.es.orderdao" targetProject="src\main\java\" type="XMLMAPPER">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator><!-- 生成DAO的包名和位置-->
 
-		<!--需要逆向的表 -->
-		<table tableName="listen_invitation_feed_back"></table>
-		<table tableName="listen_invitation_info"></table>
-	</context>
+        <!--需要逆向的表 -->
+        <table tableName="order_serial"></table>
+        <table tableName="order_info"></table>
+        <table tableName="order_clue_custom_student_relation"></table>
+    </context>
 </generatorConfiguration>

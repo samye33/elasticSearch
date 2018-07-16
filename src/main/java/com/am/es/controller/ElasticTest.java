@@ -1,7 +1,5 @@
 package com.am.es.controller;
 
-import com.am.es.entity.CustomContacts;
-import com.am.es.entity.SysUsers;
 import com.am.es.model.ClueInfoVo;
 import com.am.es.model.CustomInfoVo;
 import com.am.es.model.ElasticSearchResponse;
@@ -57,37 +55,14 @@ public class ElasticTest {
         ElasticSearchResponse res = new ElasticSearchResponse();
         long starttime = System.currentTimeMillis();
         try {
-            List<Integer> clueTurnRecordList = new ArrayList<Integer>();
-            clueTurnRecordList.add(33743662);
-            clueTurnRecordList.add(33743663);
-            clueTurnRecordService.saveClueTurnRecordList(clueTurnRecordList);
-            List<Integer> listenList = new ArrayList<Integer>();
-            listenList.add(290);
-            listenList.add(293);
-            listenInvitationInfoService.saveListenInvitationInfoList(listenList);
-            List<Integer> contactsList = new ArrayList<Integer>();
-            contactsList.add(87778);
-            contactsList.add(87779);
-            contactsList.add(87780);
-            contactsList.add(87781);
-            contactsList.add(87782);
-            contactsList.add(87783);
-            customContactsImpl.saveCustomContactsList(contactsList);
-            List<Integer> contactInfoList = new ArrayList<Integer>();
-            contactInfoList.add(11576779);
-            contactInfoList.add(11576780);
-            contactInfoList.add(11576781);
-            contactInfoList.add(11576782);
-            contactInfoList.add(11576783);
-            contactInfoList.add(11576784);
-            contactInfoList.add(11576785);
-            contactInfoList.add(11576786);
-            contactInfoList.add(11576787);
-            contactInfoList.add(11576788);
-            contactInfoList.add(11576789);
-            contactInfoList.add(11576790);
-            contactInfoList.add(11576791);
-            customContactInfoDeatail.saveCustomContactInfoDeatailList(contactInfoList);
+            List<Integer> clueList = new ArrayList<Integer>();
+            clueList.add(19);
+            clueList.add(20);
+            clueInfoService.saveClueInfoList(clueList);
+            List<Integer> customList = new ArrayList<Integer>();
+            customList.add(27);
+            customList.add(28);
+            customInfoService.saveCustomInfoList(customList);
         } catch (Exception e) {
             logger.error("", e);
         }
@@ -152,7 +127,7 @@ public class ElasticTest {
     public ElasticSearchResponse deleteUser(HttpServletRequest request, HttpServletResponse response) {
         ElasticSearchResponse res = new ElasticSearchResponse();
         int user_id = 54;
-        SysUsers sysUsers = null;
+//        SysUsers sysUsers = null;
 //        searchRepository.delete(sysUsers);
         return res;
     }

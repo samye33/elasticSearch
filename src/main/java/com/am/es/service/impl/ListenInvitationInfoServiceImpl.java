@@ -1,6 +1,6 @@
 package com.am.es.service.impl;
 
-import com.am.es.dao.ListenInvitationInfoMapper;
+import com.am.es.cluedao.ListenInvitationInfoMapper;
 import com.am.es.model.ListenInvitationInfoVo;
 import com.am.es.service.SearchListenInvitationInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;

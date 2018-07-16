@@ -5,7 +5,7 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
 import java.util.Date;
 
-@Document(indexName = "clue_turn_record_es", type = "clue_turn_record")
+@Document(indexName = "clue_turn_record_es", type = "clue_turn_record",refreshInterval = "-1")
 public class ClueTurnRecordVo implements Serializable {
     private Integer id;
 
