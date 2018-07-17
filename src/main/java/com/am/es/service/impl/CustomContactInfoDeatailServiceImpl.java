@@ -2,7 +2,8 @@ package com.am.es.service.impl;
 
 import com.am.es.cluedao.CustomContactInfoDetailMapper;
 import com.am.es.model.CustomContactInfoDetailVo;
-import com.am.es.service.SearchCustomContactInfoDetailRepository;
+import com.am.es.searchservice.SearchCustomContactInfoDetailRepository;
+import com.am.es.service.CustomContactInfoDeatailService;
 import com.am.es.utils.SearchConditionEncape;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @Component
-public class CustomContactInfoDeatailImpl {
+public class CustomContactInfoDeatailServiceImpl implements CustomContactInfoDeatailService {
     @Autowired
     private SearchCustomContactInfoDetailRepository searchCustomContactInfoDetailRepository;
 

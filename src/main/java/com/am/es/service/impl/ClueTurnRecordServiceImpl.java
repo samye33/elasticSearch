@@ -1,8 +1,10 @@
 package com.am.es.service.impl;
 
 import com.am.es.cluedao.ClueTurnRecordMapper;
+import com.am.es.clueentity.ClueTurnRecord;
 import com.am.es.model.ClueTurnRecordVo;
-import com.am.es.service.SearchClueTurnRecordRepository;
+import com.am.es.searchservice.SearchClueTurnRecordRepository;
+import com.am.es.service.ClueTurnRecordService;
 import com.am.es.utils.SearchConditionEncape;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
@@ -12,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @Component
-public class ClueTurnRecordServiceImpl {
+public class ClueTurnRecordServiceImpl implements ClueTurnRecordService{
     @Autowired
     private ClueTurnRecordMapper clueTurnRecordMapper;
 

@@ -2,7 +2,8 @@ package com.am.es.service.impl;
 
 import com.am.es.cluedao.CustomInfoMapper;
 import com.am.es.model.CustomInfoVo;
-import com.am.es.service.SearchCustomInfoRepository;
+import com.am.es.searchservice.SearchCustomInfoRepository;
+import com.am.es.service.CustomInfoService;
 import com.am.es.utils.SearchConditionEncape;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
@@ -15,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 @Component
-public class CustomInfoServiceImpl {
+public class CustomInfoServiceImpl implements CustomInfoService {
 
     @Autowired
     private SearchCustomInfoRepository searchCustomInfoRepository;

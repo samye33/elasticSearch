@@ -1,4 +1,4 @@
-package com.am.es.service;
+package com.am.es.searchservice;
 
 import com.am.es.model.OrderSerialVo;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;

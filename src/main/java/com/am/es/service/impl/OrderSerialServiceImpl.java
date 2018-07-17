@@ -2,7 +2,8 @@ package com.am.es.service.impl;
 
 import com.am.es.model.OrderSerialVo;
 import com.am.es.orderdao.OrderSerialMapper;
-import com.am.es.service.SearchOrderSerialRepository;
+import com.am.es.searchservice.SearchOrderSerialRepository;
+import com.am.es.service.OrderSerialService;
 import com.am.es.utils.SearchConditionEncape;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @Component
-public class OrderSerialServiceImpl {
+public class OrderSerialServiceImpl implements OrderSerialService {
     @Autowired
     private OrderSerialMapper orderSerialMapper;
     @Autowired

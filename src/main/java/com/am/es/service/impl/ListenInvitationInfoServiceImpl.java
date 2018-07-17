@@ -2,7 +2,8 @@ package com.am.es.service.impl;
 
 import com.am.es.cluedao.ListenInvitationInfoMapper;
 import com.am.es.model.ListenInvitationInfoVo;
-import com.am.es.service.SearchListenInvitationInfoRepository;
+import com.am.es.searchservice.SearchListenInvitationInfoRepository;
+import com.am.es.service.ListenInvitationInfoService;
 import com.am.es.utils.SearchConditionEncape;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @Component
-public class ListenInvitationInfoServiceImpl {
+public class ListenInvitationInfoServiceImpl implements ListenInvitationInfoService {
     @Autowired
     private SearchListenInvitationInfoRepository searchListenInvitationInfoRepository;
 

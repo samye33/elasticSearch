@@ -2,7 +2,8 @@ package com.am.es.service.impl;
 
 import com.am.es.cluedao.ClueInfoMapper;
 import com.am.es.model.ClueInfoVo;
-import com.am.es.service.SearchClueInfoRepository;
+import com.am.es.searchservice.SearchClueInfoRepository;
+import com.am.es.service.ClueInfoService;
 import com.am.es.utils.SearchConditionEncape;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
@@ -15,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 @Component
-public class ClueInfoServiceImpl {
+public class ClueInfoServiceImpl implements ClueInfoService{
 
     @Autowired
     private SearchClueInfoRepository searchClueInfoRepository;
