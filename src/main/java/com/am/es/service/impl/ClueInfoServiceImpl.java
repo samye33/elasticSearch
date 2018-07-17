@@ -3,6 +3,7 @@ package com.am.es.service.impl;
 import com.am.es.cluedao.ClueInfoMapper;
 import com.am.es.model.ClueInfoVo;
 import com.am.es.service.SearchClueInfoRepository;
+import com.am.es.utils.SearchConditionEncape;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilde
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
 
 @Component
 public class ClueInfoServiceImpl {
@@ -42,6 +44,14 @@ public class ClueInfoServiceImpl {
         ClueInfoVo clueInfoVo = new ClueInfoVo();
         clueInfoVo.setId(id);
         searchClueInfoRepository.delete(clueInfoVo);
+    }
+
+    public List<ClueInfoVo> getOrderInfoList(Map<String, ?> map, Integer currentPage, Integer pageSize) {
+        List<ClueInfoVo> list = null;
+        SearchConditionEncape searchConditionEncape = new SearchConditionEncape();
+        NativeSearchQuery query = searchConditionEncape.queryCondition(map, currentPage, pageSize);
+        list = searchClueInfoRepository.search(query).getContent();
+        return list;
     }
 
 }

@@ -3,10 +3,14 @@ package com.am.es.service.impl;
 import com.am.es.cluedao.CustomContactInfoDetailMapper;
 import com.am.es.model.CustomContactInfoDetailVo;
 import com.am.es.service.SearchCustomContactInfoDetailRepository;
+import com.am.es.utils.SearchConditionEncape;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
+
 @Component
 public class CustomContactInfoDeatailImpl {
     @Autowired
@@ -26,5 +30,13 @@ public class CustomContactInfoDeatailImpl {
         CustomContactInfoDetailVo customContactInfoDetailVo = new CustomContactInfoDetailVo();
         customContactInfoDetailVo.setId(id);
         searchCustomContactInfoDetailRepository.delete(customContactInfoDetailVo);
+    }
+
+    public List<CustomContactInfoDetailVo> getOrderInfoList(Map<String, ?> map, Integer currentPage, Integer pageSize) {
+        List<CustomContactInfoDetailVo> list = null;
+        SearchConditionEncape searchConditionEncape = new SearchConditionEncape();
+        NativeSearchQuery query = searchConditionEncape.queryCondition(map, currentPage, pageSize);
+        list = searchCustomContactInfoDetailRepository.search(query).getContent();
+        return list;
     }
 }

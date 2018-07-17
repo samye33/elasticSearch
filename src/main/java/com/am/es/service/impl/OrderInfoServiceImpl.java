@@ -3,10 +3,13 @@ package com.am.es.service.impl;
 import com.am.es.model.OrderInfoVo;
 import com.am.es.orderdao.OrderInfoMapper;
 import com.am.es.service.SearchOrderInfoRepository;
+import com.am.es.utils.SearchConditionEncape;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
 
 @Component
 public class OrderInfoServiceImpl {
@@ -27,5 +30,13 @@ public class OrderInfoServiceImpl {
         OrderInfoVo orderInfoVo = new OrderInfoVo();
         orderInfoVo.setId(id);
         searchOrderInfoRepository.delete(orderInfoVo);
+    }
+
+    public List<OrderInfoVo> getOrderInfoList(Map<String, ?> map, Integer currentPage, Integer pageSize) {
+        List<OrderInfoVo> list = null;
+        SearchConditionEncape searchConditionEncape = new SearchConditionEncape();
+        NativeSearchQuery query = searchConditionEncape.queryCondition(map, currentPage, pageSize);
+        list = searchOrderInfoRepository.search(query).getContent();
+        return list;
     }
 }

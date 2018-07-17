@@ -3,10 +3,13 @@ package com.am.es.service.impl;
 import com.am.es.cluedao.CustomContactsMapper;
 import com.am.es.model.CustomContactsVo;
 import com.am.es.service.SearchCustomContactsRepository;
+import com.am.es.utils.SearchConditionEncape;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
 
 @Component
 public class CustomContactsImpl {
@@ -28,5 +31,13 @@ public class CustomContactsImpl {
         CustomContactsVo customContactsVo = new CustomContactsVo();
         customContactsVo.setId(id);
         searchCustomContactsRepository.delete(customContactsVo);
+    }
+
+    public List<CustomContactsVo> getOrderInfoList(Map<String, ?> map, Integer currentPage, Integer pageSize) {
+        List<CustomContactsVo> list = null;
+        SearchConditionEncape searchConditionEncape = new SearchConditionEncape();
+        NativeSearchQuery query = searchConditionEncape.queryCondition(map, currentPage, pageSize);
+        list = searchCustomContactsRepository.search(query).getContent();
+        return list;
     }
 }

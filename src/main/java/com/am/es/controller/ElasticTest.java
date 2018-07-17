@@ -105,18 +105,18 @@ public class ElasticTest {
             NativeSearchQueryBuilder nativeSearchQueryBuilder = new NativeSearchQueryBuilder();
             //将搜索条件设置到构建中
             nativeSearchQueryBuilder.withQuery(builder);
-//            //将分页设置到构建中
+            //将分页设置到构建中
             nativeSearchQueryBuilder.withPageable(page);
             //将排序设置到构建中
             nativeSearchQueryBuilder.withSort(sort);
             //生产NativeSearchQuery
             NativeSearchQuery query = nativeSearchQueryBuilder.build();
-//            Page<SysUsers> search = searchRepository.search(query);
+            // Page<SysUsers> search = searchRepository.search(query);
             //获取总条数(前端分页需要使用)
-//            int total = (int) search.getTotalElements();
+            //int total = (int) search.getTotalElements();
 
             //获取查询到的数据内容
-//            List<SysUsers> list = search.getContent();
+            // List<SysUsers> list = search.getContent();
         } catch (Exception e) {
             logger.error("", e);
         }

@@ -3,10 +3,13 @@ package com.am.es.service.impl;
 import com.am.es.cluedao.ListenInvitationInfoMapper;
 import com.am.es.model.ListenInvitationInfoVo;
 import com.am.es.service.SearchListenInvitationInfoRepository;
+import com.am.es.utils.SearchConditionEncape;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
 
 @Component
 public class ListenInvitationInfoServiceImpl {
@@ -27,5 +30,13 @@ public class ListenInvitationInfoServiceImpl {
         ListenInvitationInfoVo listenInvitationInfoVo = new ListenInvitationInfoVo();
         listenInvitationInfoVo.setId(id);
         searchListenInvitationInfoRepository.delete(listenInvitationInfoVo);
+    }
+
+    public List<ListenInvitationInfoVo> getListenInvitationInfoList(Map<String, ?> map, Integer currentPage, Integer pageSize) {
+        List<ListenInvitationInfoVo> list = null;
+        SearchConditionEncape searchConditionEncape = new SearchConditionEncape();
+        NativeSearchQuery query = searchConditionEncape.queryCondition(map, currentPage, pageSize);
+        list = searchListenInvitationInfoRepository.search(query).getContent();
+        return list;
     }
 }

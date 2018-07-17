@@ -3,6 +3,7 @@ package com.am.es.service.impl;
 import com.am.es.cluedao.CustomInfoMapper;
 import com.am.es.model.CustomInfoVo;
 import com.am.es.service.SearchCustomInfoRepository;
+import com.am.es.utils.SearchConditionEncape;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilde
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
 
 @Component
 public class CustomInfoServiceImpl {
@@ -43,6 +45,14 @@ public class CustomInfoServiceImpl {
         CustomInfoVo customInfoVo = new CustomInfoVo();
         customInfoVo.setId(id);
         searchCustomInfoRepository.delete(customInfoVo);
+    }
+
+    public List<CustomInfoVo> getOrderInfoList(Map<String, ?> map, Integer currentPage, Integer pageSize) {
+        List<CustomInfoVo> list = null;
+        SearchConditionEncape searchConditionEncape = new SearchConditionEncape();
+        NativeSearchQuery query = searchConditionEncape.queryCondition(map, currentPage, pageSize);
+        list = searchCustomInfoRepository.search(query).getContent();
+        return list;
     }
 
 }
