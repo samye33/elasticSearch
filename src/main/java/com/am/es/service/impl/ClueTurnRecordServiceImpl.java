@@ -23,4 +23,10 @@ public class ClueTurnRecordServiceImpl {
         searchClueTurnRecordRepository.saveAll(list);
     }
 
+    public void deleteClueTurnRecord(Integer id) {
+        ClueTurnRecordVo clueTurnRecordVo = new ClueTurnRecordVo();
+        clueTurnRecordVo.setId(id);
+        searchClueTurnRecordRepository.delete(clueTurnRecordVo);
+    }
+
 }

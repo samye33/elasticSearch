@@ -126,9 +126,8 @@ public class ElasticTest {
     @GetMapping("/deleteUser")
     public ElasticSearchResponse deleteUser(HttpServletRequest request, HttpServletResponse response) {
         ElasticSearchResponse res = new ElasticSearchResponse();
-        int user_id = 54;
-//        SysUsers sysUsers = null;
-//        searchRepository.delete(sysUsers);
+        customInfoService.deleteCustomInfo(27);
+        clueInfoService.deleteClueInfo(19);
         return res;
     }
 }

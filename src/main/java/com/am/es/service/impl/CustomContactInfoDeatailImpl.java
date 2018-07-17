@@ -21,4 +21,10 @@ public class CustomContactInfoDeatailImpl {
         //将需要更改的查出来
         searchCustomContactInfoDetailRepository.saveAll(list);
     }
+
+    public void deleteCustomContactInfoDetail(Integer id) {
+        CustomContactInfoDetailVo customContactInfoDetailVo = new CustomContactInfoDetailVo();
+        customContactInfoDetailVo.setId(id);
+        searchCustomContactInfoDetailRepository.delete(customContactInfoDetailVo);
+    }
 }

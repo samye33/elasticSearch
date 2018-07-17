@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+
 @Component
 public class OrderInfoServiceImpl {
     @Autowired
@@ -20,5 +21,11 @@ public class OrderInfoServiceImpl {
         List<OrderInfoVo> list = orderInfoMapper.selectListByPrimaryKeyList(orderList);
         //将需要更改的查出来
         searchOrderInfoRepository.saveAll(list);
+    }
+
+    public void deleteOrderInfo(Integer id) {
+        OrderInfoVo orderInfoVo = new OrderInfoVo();
+        orderInfoVo.setId(id);
+        searchOrderInfoRepository.delete(orderInfoVo);
     }
 }

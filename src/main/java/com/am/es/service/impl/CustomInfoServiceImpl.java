@@ -3,7 +3,8 @@ package com.am.es.service.impl;
 import com.am.es.cluedao.CustomInfoMapper;
 import com.am.es.model.CustomInfoVo;
 import com.am.es.service.SearchCustomInfoRepository;
-import org.elasticsearch.index.query.*;
+import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
@@ -36,6 +37,12 @@ public class CustomInfoServiceImpl {
         NativeSearchQuery query = nativeSearchQueryBuilder.build();
         List<CustomInfoVo> list = searchCustomInfoRepository.search(query).getContent();
         return list;
+    }
+
+    public void deleteCustomInfo(Integer id) {
+        CustomInfoVo customInfoVo = new CustomInfoVo();
+        customInfoVo.setId(id);
+        searchCustomInfoRepository.delete(customInfoVo);
     }
 
 }

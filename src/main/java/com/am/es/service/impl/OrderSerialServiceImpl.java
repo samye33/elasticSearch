@@ -21,4 +21,10 @@ public class OrderSerialServiceImpl {
         //将需要更改的查出来
         searchOrderSerialRepository.saveAll(list);
     }
+
+    public void deleteOrderSerial(Integer id) {
+        OrderSerialVo orderSerialVo = new OrderSerialVo();
+        orderSerialVo.setId(id);
+        searchOrderSerialRepository.delete(orderSerialVo);
+    }
 }

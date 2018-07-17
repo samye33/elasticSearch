@@ -38,4 +38,10 @@ public class ClueInfoServiceImpl {
         return list;
     }
 
+    public void deleteClueInfo(Integer id) {
+        ClueInfoVo clueInfoVo = new ClueInfoVo();
+        clueInfoVo.setId(id);
+        searchClueInfoRepository.delete(clueInfoVo);
+    }
+
 }

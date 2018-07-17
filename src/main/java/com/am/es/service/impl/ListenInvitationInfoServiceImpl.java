@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+
 @Component
 public class ListenInvitationInfoServiceImpl {
     @Autowired
@@ -20,5 +21,11 @@ public class ListenInvitationInfoServiceImpl {
         List<ListenInvitationInfoVo> list = listenInvitationInfoMapper.selectListByPrimaryKeyList(customerList);
         //将需要更改的查出来
         searchListenInvitationInfoRepository.saveAll(list);
+    }
+
+    public void deleteListenInvitationInfo(Integer id) {
+        ListenInvitationInfoVo listenInvitationInfoVo = new ListenInvitationInfoVo();
+        listenInvitationInfoVo.setId(id);
+        searchListenInvitationInfoRepository.delete(listenInvitationInfoVo);
     }
 }
