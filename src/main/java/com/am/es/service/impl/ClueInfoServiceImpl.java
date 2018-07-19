@@ -34,7 +34,7 @@ public class ClueInfoServiceImpl implements ClueInfoService {
 
     }
 
-    public List<ClueInfoVo> queryClueInfoList() {
+    public List<ClueInfoVo> queryAllClueInfoList() {
         BoolQueryBuilder builder = QueryBuilders.boolQuery();
         builder.must(QueryBuilders.matchAllQuery());
         NativeSearchQueryBuilder nativeSearchQueryBuilder = new NativeSearchQueryBuilder();

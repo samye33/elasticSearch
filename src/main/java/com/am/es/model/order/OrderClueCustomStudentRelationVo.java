@@ -10,11 +10,11 @@ public class OrderClueCustomStudentRelationVo implements Serializable {
 
     private String clueNo;
 
-    private String clueGuid;
+    private String clueId;
 
     private String customNo;
 
-    private String customGuid;
+    private String customId;
 
     private String studentNo;
 
@@ -56,12 +56,12 @@ public class OrderClueCustomStudentRelationVo implements Serializable {
         this.clueNo = clueNo;
     }
 
-    public String getClueGuid() {
-        return clueGuid;
+    public String getClueId() {
+        return clueId;
     }
 
-    public void setClueGuid(String clueGuid) {
-        this.clueGuid = clueGuid;
+    public void setClueId(String clueId) {
+        this.clueId = clueId;
     }
 
     public String getCustomNo() {
@@ -72,12 +72,12 @@ public class OrderClueCustomStudentRelationVo implements Serializable {
         this.customNo = customNo;
     }
 
-    public String getCustomGuid() {
-        return customGuid;
+    public String getCustomId() {
+        return customId;
     }
 
-    public void setCustomGuid(String customGuid) {
-        this.customGuid = customGuid;
+    public void setCustomId(String customId) {
+        this.customId = customId;
     }
 
     public String getStudentNo() {

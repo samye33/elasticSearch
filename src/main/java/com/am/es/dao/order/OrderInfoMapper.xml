@@ -75,9 +75,9 @@
       <id column="order_clue_id" property="id" jdbcType="INTEGER" />
       <result column="order_clue_order_no" property="orderNo" jdbcType="VARCHAR" />
       <result column="clue_no" property="clueNo" jdbcType="VARCHAR" />
-      <result column="clue_guid" property="clueGuid" jdbcType="VARCHAR" />
+      <result column="clue_id" property="clueId" jdbcType="VARCHAR" />
       <result column="custom_no" property="customNo" jdbcType="VARCHAR" />
-      <result column="custom_guid" property="customGuid" jdbcType="VARCHAR" />
+      <result column="custom_id" property="customId" jdbcType="VARCHAR" />
       <result column="student_no" property="studentNo" jdbcType="VARCHAR" />
       <result column="ucenter_uid" property="ucenterUid" jdbcType="INTEGER" />
       <result column="v_order_no" property="vOrderNo" jdbcType="VARCHAR" />
@@ -710,9 +710,9 @@
       order_info.*, order_clue.id order_clue_id,
       order_clue.order_no order_clue_order_no,
       order_clue.clue_no,
-      order_clue.clue_guid,
+      order_clue.clue_id,
       order_clue.custom_no,
-      order_clue.custom_guid,
+      order_clue.custom_id,
       order_clue.student_no,
       order_clue.ucenter_uid,
       order_clue.v_order_no,

@@ -1,12 +1,15 @@
 package com.am.es.service.impl;
 
-import com.am.es.model.order.OrderSerialVo;
 import com.am.es.dao.order.OrderSerialMapper;
-import com.am.es.service.search.SearchOrderSerialRepository;
+import com.am.es.model.order.OrderSerialVo;
 import com.am.es.service.OrderSerialService;
+import com.am.es.service.search.SearchOrderSerialRepository;
 import com.am.es.utils.SearchConditionEncape;
+import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -26,6 +29,16 @@ public class OrderSerialServiceImpl implements OrderSerialService {
         if (list.size() > 0) {
             searchOrderSerialRepository.saveAll(list);
         }
+    }
+
+    public List<OrderSerialVo> queryAllOrderSerialList() {
+        BoolQueryBuilder builder = QueryBuilders.boolQuery();
+        builder.must(QueryBuilders.matchAllQuery());
+        NativeSearchQueryBuilder nativeSearchQueryBuilder = new NativeSearchQueryBuilder();
+        nativeSearchQueryBuilder.withQuery(builder);
+        NativeSearchQuery query = nativeSearchQueryBuilder.build();
+        List<OrderSerialVo> list = searchOrderSerialRepository.search(query).getContent();
+        return list;
     }
 
     public void deleteOrderSerial(Integer id) {

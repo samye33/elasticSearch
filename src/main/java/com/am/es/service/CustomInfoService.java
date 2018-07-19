@@ -11,4 +11,6 @@ public interface CustomInfoService {
     void deleteCustomInfo(Integer id);
 
     List<CustomInfoVo> getCustomInfoList(Map<String, ?> map, Integer currentPage, Integer pageSize);
+
+    List<CustomInfoVo> queryAllCustomInfoList();
 }

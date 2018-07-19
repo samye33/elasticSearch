@@ -34,7 +34,7 @@ public class CustomInfoServiceImpl implements CustomInfoService {
         }
     }
 
-    public List<CustomInfoVo> queryCustomInfoList() {
+    public List<CustomInfoVo> queryAllCustomInfoList() {
         BoolQueryBuilder builder = QueryBuilders.boolQuery();
         builder.must(QueryBuilders.matchAllQuery());
         NativeSearchQueryBuilder nativeSearchQueryBuilder = new NativeSearchQueryBuilder();

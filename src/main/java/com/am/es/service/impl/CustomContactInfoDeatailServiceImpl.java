@@ -2,11 +2,14 @@ package com.am.es.service.impl;
 
 import com.am.es.dao.clue.CustomContactInfoDetailMapper;
 import com.am.es.model.clue.CustomContactInfoDetailVo;
-import com.am.es.service.search.SearchCustomContactInfoDetailRepository;
 import com.am.es.service.CustomContactInfoDeatailService;
+import com.am.es.service.search.SearchCustomContactInfoDetailRepository;
 import com.am.es.utils.SearchConditionEncape;
+import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -27,6 +30,15 @@ public class CustomContactInfoDeatailServiceImpl implements CustomContactInfoDea
         if (list.size() > 0) {
             searchCustomContactInfoDetailRepository.saveAll(list);
         }
+    }
+    public List<CustomContactInfoDetailVo> queryAllCustomContactInfoDetail() {
+        BoolQueryBuilder builder = QueryBuilders.boolQuery();
+        builder.must(QueryBuilders.matchAllQuery());
+        NativeSearchQueryBuilder nativeSearchQueryBuilder = new NativeSearchQueryBuilder();
+        nativeSearchQueryBuilder.withQuery(builder);
+        NativeSearchQuery query = nativeSearchQueryBuilder.build();
+        List<CustomContactInfoDetailVo> list = searchCustomContactInfoDetailRepository.search(query).getContent();
+        return list;
     }
 
     public void deleteCustomContactInfoDetail(Integer id) {

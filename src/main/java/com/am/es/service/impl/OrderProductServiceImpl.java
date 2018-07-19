@@ -5,8 +5,11 @@ import com.am.es.model.order.OrderProductVo;
 import com.am.es.service.OrderProductService;
 import com.am.es.service.search.SearchOrderProductRepository;
 import com.am.es.utils.SearchConditionEncape;
+import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -28,6 +31,16 @@ public class OrderProductServiceImpl implements OrderProductService {
         if (list.size() > 0) {
             searchOrderProductRepository.saveAll(list);
         }
+    }
+
+    public List<OrderProductVo> queryAllOrderProductList() {
+        BoolQueryBuilder builder = QueryBuilders.boolQuery();
+        builder.must(QueryBuilders.matchAllQuery());
+        NativeSearchQueryBuilder nativeSearchQueryBuilder = new NativeSearchQueryBuilder();
+        nativeSearchQueryBuilder.withQuery(builder);
+        NativeSearchQuery query = nativeSearchQueryBuilder.build();
+        List<OrderProductVo> list = searchOrderProductRepository.search(query).getContent();
+        return list;
     }
 
     @Override

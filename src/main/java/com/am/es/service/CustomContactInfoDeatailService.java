@@ -11,4 +11,6 @@ public interface CustomContactInfoDeatailService {
     void deleteCustomContactInfoDetail(Integer id);
 
     List<CustomContactInfoDetailVo> getCustomContactInfoDetailList(Map<String, ?> map, Integer currentPage, Integer pageSize);
+
+    List<CustomContactInfoDetailVo> queryAllCustomContactInfoDetail();
 }

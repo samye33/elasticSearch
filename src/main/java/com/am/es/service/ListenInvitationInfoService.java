@@ -11,4 +11,6 @@ public interface ListenInvitationInfoService {
     void deleteListenInvitationInfo(Integer id);
 
     List<ListenInvitationInfoVo> getListenInvitationInfoList(Map<String, ?> map, Integer currentPage, Integer pageSize);
+
+    List<ListenInvitationInfoVo> queryAllListenInvitationInfoList();
 }

@@ -12,4 +12,6 @@ public interface OrderProductService {
     void deleteOrderProduct(Integer id);
 
     List<OrderProductVo> getOrderProduct(Map<String, ?> map, Integer currentPage, Integer pageSize);
+
+    List<OrderProductVo> queryAllOrderProductList();
 }

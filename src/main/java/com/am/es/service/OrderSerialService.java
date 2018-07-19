@@ -11,4 +11,6 @@ public interface OrderSerialService {
     void deleteOrderSerial(Integer id);
 
     List<OrderSerialVo> getOrderSerialList(Map<String, ?> map, Integer currentPage, Integer pageSize);
+
+    List<OrderSerialVo> queryAllOrderSerialList();
 }

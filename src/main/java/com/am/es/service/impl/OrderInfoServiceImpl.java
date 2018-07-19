@@ -5,8 +5,11 @@ import com.am.es.model.order.OrderInfoVo;
 import com.am.es.service.OrderInfoService;
 import com.am.es.service.search.SearchOrderInfoRepository;
 import com.am.es.utils.SearchConditionEncape;
+import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -27,6 +30,16 @@ public class OrderInfoServiceImpl implements OrderInfoService {
         if (list.size() > 0) {
             searchOrderInfoRepository.saveAll(list);
         }
+    }
+
+    public List<OrderInfoVo> queryAllOrderInfoList() {
+        BoolQueryBuilder builder = QueryBuilders.boolQuery();
+        builder.must(QueryBuilders.matchAllQuery());
+        NativeSearchQueryBuilder nativeSearchQueryBuilder = new NativeSearchQueryBuilder();
+        nativeSearchQueryBuilder.withQuery(builder);
+        NativeSearchQuery query = nativeSearchQueryBuilder.build();
+        List<OrderInfoVo> list = searchOrderInfoRepository.search(query).getContent();
+        return list;
     }
 
     public void deleteOrderInfo(Integer id) {

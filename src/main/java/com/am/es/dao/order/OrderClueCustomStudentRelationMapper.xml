@@ -5,9 +5,9 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
     <result column="clue_no" property="clueNo" jdbcType="VARCHAR" />
-    <result column="clue_guid" property="clueGuid" jdbcType="VARCHAR" />
+    <result column="clue_id" property="clueId" jdbcType="VARCHAR" />
     <result column="custom_no" property="customNo" jdbcType="VARCHAR" />
-    <result column="custom_guid" property="customGuid" jdbcType="VARCHAR" />
+    <result column="custom_id" property="customId" jdbcType="VARCHAR" />
     <result column="student_no" property="studentNo" jdbcType="VARCHAR" />
     <result column="ucenter_uid" property="ucenterUid" jdbcType="INTEGER" />
     <result column="v_order_no" property="vOrderNo" jdbcType="VARCHAR" />
@@ -75,7 +75,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, order_no, clue_no, clue_guid, custom_no, custom_guid, student_no, ucenter_uid, 
+    id, order_no, clue_no, clue_id, custom_no, custom_id, student_no, ucenter_uid, 
     v_order_no, create_id, create_time, update_time, flag
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.am.es.entity.order.OrderClueCustomStudentRelationExample" >
@@ -110,12 +110,12 @@
   </delete>
   <insert id="insert" parameterType="com.am.es.entity.order.OrderClueCustomStudentRelation" >
     insert into order_clue_custom_student_relation (id, order_no, clue_no, 
-      clue_guid, custom_no, custom_guid, 
+      clue_id, custom_no, custom_id, 
       student_no, ucenter_uid, v_order_no, 
       create_id, create_time, update_time, 
       flag)
     values (#{id,jdbcType=INTEGER}, #{orderNo,jdbcType=VARCHAR}, #{clueNo,jdbcType=VARCHAR}, 
-      #{clueGuid,jdbcType=VARCHAR}, #{customNo,jdbcType=VARCHAR}, #{customGuid,jdbcType=VARCHAR}, 
+      #{clueId,jdbcType=VARCHAR}, #{customNo,jdbcType=VARCHAR}, #{customId,jdbcType=VARCHAR}, 
       #{studentNo,jdbcType=VARCHAR}, #{ucenterUid,jdbcType=INTEGER}, #{vOrderNo,jdbcType=VARCHAR}, 
       #{createId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{flag,jdbcType=INTEGER})
@@ -132,14 +132,14 @@
       <if test="clueNo != null" >
         clue_no,
       </if>
-      <if test="clueGuid != null" >
-        clue_guid,
+      <if test="clueId != null" >
+        clue_id,
       </if>
       <if test="customNo != null" >
         custom_no,
       </if>
-      <if test="customGuid != null" >
-        custom_guid,
+      <if test="customId != null" >
+        custom_id,
       </if>
       <if test="studentNo != null" >
         student_no,
@@ -173,14 +173,14 @@
       <if test="clueNo != null" >
         #{clueNo,jdbcType=VARCHAR},
       </if>
-      <if test="clueGuid != null" >
-        #{clueGuid,jdbcType=VARCHAR},
+      <if test="clueId != null" >
+        #{clueId,jdbcType=VARCHAR},
       </if>
       <if test="customNo != null" >
         #{customNo,jdbcType=VARCHAR},
       </if>
-      <if test="customGuid != null" >
-        #{customGuid,jdbcType=VARCHAR},
+      <if test="customId != null" >
+        #{customId,jdbcType=VARCHAR},
       </if>
       <if test="studentNo != null" >
         #{studentNo,jdbcType=VARCHAR},
@@ -223,14 +223,14 @@
       <if test="record.clueNo != null" >
         clue_no = #{record.clueNo,jdbcType=VARCHAR},
       </if>
-      <if test="record.clueGuid != null" >
-        clue_guid = #{record.clueGuid,jdbcType=VARCHAR},
+      <if test="record.clueId != null" >
+        clue_id = #{record.clueId,jdbcType=VARCHAR},
       </if>
       <if test="record.customNo != null" >
         custom_no = #{record.customNo,jdbcType=VARCHAR},
       </if>
-      <if test="record.customGuid != null" >
-        custom_guid = #{record.customGuid,jdbcType=VARCHAR},
+      <if test="record.customId != null" >
+        custom_id = #{record.customId,jdbcType=VARCHAR},
       </if>
       <if test="record.studentNo != null" >
         student_no = #{record.studentNo,jdbcType=VARCHAR},
@@ -263,9 +263,9 @@
     set id = #{record.id,jdbcType=INTEGER},
       order_no = #{record.orderNo,jdbcType=VARCHAR},
       clue_no = #{record.clueNo,jdbcType=VARCHAR},
-      clue_guid = #{record.clueGuid,jdbcType=VARCHAR},
+      clue_id = #{record.clueId,jdbcType=VARCHAR},
       custom_no = #{record.customNo,jdbcType=VARCHAR},
-      custom_guid = #{record.customGuid,jdbcType=VARCHAR},
+      custom_id = #{record.customId,jdbcType=VARCHAR},
       student_no = #{record.studentNo,jdbcType=VARCHAR},
       ucenter_uid = #{record.ucenterUid,jdbcType=INTEGER},
       v_order_no = #{record.vOrderNo,jdbcType=VARCHAR},
@@ -286,14 +286,14 @@
       <if test="clueNo != null" >
         clue_no = #{clueNo,jdbcType=VARCHAR},
       </if>
-      <if test="clueGuid != null" >
-        clue_guid = #{clueGuid,jdbcType=VARCHAR},
+      <if test="clueId != null" >
+        clue_id = #{clueId,jdbcType=VARCHAR},
       </if>
       <if test="customNo != null" >
         custom_no = #{customNo,jdbcType=VARCHAR},
       </if>
-      <if test="customGuid != null" >
-        custom_guid = #{customGuid,jdbcType=VARCHAR},
+      <if test="customId != null" >
+        custom_id = #{customId,jdbcType=VARCHAR},
       </if>
       <if test="studentNo != null" >
         student_no = #{studentNo,jdbcType=VARCHAR},
@@ -323,9 +323,9 @@
     update order_clue_custom_student_relation
     set order_no = #{orderNo,jdbcType=VARCHAR},
       clue_no = #{clueNo,jdbcType=VARCHAR},
-      clue_guid = #{clueGuid,jdbcType=VARCHAR},
+      clue_id = #{clueId,jdbcType=VARCHAR},
       custom_no = #{customNo,jdbcType=VARCHAR},
-      custom_guid = #{customGuid,jdbcType=VARCHAR},
+      custom_id = #{customId,jdbcType=VARCHAR},
       student_no = #{studentNo,jdbcType=VARCHAR},
       ucenter_uid = #{ucenterUid,jdbcType=INTEGER},
       v_order_no = #{vOrderNo,jdbcType=VARCHAR},

@@ -12,4 +12,6 @@ public interface OrderInfoService {
     void deleteOrderInfo(Integer id);
 
     List<OrderInfoVo> getOrderInfoList(Map<String, ?> map, Integer currentPage, Integer pageSize);
+
+    List<OrderInfoVo> queryAllOrderInfoList();
 }

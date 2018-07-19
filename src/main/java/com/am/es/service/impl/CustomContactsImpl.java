@@ -2,11 +2,14 @@ package com.am.es.service.impl;
 
 import com.am.es.dao.clue.CustomContactsMapper;
 import com.am.es.model.clue.CustomContactsVo;
-import com.am.es.service.search.SearchCustomContactsRepository;
 import com.am.es.service.CustomContactsService;
+import com.am.es.service.search.SearchCustomContactsRepository;
 import com.am.es.utils.SearchConditionEncape;
+import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -28,6 +31,16 @@ public class CustomContactsImpl implements CustomContactsService{
         if (list.size() > 0) {
             searchCustomContactsRepository.saveAll(list);
         }
+    }
+
+    public List<CustomContactsVo> queryAllCustomContactsList() {
+        BoolQueryBuilder builder = QueryBuilders.boolQuery();
+        builder.must(QueryBuilders.matchAllQuery());
+        NativeSearchQueryBuilder nativeSearchQueryBuilder = new NativeSearchQueryBuilder();
+        nativeSearchQueryBuilder.withQuery(builder);
+        NativeSearchQuery query = nativeSearchQueryBuilder.build();
+        List<CustomContactsVo> list = searchCustomContactsRepository.search(query).getContent();
+        return list;
     }
 
     public void deleteCustomContacts(Integer id) {

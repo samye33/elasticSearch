@@ -12,4 +12,6 @@ public interface ClueInfoService {
     void deleteClueInfo(Integer id);
 
     List<ClueInfoVo> getClueInfoList(Map<String, ?> map, Integer currentPage, Integer pageSize);
+
+    List<ClueInfoVo> queryAllClueInfoList();
 }

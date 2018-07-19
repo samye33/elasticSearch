@@ -1,5 +1,6 @@
 package com.am.es.service;
 
+import com.am.es.model.clue.ClueInfoVo;
 import com.am.es.model.clue.ClueTurnRecordVo;
 
 import java.util.List;
@@ -11,4 +12,6 @@ public interface ClueTurnRecordService {
     void deleteClueTurnRecord(Integer id);
 
     List<ClueTurnRecordVo> getClueTurnRecordList(Map<String, ?> map, Integer currentPage, Integer pageSize);
+
+    List<ClueTurnRecordVo> queryAllClueTurnRecordList();
 }
