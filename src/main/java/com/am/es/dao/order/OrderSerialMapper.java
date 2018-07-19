@@ -1,6 +1,6 @@
 package com.am.es.dao.order;
 
-import com.am.es.model.OrderSerialVo;
+import com.am.es.model.order.OrderSerialVo;
 import com.am.es.entity.order.OrderSerial;
 import com.am.es.entity.order.OrderSerialExample;
 import java.util.List;

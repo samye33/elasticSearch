@@ -1,6 +1,6 @@
 package com.am.es.dao.order;
 
-import com.am.es.model.OrderInfoVo;
+import com.am.es.model.order.OrderInfoVo;
 import com.am.es.entity.order.OrderInfo;
 import com.am.es.entity.order.OrderInfoExample;
 import java.util.List;

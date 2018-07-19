@@ -1,6 +1,6 @@
 package com.am.es.service;
 
-import com.am.es.model.CustomContactInfoDetailVo;
+import com.am.es.model.clue.CustomContactInfoDetailVo;
 
 import java.util.List;
 import java.util.Map;

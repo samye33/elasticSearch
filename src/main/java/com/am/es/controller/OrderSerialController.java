@@ -1,6 +1,6 @@
 package com.am.es.controller;
 
-import com.am.es.model.OrderSerialVo;
+import com.am.es.model.order.OrderSerialVo;
 import com.am.es.model.Result;
 import com.am.es.service.OrderSerialService;
 import org.slf4j.Logger;

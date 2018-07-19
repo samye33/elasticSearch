@@ -415,7 +415,7 @@
       current_user_type = #{currentUserType,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="selectListByPrimaryKeyList" parameterType="java.util.List" resultType="com.am.es.model.ClueTurnRecordVo">
+  <select id="selectListByPrimaryKeyList" parameterType="java.util.List" resultType="com.am.es.model.clue.ClueTurnRecordVo">
     SELECT * FROM clue_turn_record
     <where>
       id IN

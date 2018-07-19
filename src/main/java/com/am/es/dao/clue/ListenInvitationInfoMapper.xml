@@ -24,7 +24,7 @@
     <result column="course_name" property="courseName" jdbcType="VARCHAR" />
   </resultMap>
 
-  <resultMap id="BaseResultVoMap" type="com.am.es.model.ListenInvitationInfoVo" >
+  <resultMap id="BaseResultVoMap" type="com.am.es.model.clue.ListenInvitationInfoVo" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="listen_invitation_no" property="listenInvitationNo" jdbcType="VARCHAR" />
     <result column="custom_guid" property="customGuid" jdbcType="VARCHAR" />
@@ -45,7 +45,7 @@
     <result column="LI_content" property="liContent" jdbcType="VARCHAR" />
     <result column="course_id" property="courseId" jdbcType="VARCHAR" />
     <result column="course_name" property="courseName" jdbcType="VARCHAR" />
-    <association property="listenInvitationFeedBackVo" javaType="com.am.es.model.ListenInvitationFeedBackVo">
+    <association property="listenInvitationFeedBackVo" javaType="com.am.es.model.clue.ListenInvitationFeedBackVo">
       <id column="feed_back_id" property="id" jdbcType="INTEGER" />
       <result column="listen_invitation_id" property="listenInvitationId" jdbcType="INTEGER" />
       <result column="feed_back_listen_invitation_no" property="listenInvitationNo" jdbcType="VARCHAR" />

@@ -4,7 +4,7 @@ import com.am.es.entity.clue.ClueTurnRecord;
 import com.am.es.entity.clue.ClueTurnRecordExample;
 import java.util.List;
 
-import com.am.es.model.ClueTurnRecordVo;
+import com.am.es.model.clue.ClueTurnRecordVo;
 import org.apache.ibatis.annotations.Param;
 
 public interface ClueTurnRecordMapper {

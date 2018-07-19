@@ -670,7 +670,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-    <select id="selectListByPrimaryKeyList" parameterType="java.util.List" resultType="com.am.es.model.CustomInfoVo">
+    <select id="selectListByPrimaryKeyList" parameterType="java.util.List" resultType="com.am.es.model.clue.CustomInfoVo">
         SELECT * FROM custom_info
         <where>
             id IN

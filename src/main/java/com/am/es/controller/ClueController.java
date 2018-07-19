@@ -1,6 +1,6 @@
 package com.am.es.controller;
 
-import com.am.es.model.ClueInfoVo;
+import com.am.es.model.clue.ClueInfoVo;
 import com.am.es.model.Result;
 import com.am.es.service.ClueInfoService;
 import org.slf4j.Logger;

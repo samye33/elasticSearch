@@ -1,6 +1,6 @@
 package com.am.es.service.impl;
 
-import com.am.es.model.OrderSerialVo;
+import com.am.es.model.order.OrderSerialVo;
 import com.am.es.dao.order.OrderSerialMapper;
 import com.am.es.service.search.SearchOrderSerialRepository;
 import com.am.es.service.OrderSerialService;

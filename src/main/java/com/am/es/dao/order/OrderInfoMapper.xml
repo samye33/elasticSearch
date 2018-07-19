@@ -37,7 +37,7 @@
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
   </resultMap>
 
-  <resultMap id="BaseResultVoMap" type="com.am.es.model.OrderInfoVo">
+  <resultMap id="BaseResultVoMap" type="com.am.es.model.order.OrderInfoVo">
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
     <result column="course_type" property="courseType" jdbcType="INTEGER" />
@@ -71,7 +71,7 @@
     <result column="update_id" property="updateId" jdbcType="INTEGER" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
-    <association property="orderClueCustomStudentRelationVo" javaType="com.am.es.model.OrderClueCustomStudentRelationVo">
+    <association property="orderClueCustomStudentRelationVo" javaType="com.am.es.model.order.OrderClueCustomStudentRelationVo">
       <id column="order_clue_id" property="id" jdbcType="INTEGER" />
       <result column="order_clue_order_no" property="orderNo" jdbcType="VARCHAR" />
       <result column="clue_no" property="clueNo" jdbcType="VARCHAR" />

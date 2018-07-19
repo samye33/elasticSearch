@@ -1,6 +1,6 @@
 package com.am.es.controller;
 
-import com.am.es.model.ListenInvitationInfoVo;
+import com.am.es.model.clue.ListenInvitationInfoVo;
 import com.am.es.model.Result;
 import com.am.es.service.ListenInvitationInfoService;
 import org.slf4j.Logger;

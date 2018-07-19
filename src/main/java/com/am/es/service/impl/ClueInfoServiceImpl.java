@@ -1,7 +1,7 @@
 package com.am.es.service.impl;
 
 import com.am.es.dao.clue.ClueInfoMapper;
-import com.am.es.model.ClueInfoVo;
+import com.am.es.model.clue.ClueInfoVo;
 import com.am.es.service.search.SearchClueInfoRepository;
 import com.am.es.service.ClueInfoService;
 import com.am.es.utils.SearchConditionEncape;

@@ -1,6 +1,6 @@
 package com.am.es.service;
 
-import com.am.es.model.OrderSerialVo;
+import com.am.es.model.order.OrderSerialVo;
 
 import java.util.List;
 import java.util.Map;

@@ -5,7 +5,7 @@ import com.am.es.entity.clue.CustomContactInfoDetailExample;
 
 import java.util.List;
 
-import com.am.es.model.CustomContactInfoDetailVo;
+import com.am.es.model.clue.CustomContactInfoDetailVo;
 import org.apache.ibatis.annotations.Param;
 
 public interface CustomContactInfoDetailMapper {

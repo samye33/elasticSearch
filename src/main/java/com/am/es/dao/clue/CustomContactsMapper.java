@@ -4,7 +4,7 @@ import com.am.es.entity.clue.CustomContacts;
 import com.am.es.entity.clue.CustomContactsExample;
 import java.util.List;
 
-import com.am.es.model.CustomContactsVo;
+import com.am.es.model.clue.CustomContactsVo;
 import org.apache.ibatis.annotations.Param;
 
 public interface CustomContactsMapper {

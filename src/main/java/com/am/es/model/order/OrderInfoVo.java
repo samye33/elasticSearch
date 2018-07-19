@@ -1,4 +1,4 @@
-package com.am.es.model;
+package com.am.es.model.order;
 
 import org.springframework.data.elasticsearch.annotations.Document;
 

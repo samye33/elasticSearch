@@ -5,7 +5,7 @@ import com.am.es.entity.clue.CustomInfoExample;
 
 import java.util.List;
 
-import com.am.es.model.CustomInfoVo;
+import com.am.es.model.clue.CustomInfoVo;
 import org.apache.ibatis.annotations.Param;
 
 public interface CustomInfoMapper {

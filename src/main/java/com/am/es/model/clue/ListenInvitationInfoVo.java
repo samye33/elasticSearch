@@ -1,4 +1,4 @@
-package com.am.es.model;
+package com.am.es.model.clue;
 
 import org.springframework.data.elasticsearch.annotations.Document;
 

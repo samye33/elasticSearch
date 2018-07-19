@@ -291,7 +291,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-    <select id="selectListByPrimaryKeyList" parameterType="java.util.List" resultType="com.am.es.model.CustomContactsVo">
+    <select id="selectListByPrimaryKeyList" parameterType="java.util.List" resultType="com.am.es.model.clue.CustomContactsVo">
         SELECT * FROM custom_contacts
         <where>
             id IN

@@ -1,7 +1,7 @@
 package com.am.es.utils;
 
-import com.am.es.model.ClueInfoVo;
-import com.am.es.model.CustomInfoVo;
+import com.am.es.model.clue.ClueInfoVo;
+import com.am.es.model.clue.CustomInfoVo;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.am.es.model;
+package com.am.es.model.order;
 
 import java.io.Serializable;
 import java.util.Date;

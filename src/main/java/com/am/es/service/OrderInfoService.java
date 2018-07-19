@@ -1,6 +1,6 @@
 package com.am.es.service;
 
-import com.am.es.model.OrderInfoVo;
+import com.am.es.model.order.OrderInfoVo;
 
 import java.util.List;
 import java.util.Map;

@@ -4,7 +4,7 @@ import com.am.es.entity.clue.ListenInvitationInfo;
 import com.am.es.entity.clue.ListenInvitationInfoExample;
 import java.util.List;
 
-import com.am.es.model.ListenInvitationInfoVo;
+import com.am.es.model.clue.ListenInvitationInfoVo;
 import org.apache.ibatis.annotations.Param;
 
 public interface ListenInvitationInfoMapper {

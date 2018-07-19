@@ -1,7 +1,7 @@
 package com.am.es.service.impl;
 
 import com.am.es.dao.clue.CustomContactInfoDetailMapper;
-import com.am.es.model.CustomContactInfoDetailVo;
+import com.am.es.model.clue.CustomContactInfoDetailVo;
 import com.am.es.service.search.SearchCustomContactInfoDetailRepository;
 import com.am.es.service.CustomContactInfoDeatailService;
 import com.am.es.utils.SearchConditionEncape;

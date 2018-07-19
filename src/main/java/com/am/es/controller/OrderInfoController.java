@@ -1,6 +1,6 @@
 package com.am.es.controller;
 
-import com.am.es.model.OrderInfoVo;
+import com.am.es.model.order.OrderInfoVo;
 import com.am.es.model.Result;
 import com.am.es.service.OrderInfoService;
 import org.slf4j.Logger;

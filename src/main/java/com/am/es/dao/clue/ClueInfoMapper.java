@@ -5,7 +5,7 @@ import com.am.es.entity.clue.ClueInfoExample;
 
 import java.util.List;
 
-import com.am.es.model.ClueInfoVo;
+import com.am.es.model.clue.ClueInfoVo;
 import org.apache.ibatis.annotations.Param;
 
 public interface ClueInfoMapper {

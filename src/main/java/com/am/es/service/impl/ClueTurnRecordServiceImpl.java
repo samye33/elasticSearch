@@ -1,7 +1,7 @@
 package com.am.es.service.impl;
 
 import com.am.es.dao.clue.ClueTurnRecordMapper;
-import com.am.es.model.ClueTurnRecordVo;
+import com.am.es.model.clue.ClueTurnRecordVo;
 import com.am.es.service.search.SearchClueTurnRecordRepository;
 import com.am.es.service.ClueTurnRecordService;
 import com.am.es.utils.SearchConditionEncape;

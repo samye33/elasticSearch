@@ -20,7 +20,7 @@
         <result column="source_channel_code" property="sourceChannelCode" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <resultMap id="BaseResultMapVo" type="com.am.es.model.ClueInfoVo">
+    <resultMap id="BaseResultMapVo" type="com.am.es.model.clue.ClueInfoVo">
         <id column="id" property="id" jdbcType="INTEGER"/>
         <result column="clue_no" property="clueNo" jdbcType="VARCHAR"/>
         <result column="custom_id" property="customId" jdbcType="INTEGER"/>
@@ -37,7 +37,7 @@
         <result column="update_by" property="updateBy" jdbcType="INTEGER"/>
         <result column="channel_code_sub" property="channelCodeSub" jdbcType="INTEGER"/>
         <result column="source_channel_code" property="sourceChannelCode" jdbcType="VARCHAR"/>
-        <association property="clueStatusVo" javaType="com.am.es.model.ClueStatusVo">
+        <association property="clueStatusVo" javaType="com.am.es.model.clue.ClueStatusVo">
             <id column="status_id" property="id" jdbcType="INTEGER" />
             <result column="status_clue_id" property="clueId" jdbcType="INTEGER" />
             <result column="status_clue_no" property="clueNo" jdbcType="VARCHAR" />
@@ -68,7 +68,7 @@
             <result column="is_private_pool" property="isPrivatePool" jdbcType="TINYINT" />
             <result column="clue_owner_communicate_count" property="clueOwnerCommunicateCount" jdbcType="INTEGER" />
         </association>
-        <association property="clueDescribeVo" javaType="com.am.es.model.ClueDescribeVo">
+        <association property="clueDescribeVo" javaType="com.am.es.model.clue.ClueDescribeVo">
             <id column="describe_id" property="id" jdbcType="INTEGER" />
             <result column="describe_clue_id" property="clueId" jdbcType="INTEGER" />
             <result column="describe_clue_no" property="clueNo" jdbcType="VARCHAR" />

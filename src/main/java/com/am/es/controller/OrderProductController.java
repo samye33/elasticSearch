@@ -1,8 +1,8 @@
 package com.am.es.controller;
 
-import com.am.es.model.clue.CustomInfoVo;
 import com.am.es.model.Result;
-import com.am.es.service.CustomInfoService;
+import com.am.es.model.order.OrderProductVo;
+import com.am.es.service.OrderProductService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,17 +16,18 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/es/customInfo")
-public class CustomInfoController {
-    private static final Logger logger = LoggerFactory.getLogger(CustomInfoController.class);
+@RequestMapping("/es/orderProduct")
+public class OrderProductController {
+    private static final Logger logger = LoggerFactory.getLogger(OrderProductController.class);
+
     @Autowired
-    private CustomInfoService customInfoService;
+    private OrderProductService orderProductService;
 
     @GetMapping("/save")
-    public Result saveCustomInfo(HttpServletRequest request, HttpServletResponse response, List<Integer> id) {
+    public Result saveOrderProduct(HttpServletRequest request, HttpServletResponse response, List<Integer> id) {
         Result ret = new Result();
         try {
-            customInfoService.saveCustomInfoList(id);
+            orderProductService.saveOrderProduct(id);
         } catch (Exception e) {
             logger.error("", e);
         }
@@ -34,10 +35,10 @@ public class CustomInfoController {
     }
 
     @GetMapping("/delete")
-    public Result deleteCustomInfo(HttpServletRequest request, HttpServletResponse response, Integer id) {
+    public Result deleteOrderProduct(HttpServletRequest request, HttpServletResponse response, Integer id) {
         Result ret = new Result();
         try {
-            customInfoService.deleteCustomInfo(id);
+            orderProductService.deleteOrderProduct(id);
         } catch (Exception e) {
             logger.error("", e);
         }
@@ -45,10 +46,11 @@ public class CustomInfoController {
     }
 
     @GetMapping("/searchCondition")
-    public Result searchCustomInfo(HttpServletRequest request, HttpServletResponse response, Map map, Integer currentPage, Integer pageSize) {
+    public Result searchOrderProduct(HttpServletRequest request, HttpServletResponse response, Map map, Integer currentPage, Integer pageSize) {
         Result ret = new Result();
         try {
-            List<CustomInfoVo> list = customInfoService.getCustomInfoList(map, currentPage, pageSize);
+
+            List<OrderProductVo> list = orderProductService.getOrderProduct(map, currentPage, pageSize);
             ret.setData(list);
         } catch (Exception e) {
             logger.error("", e);

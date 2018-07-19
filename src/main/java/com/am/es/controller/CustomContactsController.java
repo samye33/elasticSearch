@@ -1,6 +1,6 @@
 package com.am.es.controller;
 
-import com.am.es.model.CustomContactsVo;
+import com.am.es.model.clue.CustomContactsVo;
 import com.am.es.model.Result;
 import com.am.es.service.CustomContactsService;
 import org.slf4j.Logger;

@@ -1,6 +1,6 @@
 package com.am.es.service;
 
-import com.am.es.model.ClueTurnRecordVo;
+import com.am.es.model.clue.ClueTurnRecordVo;
 
 import java.util.List;
 import java.util.Map;
