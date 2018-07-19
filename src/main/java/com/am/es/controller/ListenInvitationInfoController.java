@@ -1,5 +1,6 @@
 package com.am.es.controller;
 
+import com.am.es.enums.HttpStatusCode;
 import com.am.es.model.clue.ListenInvitationInfoVo;
 import com.am.es.model.Result;
 import com.am.es.service.ListenInvitationInfoService;
@@ -28,8 +29,12 @@ public class ListenInvitationInfoController {
         Result ret = new Result();
         try {
             listenInvitationInfoService.saveListenInvitationInfoList(id);
+            ret.setStatus(HttpStatusCode.CODE_SUCCESS.getValue());
+            ret.setMessage(HttpStatusCode.CODE_SUCCESS.getDesc());
         } catch (Exception e) {
             logger.error("", e);
+            ret.setStatus(HttpStatusCode.CODE_SERVER_INTERNAL_ERROR.getValue());
+            ret.setMessage(HttpStatusCode.CODE_SERVER_INTERNAL_ERROR.getDesc());
         }
         return ret;
     }
@@ -39,8 +44,12 @@ public class ListenInvitationInfoController {
         Result ret = new Result();
         try {
             listenInvitationInfoService.deleteListenInvitationInfo(id);
+            ret.setStatus(HttpStatusCode.CODE_SUCCESS.getValue());
+            ret.setMessage(HttpStatusCode.CODE_SUCCESS.getDesc());
         } catch (Exception e) {
             logger.error("", e);
+            ret.setStatus(HttpStatusCode.CODE_SERVER_INTERNAL_ERROR.getValue());
+            ret.setMessage(HttpStatusCode.CODE_SERVER_INTERNAL_ERROR.getDesc());
         }
         return ret;
     }
@@ -51,9 +60,13 @@ public class ListenInvitationInfoController {
         try {
 
             List<ListenInvitationInfoVo> list = listenInvitationInfoService.getListenInvitationInfoList(map, currentPage, pageSize);
+            ret.setStatus(HttpStatusCode.CODE_SUCCESS.getValue());
+            ret.setMessage(HttpStatusCode.CODE_SUCCESS.getDesc());
             ret.setData(list);
         } catch (Exception e) {
             logger.error("", e);
+            ret.setStatus(HttpStatusCode.CODE_SERVER_INTERNAL_ERROR.getValue());
+            ret.setMessage(HttpStatusCode.CODE_SERVER_INTERNAL_ERROR.getDesc());
         }
         return ret;
     }

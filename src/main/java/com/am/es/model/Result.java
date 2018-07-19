@@ -11,17 +11,17 @@ import java.util.List;
  */
 public class Result implements Serializable {
 
-    private Integer status;
+    private String status;
 
     private String message;
 
     private Object data;
 
-    public Integer getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

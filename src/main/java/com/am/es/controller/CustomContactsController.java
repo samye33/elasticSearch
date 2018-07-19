@@ -1,5 +1,6 @@
 package com.am.es.controller;
 
+import com.am.es.enums.HttpStatusCode;
 import com.am.es.model.clue.CustomContactsVo;
 import com.am.es.model.Result;
 import com.am.es.service.CustomContactsService;
@@ -27,8 +28,12 @@ public class CustomContactsController {
         Result ret = new Result();
         try {
             customContactsService.saveCustomContactsList(id);
+            ret.setStatus(HttpStatusCode.CODE_SUCCESS.getValue());
+            ret.setMessage(HttpStatusCode.CODE_SUCCESS.getDesc());
         } catch (Exception e) {
             logger.error("", e);
+            ret.setStatus(HttpStatusCode.CODE_SERVER_INTERNAL_ERROR.getValue());
+            ret.setMessage(HttpStatusCode.CODE_SERVER_INTERNAL_ERROR.getDesc());
         }
         return ret;
     }
@@ -38,8 +43,12 @@ public class CustomContactsController {
         Result ret = new Result();
         try {
             customContactsService.deleteCustomContacts(id);
+            ret.setStatus(HttpStatusCode.CODE_SUCCESS.getValue());
+            ret.setMessage(HttpStatusCode.CODE_SUCCESS.getDesc());
         } catch (Exception e) {
             logger.error("", e);
+            ret.setStatus(HttpStatusCode.CODE_SERVER_INTERNAL_ERROR.getValue());
+            ret.setMessage(HttpStatusCode.CODE_SERVER_INTERNAL_ERROR.getDesc());
         }
         return ret;
     }
@@ -49,9 +58,13 @@ public class CustomContactsController {
         Result ret = new Result();
         try {
             List<CustomContactsVo> list = customContactsService.getCustomContactsList(map, currentPage, pageSize);
+            ret.setStatus(HttpStatusCode.CODE_SUCCESS.getValue());
+            ret.setMessage(HttpStatusCode.CODE_SUCCESS.getDesc());
             ret.setData(list);
         } catch (Exception e) {
             logger.error("", e);
+            ret.setStatus(HttpStatusCode.CODE_SERVER_INTERNAL_ERROR.getValue());
+            ret.setMessage(HttpStatusCode.CODE_SERVER_INTERNAL_ERROR.getDesc());
         }
         return ret;
     }

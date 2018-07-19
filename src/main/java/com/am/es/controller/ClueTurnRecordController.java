@@ -1,5 +1,6 @@
 package com.am.es.controller;
 
+import com.am.es.enums.HttpStatusCode;
 import com.am.es.model.clue.ClueTurnRecordVo;
 import com.am.es.model.Result;
 import com.am.es.service.ClueTurnRecordService;
@@ -28,7 +29,11 @@ public class ClueTurnRecordController {
         Result ret = new Result();
         try {
             clueTurnRecordService.saveClueTurnRecordList(id);
+            ret.setStatus(HttpStatusCode.CODE_SUCCESS.getValue());
+            ret.setMessage(HttpStatusCode.CODE_SUCCESS.getDesc());
         } catch (Exception e) {
+            ret.setStatus(HttpStatusCode.CODE_SERVER_INTERNAL_ERROR.getValue());
+            ret.setMessage(HttpStatusCode.CODE_SERVER_INTERNAL_ERROR.getDesc());
             logger.error("", e);
         }
         return ret;
@@ -39,7 +44,11 @@ public class ClueTurnRecordController {
         Result ret = new Result();
         try {
             clueTurnRecordService.deleteClueTurnRecord(id);
+            ret.setStatus(HttpStatusCode.CODE_SUCCESS.getValue());
+            ret.setMessage(HttpStatusCode.CODE_SUCCESS.getDesc());
         } catch (Exception e) {
+            ret.setStatus(HttpStatusCode.CODE_SERVER_INTERNAL_ERROR.getValue());
+            ret.setMessage(HttpStatusCode.CODE_SERVER_INTERNAL_ERROR.getDesc());
             logger.error("", e);
         }
         return ret;
@@ -51,8 +60,12 @@ public class ClueTurnRecordController {
         try {
 
             List<ClueTurnRecordVo> list = clueTurnRecordService.getClueTurnRecordList(map, currentPage, pageSize);
+            ret.setStatus(HttpStatusCode.CODE_SUCCESS.getValue());
+            ret.setMessage(HttpStatusCode.CODE_SUCCESS.getDesc());
             ret.setData(list);
         } catch (Exception e) {
+            ret.setStatus(HttpStatusCode.CODE_SERVER_INTERNAL_ERROR.getValue());
+            ret.setMessage(HttpStatusCode.CODE_SERVER_INTERNAL_ERROR.getDesc());
             logger.error("", e);
         }
         return ret;
