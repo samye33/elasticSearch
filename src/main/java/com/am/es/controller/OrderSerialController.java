@@ -1,8 +1,8 @@
 package com.am.es.controller;
 
-import com.am.es.model.ClueInfoVo;
+import com.am.es.model.OrderSerialVo;
 import com.am.es.model.Result;
-import com.am.es.service.ClueInfoService;
+import com.am.es.service.OrderSerialService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,18 +16,18 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/es/clue")
-public class ClueController {
-    private static final Logger logger = LoggerFactory.getLogger(ClueController.class);
+@RequestMapping("/es/orderSerial")
+public class OrderSerialController {
+    private static final Logger logger = LoggerFactory.getLogger(OrderSerialController.class);
 
     @Autowired
-    private ClueInfoService clueInfoService;
+    private OrderSerialService orderSerialService;
 
     @GetMapping("/save")
-    public Result saveClueInfo(HttpServletRequest request, HttpServletResponse response, List<Integer> id) {
+    public Result saveOrderSerial(HttpServletRequest request, HttpServletResponse response, List<Integer> id) {
         Result ret = new Result();
         try {
-            clueInfoService.saveClueInfoList(id);
+            orderSerialService.saveOrderSerialList(id);
         } catch (Exception e) {
             logger.error("", e);
         }
@@ -35,10 +35,10 @@ public class ClueController {
     }
 
     @GetMapping("/delete")
-    public Result deleteClueInfo(HttpServletRequest request, HttpServletResponse response, Integer id) {
+    public Result deleteOrderSerial(HttpServletRequest request, HttpServletResponse response, Integer id) {
         Result ret = new Result();
         try {
-            clueInfoService.deleteClueInfo(id);
+            orderSerialService.deleteOrderSerial(id);
         } catch (Exception e) {
             logger.error("", e);
         }
@@ -46,11 +46,11 @@ public class ClueController {
     }
 
     @GetMapping("/searchCondition")
-    public Result searchClueInfo(HttpServletRequest request, HttpServletResponse response, Map map, Integer currentPage, Integer pageSize) {
+    public Result searchOrderSerial(HttpServletRequest request, HttpServletResponse response, Map map, Integer currentPage, Integer pageSize) {
         Result ret = new Result();
         try {
 
-            List<ClueInfoVo> list = clueInfoService.getClueInfoList(map, currentPage, pageSize);
+            List<OrderSerialVo> list = orderSerialService.getOrderSerialList(map, currentPage, pageSize);
             ret.setData(list);
         } catch (Exception e) {
             logger.error("", e);
