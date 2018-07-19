@@ -1,3 +1,6 @@
+logging:
+  level:
+      com.am.es: DEBUG
 server:
   port: 8080
 spring:
