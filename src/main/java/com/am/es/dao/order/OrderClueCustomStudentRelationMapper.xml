@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.am.es.dao.order.orderdao.OrderClueCustomStudentRelationMapper" >
-  <resultMap id="BaseResultMap" type="com.am.es.entity.order.orderentity.OrderClueCustomStudentRelation" >
+<mapper namespace="com.am.es.dao.order.OrderClueCustomStudentRelationMapper" >
+  <resultMap id="BaseResultMap" type="com.am.es.entity.order.OrderClueCustomStudentRelation" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
     <result column="clue_no" property="clueNo" jdbcType="VARCHAR" />

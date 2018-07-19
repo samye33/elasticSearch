@@ -2,8 +2,8 @@ package com.am.es.service.impl;
 
 import com.am.es.dao.clue.ListenInvitationInfoMapper;
 import com.am.es.model.ListenInvitationInfoVo;
-import com.am.es.service.search.SearchListenInvitationInfoRepository;
 import com.am.es.service.ListenInvitationInfoService;
+import com.am.es.service.search.SearchListenInvitationInfoRepository;
 import com.am.es.utils.SearchConditionEncape;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;

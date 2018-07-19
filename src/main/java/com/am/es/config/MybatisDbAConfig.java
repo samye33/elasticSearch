@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Primary;
 import javax.sql.DataSource;
 
 @Configuration
-@MapperScan(basePackages = {"com.am.es.cluedao"}, sqlSessionFactoryRef = "sqlSessionFactory1")
+@MapperScan(basePackages = {"com.am.es.dao.clue"}, sqlSessionFactoryRef = "sqlSessionFactory1")
 public class MybatisDbAConfig {
     @Autowired
     @Qualifier("ds1")
