@@ -14,6 +14,20 @@
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
         <result column="flag" property="flag" jdbcType="INTEGER"/>
     </resultMap>
+
+    <resultMap id="BaseResultVoMap" type="com.am.es.model.order.OrderProductVo">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="order_no" property="orderNo" jdbcType="VARCHAR"/>
+        <result column="product_no" property="productNo" jdbcType="VARCHAR"/>
+        <result column="product_price" property="productPrice" jdbcType="DOUBLE"/>
+        <result column="product_name" property="productName" jdbcType="VARCHAR"/>
+        <result column="period" property="period" jdbcType="INTEGER"/>
+        <result column="course_type" property="courseType" jdbcType="INTEGER"/>
+        <result column="is_package" property="isPackage" jdbcType="INTEGER"/>
+        <result column="create_id" property="createId" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="flag" property="flag" jdbcType="INTEGER"/>
+    </resultMap>
     <sql id="Example_Where_Clause">
         <where>
             <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -307,7 +321,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
     <select id="selectListByPrimaryKeyList" parameterType="java.util.List"
-            resultType="com.am.es.model.order.OrderProductVo">
+            resultMap="BaseResultVoMap">
         SELECT * FROM order_product
         <where>
             id IN

@@ -1,8 +1,8 @@
 package com.am.es.controller;
 
 import com.am.es.enums.HttpStatusCode;
-import com.am.es.model.clue.ClueTurnRecordVo;
 import com.am.es.model.Result;
+import com.am.es.model.clue.ClueTurnRecordVo;
 import com.am.es.service.ClueTurnRecordService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -67,6 +67,21 @@ public class ClueTurnRecordController {
         try {
 
             List<ClueTurnRecordVo> list = clueTurnRecordService.getClueTurnRecordList(map, currentPage, pageSize);
+            ret.setStatus(HttpStatusCode.CODE_SUCCESS.getValue());
+            ret.setMessage(HttpStatusCode.CODE_SUCCESS.getDesc());
+            ret.setData(list);
+        } catch (Exception e) {
+            ret.setStatus(HttpStatusCode.CODE_SERVER_INTERNAL_ERROR.getValue());
+            ret.setMessage(HttpStatusCode.CODE_SERVER_INTERNAL_ERROR.getDesc());
+            logger.error("", e);
+        }
+        return ret;
+    }
+    @GetMapping("/searchAll")
+    public Result searchAll(HttpServletRequest request, HttpServletResponse response) {
+        Result ret = new Result();
+        try {
+            List<ClueTurnRecordVo> list = clueTurnRecordService.queryAllClueTurnRecordList();
             ret.setStatus(HttpStatusCode.CODE_SUCCESS.getValue());
             ret.setMessage(HttpStatusCode.CODE_SUCCESS.getDesc());
             ret.setData(list);

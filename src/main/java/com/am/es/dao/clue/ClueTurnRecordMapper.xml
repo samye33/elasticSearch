@@ -21,6 +21,27 @@
     <result column="clue_turn_type" property="clueTurnType" jdbcType="INTEGER" />
     <result column="current_user_type" property="currentUserType" jdbcType="INTEGER" />
   </resultMap>
+
+  <resultMap id="BaseResultVoMap" type="com.am.es.model.clue.ClueTurnRecordVo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="custom_id" property="customId" jdbcType="INTEGER" />
+    <result column="custom_no" property="customNo" jdbcType="VARCHAR" />
+    <result column="clue_id" property="clueId" jdbcType="INTEGER" />
+    <result column="clue_no" property="clueNo" jdbcType="VARCHAR" />
+    <result column="memo" property="memo" jdbcType="VARCHAR" />
+    <result column="pre_group_id" property="preGroupId" jdbcType="INTEGER" />
+    <result column="pre_user_id" property="preUserId" jdbcType="INTEGER" />
+    <result column="current_user_id" property="currentUserId" jdbcType="INTEGER" />
+    <result column="current_group_id" property="currentGroupId" jdbcType="INTEGER" />
+    <result column="create_by" property="createBy" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="pre_clue_status" property="preClueStatus" jdbcType="VARCHAR" />
+    <result column="current_clue_status" property="currentClueStatus" jdbcType="VARCHAR" />
+    <result column="clue_turn_type" property="clueTurnType" jdbcType="INTEGER" />
+    <result column="current_user_type" property="currentUserType" jdbcType="INTEGER" />
+  </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -415,7 +436,7 @@
       current_user_type = #{currentUserType,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="selectListByPrimaryKeyList" parameterType="java.util.List" resultType="com.am.es.model.clue.ClueTurnRecordVo">
+  <select id="selectListByPrimaryKeyList" parameterType="java.util.List" resultMap="BaseResultVoMap">
     SELECT * FROM clue_turn_record
     <where>
       id IN

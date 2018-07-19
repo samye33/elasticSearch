@@ -13,6 +13,19 @@
         <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
         <result column="update_by" property="updateBy" jdbcType="INTEGER"/>
     </resultMap>
+
+    <resultMap id="BaseResultVoMap" type="com.am.es.model.clue.CustomContactsVo">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="custom_id" property="customId" jdbcType="INTEGER"/>
+        <result column="custom_no" property="customNo" jdbcType="VARCHAR"/>
+        <result column="contact_name" property="contactName" jdbcType="VARCHAR"/>
+        <result column="relationship" property="relationship" jdbcType="INTEGER"/>
+        <result column="old_contacts_guid" property="oldContactsGuid" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="create_by" property="createBy" jdbcType="INTEGER"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="update_by" property="updateBy" jdbcType="INTEGER"/>
+    </resultMap>
     <sql id="Example_Where_Clause">
         <where>
             <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -291,7 +304,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-    <select id="selectListByPrimaryKeyList" parameterType="java.util.List" resultType="com.am.es.model.clue.CustomContactsVo">
+    <select id="selectListByPrimaryKeyList" parameterType="java.util.List" resultMap="BaseResultVoMap">
         SELECT * FROM custom_contacts
         <where>
             id IN

@@ -1,8 +1,8 @@
 package com.am.es.controller;
 
 import com.am.es.enums.HttpStatusCode;
-import com.am.es.model.order.OrderInfoVo;
 import com.am.es.model.Result;
+import com.am.es.model.order.OrderInfoVo;
 import com.am.es.service.OrderInfoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -74,6 +74,22 @@ public class OrderInfoController {
             logger.error("", e);
             ret.setStatus(HttpStatusCode.CODE_SERVER_INTERNAL_ERROR.getValue());
             ret.setMessage(HttpStatusCode.CODE_SERVER_INTERNAL_ERROR.getDesc());
+        }
+        return ret;
+    }
+
+    @GetMapping("/searchAll")
+    public Result searchAll(HttpServletRequest request, HttpServletResponse response) {
+        Result ret = new Result();
+        try {
+            List<OrderInfoVo> list = orderInfoService.queryAllOrderInfoList();
+            ret.setStatus(HttpStatusCode.CODE_SUCCESS.getValue());
+            ret.setMessage(HttpStatusCode.CODE_SUCCESS.getDesc());
+            ret.setData(list);
+        } catch (Exception e) {
+            ret.setStatus(HttpStatusCode.CODE_SERVER_INTERNAL_ERROR.getValue());
+            ret.setMessage(HttpStatusCode.CODE_SERVER_INTERNAL_ERROR.getDesc());
+            logger.error("", e);
         }
         return ret;
     }
