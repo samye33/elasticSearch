@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -23,10 +24,15 @@ public class CustomContactInfoDetailController {
     private CustomContactInfoDeatailService customContactInfoDeatailService;
 
     @GetMapping("/save")
-    public Result saveCustomContactInfoDetail(HttpServletRequest request, List<Integer> id) {
+    public Result saveCustomContactInfoDetail(HttpServletRequest request,  String ids) {
         Result ret = new Result();
+        String[] id = ids.split(",");
+        List<Integer> listId = new ArrayList<Integer>();
         try {
-            customContactInfoDeatailService.saveCustomContactInfoDeatailList(id);
+            for (int i = 0; i < id.length; i++) {
+                listId.add(Integer.parseInt(id[i]));
+            }
+            customContactInfoDeatailService.saveCustomContactInfoDeatailList(listId);
             ret.setStatus(HttpStatusCode.CODE_SUCCESS.getValue());
             ret.setMessage(HttpStatusCode.CODE_SUCCESS.getDesc());
         } catch (Exception e) {

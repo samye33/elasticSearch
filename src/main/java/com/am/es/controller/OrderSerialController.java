@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -25,10 +26,15 @@ public class OrderSerialController {
     private OrderSerialService orderSerialService;
 
     @GetMapping("/save")
-    public Result saveOrderSerial(HttpServletRequest request, HttpServletResponse response, List<Integer> id) {
+    public Result saveOrderSerial(HttpServletRequest request, HttpServletResponse response, String ids) {
         Result ret = new Result();
+        String[] id = ids.split(",");
+        List<Integer> listId = new ArrayList<Integer>();
         try {
-            orderSerialService.saveOrderSerialList(id);
+            for (int i = 0; i < id.length; i++) {
+                listId.add(Integer.parseInt(id[i]));
+            }
+            orderSerialService.saveOrderSerialList(listId);
             ret.setStatus(HttpStatusCode.CODE_SUCCESS.getValue());
             ret.setMessage(HttpStatusCode.CODE_SUCCESS.getDesc());
         } catch (Exception e) {

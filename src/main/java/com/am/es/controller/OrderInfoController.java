@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -25,10 +26,15 @@ public class OrderInfoController {
     private OrderInfoService orderInfoService;
 
     @GetMapping("/save")
-    public Result saveOrderInfo(HttpServletRequest request, HttpServletResponse response, List<Integer> id) {
+    public Result saveOrderInfo(HttpServletRequest request, HttpServletResponse response,  String ids) {
         Result ret = new Result();
+        String[] id = ids.split(",");
+        List<Integer> listId = new ArrayList<Integer>();
         try {
-            orderInfoService.saveOrderInfoList(id);
+            for (int i = 0; i < id.length; i++) {
+                listId.add(Integer.parseInt(id[i]));
+            }
+            orderInfoService.saveOrderInfoList(listId);
             ret.setStatus(HttpStatusCode.CODE_SUCCESS.getValue());
             ret.setMessage(HttpStatusCode.CODE_SUCCESS.getDesc());
         } catch (Exception e) {
