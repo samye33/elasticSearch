@@ -1,9 +1,8 @@
 package com.am.es.controller;
 
-import com.alibaba.fastjson.JSONObject;
-import com.am.es.model.ClueInfoVo;
+import com.am.es.model.CustomInfoVo;
 import com.am.es.model.Result;
-import com.am.es.service.ClueInfoService;
+import com.am.es.service.CustomInfoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,23 +12,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/es/clue")
-public class ClueController {
-    private static final Logger logger = LoggerFactory.getLogger(ClueController.class);
-
+@RequestMapping("/es/customInfo")
+public class CustomInfoController {
+    private static final Logger logger = LoggerFactory.getLogger(CustomInfoController.class);
     @Autowired
-    private ClueInfoService clueInfoService;
+    private CustomInfoService customInfoService;
 
     @GetMapping("/save")
-    public Result saveClueInfo(HttpServletRequest request, HttpServletResponse response, List<Integer> id) {
+    public Result saveCustomInfo(HttpServletRequest request, HttpServletResponse response, List<Integer> id) {
         Result ret = new Result();
         try {
-            clueInfoService.saveClueInfoList(id);
+            customInfoService.saveCustomInfoList(id);
         } catch (Exception e) {
             logger.error("", e);
         }
@@ -37,10 +34,10 @@ public class ClueController {
     }
 
     @GetMapping("/delete")
-    public Result deleteClueInfo(HttpServletRequest request, HttpServletResponse response, Integer id) {
+    public Result deleteCustomInfo(HttpServletRequest request, HttpServletResponse response, Integer id) {
         Result ret = new Result();
         try {
-            clueInfoService.deleteClueInfo(id);
+            customInfoService.deleteCustomInfo(id);
         } catch (Exception e) {
             logger.error("", e);
         }
@@ -48,11 +45,10 @@ public class ClueController {
     }
 
     @GetMapping("/searchCondition")
-    public Result searchClueInfo(HttpServletRequest request, HttpServletResponse response, Map map, Integer currentPage, Integer pageSize) {
+    public Result searchCustomInfo(HttpServletRequest request, HttpServletResponse response, Map map, Integer currentPage, Integer pageSize) {
         Result ret = new Result();
         try {
-
-            List<ClueInfoVo> list = clueInfoService.getClueInfoList(map, currentPage, pageSize);
+            List<CustomInfoVo> list = customInfoService.getCustomInfoList(map, currentPage, pageSize);
             ret.setData(list);
         } catch (Exception e) {
             logger.error("", e);

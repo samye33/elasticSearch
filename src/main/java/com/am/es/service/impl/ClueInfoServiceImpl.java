@@ -47,7 +47,7 @@ public class ClueInfoServiceImpl implements ClueInfoService{
         searchClueInfoRepository.delete(clueInfoVo);
     }
 
-    public List<ClueInfoVo> getOrderInfoList(Map<String, ?> map, Integer currentPage, Integer pageSize) {
+    public List<ClueInfoVo> getClueInfoList(Map<String, ?> map, Integer currentPage, Integer pageSize) {
         List<ClueInfoVo> list = null;
         SearchConditionEncape searchConditionEncape = new SearchConditionEncape();
         NativeSearchQuery query = searchConditionEncape.queryCondition(map, currentPage, pageSize);

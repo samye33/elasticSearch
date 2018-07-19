@@ -1,9 +1,8 @@
 package com.am.es.controller;
 
-import com.alibaba.fastjson.JSONObject;
-import com.am.es.model.ClueInfoVo;
+import com.am.es.model.CustomContactInfoDetailVo;
 import com.am.es.model.Result;
-import com.am.es.service.ClueInfoService;
+import com.am.es.service.CustomContactInfoDeatailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,24 +11,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/es/clue")
-public class ClueController {
-    private static final Logger logger = LoggerFactory.getLogger(ClueController.class);
-
+@RequestMapping("/es/customContactInfoDetail")
+public class CustomContactInfoDetailController {
+    private static final Logger logger = LoggerFactory.getLogger(CustomContactInfoDetailController.class);
     @Autowired
-    private ClueInfoService clueInfoService;
+    private CustomContactInfoDeatailService customContactInfoDeatailService;
 
     @GetMapping("/save")
-    public Result saveClueInfo(HttpServletRequest request, HttpServletResponse response, List<Integer> id) {
+    public Result saveCustomContactInfoDetail(HttpServletRequest request, List<Integer> id) {
         Result ret = new Result();
         try {
-            clueInfoService.saveClueInfoList(id);
+            customContactInfoDeatailService.saveCustomContactInfoDeatailList(id);
         } catch (Exception e) {
             logger.error("", e);
         }
@@ -37,10 +33,10 @@ public class ClueController {
     }
 
     @GetMapping("/delete")
-    public Result deleteClueInfo(HttpServletRequest request, HttpServletResponse response, Integer id) {
+    public Result deleteCustomContactInfoDetail(HttpServletRequest request, Integer id) {
         Result ret = new Result();
         try {
-            clueInfoService.deleteClueInfo(id);
+            customContactInfoDeatailService.deleteCustomContactInfoDetail(id);
         } catch (Exception e) {
             logger.error("", e);
         }
@@ -48,11 +44,10 @@ public class ClueController {
     }
 
     @GetMapping("/searchCondition")
-    public Result searchClueInfo(HttpServletRequest request, HttpServletResponse response, Map map, Integer currentPage, Integer pageSize) {
+    public Result searchCustomContactInfoDetail(HttpServletRequest request, Map map, Integer currentPage, Integer pageSize) {
         Result ret = new Result();
         try {
-
-            List<ClueInfoVo> list = clueInfoService.getClueInfoList(map, currentPage, pageSize);
+            List<CustomContactInfoDetailVo> list = customContactInfoDeatailService.getCustomContactInfoDetailList(map, currentPage, pageSize);
             ret.setData(list);
         } catch (Exception e) {
             logger.error("", e);

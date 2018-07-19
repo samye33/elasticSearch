@@ -10,5 +10,5 @@ public interface CustomContactsService {
 
     void deleteCustomContacts(Integer id);
 
-    List<CustomContactsVo> getOrderInfoList(Map<String, ?> map, Integer currentPage, Integer pageSize);
+    List<CustomContactsVo> getCustomContactsList(Map<String, ?> map, Integer currentPage, Integer pageSize);
 }

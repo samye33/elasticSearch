@@ -33,7 +33,7 @@ public class CustomContactInfoDeatailServiceImpl implements CustomContactInfoDea
         searchCustomContactInfoDetailRepository.delete(customContactInfoDetailVo);
     }
 
-    public List<CustomContactInfoDetailVo> getOrderInfoList(Map<String, ?> map, Integer currentPage, Integer pageSize) {
+    public List<CustomContactInfoDetailVo> getCustomContactInfoDetailList(Map<String, ?> map, Integer currentPage, Integer pageSize) {
         List<CustomContactInfoDetailVo> list = null;
         SearchConditionEncape searchConditionEncape = new SearchConditionEncape();
         NativeSearchQuery query = searchConditionEncape.queryCondition(map, currentPage, pageSize);

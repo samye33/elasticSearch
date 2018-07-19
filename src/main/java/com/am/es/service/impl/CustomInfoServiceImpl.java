@@ -48,7 +48,7 @@ public class CustomInfoServiceImpl implements CustomInfoService {
         searchCustomInfoRepository.delete(customInfoVo);
     }
 
-    public List<CustomInfoVo> getOrderInfoList(Map<String, ?> map, Integer currentPage, Integer pageSize) {
+    public List<CustomInfoVo> getCustomInfoList(Map<String, ?> map, Integer currentPage, Integer pageSize) {
         List<CustomInfoVo> list = null;
         SearchConditionEncape searchConditionEncape = new SearchConditionEncape();
         NativeSearchQuery query = searchConditionEncape.queryCondition(map, currentPage, pageSize);

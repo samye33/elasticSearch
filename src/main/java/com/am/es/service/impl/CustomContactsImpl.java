@@ -34,7 +34,7 @@ public class CustomContactsImpl implements CustomContactsService{
         searchCustomContactsRepository.delete(customContactsVo);
     }
 
-    public List<CustomContactsVo> getOrderInfoList(Map<String, ?> map, Integer currentPage, Integer pageSize) {
+    public List<CustomContactsVo> getCustomContactsList(Map<String, ?> map, Integer currentPage, Integer pageSize) {
         List<CustomContactsVo> list = null;
         SearchConditionEncape searchConditionEncape = new SearchConditionEncape();
         NativeSearchQuery query = searchConditionEncape.queryCondition(map, currentPage, pageSize);

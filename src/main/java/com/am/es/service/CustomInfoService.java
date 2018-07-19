@@ -10,5 +10,5 @@ public interface CustomInfoService {
 
     void deleteCustomInfo(Integer id);
 
-    List<CustomInfoVo> getOrderInfoList(Map<String, ?> map, Integer currentPage, Integer pageSize);
+    List<CustomInfoVo> getCustomInfoList(Map<String, ?> map, Integer currentPage, Integer pageSize);
 }

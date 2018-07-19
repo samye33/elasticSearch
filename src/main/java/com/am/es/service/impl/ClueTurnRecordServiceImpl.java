@@ -33,7 +33,7 @@ public class ClueTurnRecordServiceImpl implements ClueTurnRecordService{
         searchClueTurnRecordRepository.delete(clueTurnRecordVo);
     }
 
-    public List<ClueTurnRecordVo> getOrderInfoList(Map<String, ?> map, Integer currentPage, Integer pageSize) {
+    public List<ClueTurnRecordVo> getClueTurnRecordList(Map<String, ?> map, Integer currentPage, Integer pageSize) {
         List<ClueTurnRecordVo> list = null;
         SearchConditionEncape searchConditionEncape = new SearchConditionEncape();
         NativeSearchQuery query = searchConditionEncape.queryCondition(map, currentPage, pageSize);
