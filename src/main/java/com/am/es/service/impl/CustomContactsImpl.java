@@ -1,8 +1,8 @@
 package com.am.es.service.impl;
 
-import com.am.es.cluedao.CustomContactsMapper;
+import com.am.es.dao.clue.CustomContactsMapper;
 import com.am.es.model.CustomContactsVo;
-import com.am.es.searchservice.SearchCustomContactsRepository;
+import com.am.es.service.search.SearchCustomContactsRepository;
 import com.am.es.service.CustomContactsService;
 import com.am.es.utils.SearchConditionEncape;
 import org.springframework.beans.factory.annotation.Autowired;

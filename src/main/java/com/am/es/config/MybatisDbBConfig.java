@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import javax.sql.DataSource;
 
 @Configuration
-@MapperScan(basePackages = {"com.am.es.orderdao"}, sqlSessionFactoryRef = "sqlSessionFactory2")
+@MapperScan(basePackages = {"com.am.es.dao.order.orderdao"}, sqlSessionFactoryRef = "sqlSessionFactory2")
 public class MybatisDbBConfig {
     @Autowired
     @Qualifier("ds2")

@@ -1,8 +1,8 @@
 package com.am.es.service.impl;
 
-import com.am.es.cluedao.ClueInfoMapper;
+import com.am.es.dao.clue.ClueInfoMapper;
 import com.am.es.model.ClueInfoVo;
-import com.am.es.searchservice.SearchClueInfoRepository;
+import com.am.es.service.search.SearchClueInfoRepository;
 import com.am.es.service.ClueInfoService;
 import com.am.es.utils.SearchConditionEncape;
 import org.elasticsearch.index.query.BoolQueryBuilder;

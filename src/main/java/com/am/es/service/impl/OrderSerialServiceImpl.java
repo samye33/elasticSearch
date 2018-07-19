@@ -1,8 +1,8 @@
 package com.am.es.service.impl;
 
 import com.am.es.model.OrderSerialVo;
-import com.am.es.orderdao.OrderSerialMapper;
-import com.am.es.searchservice.SearchOrderSerialRepository;
+import com.am.es.dao.order.OrderSerialMapper;
+import com.am.es.service.search.SearchOrderSerialRepository;
 import com.am.es.service.OrderSerialService;
 import com.am.es.utils.SearchConditionEncape;
 import org.springframework.beans.factory.annotation.Autowired;

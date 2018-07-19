@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.am.es.dao.clue.ListenInvitationInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.am.es.entity.clue.ListenInvitationInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="listen_invitation_no" property="listenInvitationNo" jdbcType="VARCHAR" />
+    <result column="custom_guid" property="customGuid" jdbcType="VARCHAR" />
+    <result column="custom_no" property="customNo" jdbcType="VARCHAR" />
+    <result column="clue_guid" property="clueGuid" jdbcType="VARCHAR" />
+    <result column="clue_no" property="clueNo" jdbcType="VARCHAR" />
+    <result column="course_type" property="courseType" jdbcType="INTEGER" />
+    <result column="LI_status" property="liStatus" jdbcType="INTEGER" />
+    <result column="LI_type" property="liType" jdbcType="INTEGER" />
+    <result column="LI_start_time" property="liStartTime" jdbcType="TIMESTAMP" />
+    <result column="LI_endt_ime" property="liEndtIme" jdbcType="TIMESTAMP" />
+    <result column="room_id" property="roomId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="INTEGER" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="INTEGER" />
+    <result column="LI_content" property="liContent" jdbcType="VARCHAR" />
+    <result column="course_id" property="courseId" jdbcType="VARCHAR" />
+    <result column="course_name" property="courseName" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <resultMap id="BaseResultVoMap" type="com.am.es.model.ListenInvitationInfoVo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="listen_invitation_no" property="listenInvitationNo" jdbcType="VARCHAR" />
+    <result column="custom_guid" property="customGuid" jdbcType="VARCHAR" />
+    <result column="custom_no" property="customNo" jdbcType="VARCHAR" />
+    <result column="clue_guid" property="clueGuid" jdbcType="VARCHAR" />
+    <result column="clue_no" property="clueNo" jdbcType="VARCHAR" />
+    <result column="course_type" property="courseType" jdbcType="INTEGER" />
+    <result column="LI_status" property="liStatus" jdbcType="INTEGER" />
+    <result column="LI_type" property="liType" jdbcType="INTEGER" />
+    <result column="LI_start_time" property="liStartTime" jdbcType="TIMESTAMP" />
+    <result column="LI_endt_ime" property="liEndtIme" jdbcType="TIMESTAMP" />
+    <result column="room_id" property="roomId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="INTEGER" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="INTEGER" />
+    <result column="LI_content" property="liContent" jdbcType="VARCHAR" />
+    <result column="course_id" property="courseId" jdbcType="VARCHAR" />
+    <result column="course_name" property="courseName" jdbcType="VARCHAR" />
+    <association property="listenInvitationFeedBackVo" javaType="com.am.es.model.ListenInvitationFeedBackVo">
+      <id column="feed_back_id" property="id" jdbcType="INTEGER" />
+      <result column="listen_invitation_id" property="listenInvitationId" jdbcType="INTEGER" />
+      <result column="feed_back_listen_invitation_no" property="listenInvitationNo" jdbcType="VARCHAR" />
+      <result column="is_visit" property="isVisit" jdbcType="TINYINT" />
+      <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+      <result column="long_time" property="longTime" jdbcType="INTEGER" />
+      <result column="student_feed_fack" property="studentFeedFack" jdbcType="VARCHAR" />
+      <result column="feed_back_create_time" property="createTime" jdbcType="TIMESTAMP" />
+      <result column="feed_back_create_by" property="createBy" jdbcType="INTEGER" />
+      <result column="class_id" property="classId" jdbcType="INTEGER" />
+      <result column="teacher_id" property="teacherId" jdbcType="VARCHAR" />
+      <result column="lesson_id" property="lessonId" jdbcType="VARCHAR" />
+      <result column="note" property="note" jdbcType="VARCHAR" />
+      <result column="lesson_url" property="lessonUrl" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, listen_invitation_no, custom_guid, custom_no, clue_guid, clue_no, course_type, 
+    LI_status, LI_type, LI_start_time, LI_endt_ime, room_id, create_time, create_by, 
+    is_delete, update_time, update_by, LI_content, course_id, course_name
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.am.es.entity.clue.ListenInvitationInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from listen_invitation_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from listen_invitation_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from listen_invitation_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.am.es.entity.clue.ListenInvitationInfoExample" >
+    delete from listen_invitation_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.am.es.entity.clue.ListenInvitationInfo" >
+    insert into listen_invitation_info (id, listen_invitation_no, custom_guid, 
+      custom_no, clue_guid, clue_no, 
+      course_type, LI_status, LI_type, 
+      LI_start_time, LI_endt_ime, room_id, 
+      create_time, create_by, is_delete, 
+      update_time, update_by, LI_content, 
+      course_id, course_name)
+    values (#{id,jdbcType=INTEGER}, #{listenInvitationNo,jdbcType=VARCHAR}, #{customGuid,jdbcType=VARCHAR}, 
+      #{customNo,jdbcType=VARCHAR}, #{clueGuid,jdbcType=VARCHAR}, #{clueNo,jdbcType=VARCHAR}, 
+      #{courseType,jdbcType=INTEGER}, #{liStatus,jdbcType=INTEGER}, #{liType,jdbcType=INTEGER}, 
+      #{liStartTime,jdbcType=TIMESTAMP}, #{liEndtIme,jdbcType=TIMESTAMP}, #{roomId,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=INTEGER}, #{isDelete,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=INTEGER}, #{liContent,jdbcType=VARCHAR}, 
+      #{courseId,jdbcType=VARCHAR}, #{courseName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.am.es.entity.clue.ListenInvitationInfo" >
+    insert into listen_invitation_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="listenInvitationNo != null" >
+        listen_invitation_no,
+      </if>
+      <if test="customGuid != null" >
+        custom_guid,
+      </if>
+      <if test="customNo != null" >
+        custom_no,
+      </if>
+      <if test="clueGuid != null" >
+        clue_guid,
+      </if>
+      <if test="clueNo != null" >
+        clue_no,
+      </if>
+      <if test="courseType != null" >
+        course_type,
+      </if>
+      <if test="liStatus != null" >
+        LI_status,
+      </if>
+      <if test="liType != null" >
+        LI_type,
+      </if>
+      <if test="liStartTime != null" >
+        LI_start_time,
+      </if>
+      <if test="liEndtIme != null" >
+        LI_endt_ime,
+      </if>
+      <if test="roomId != null" >
+        room_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateBy != null" >
+        update_by,
+      </if>
+      <if test="liContent != null" >
+        LI_content,
+      </if>
+      <if test="courseId != null" >
+        course_id,
+      </if>
+      <if test="courseName != null" >
+        course_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="listenInvitationNo != null" >
+        #{listenInvitationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="customGuid != null" >
+        #{customGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="customNo != null" >
+        #{customNo,jdbcType=VARCHAR},
+      </if>
+      <if test="clueGuid != null" >
+        #{clueGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="clueNo != null" >
+        #{clueNo,jdbcType=VARCHAR},
+      </if>
+      <if test="courseType != null" >
+        #{courseType,jdbcType=INTEGER},
+      </if>
+      <if test="liStatus != null" >
+        #{liStatus,jdbcType=INTEGER},
+      </if>
+      <if test="liType != null" >
+        #{liType,jdbcType=INTEGER},
+      </if>
+      <if test="liStartTime != null" >
+        #{liStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="liEndtIme != null" >
+        #{liEndtIme,jdbcType=TIMESTAMP},
+      </if>
+      <if test="roomId != null" >
+        #{roomId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=INTEGER},
+      </if>
+      <if test="liContent != null" >
+        #{liContent,jdbcType=VARCHAR},
+      </if>
+      <if test="courseId != null" >
+        #{courseId,jdbcType=VARCHAR},
+      </if>
+      <if test="courseName != null" >
+        #{courseName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.am.es.entity.clue.ListenInvitationInfoExample" resultType="java.lang.Integer" >
+    select count(*) from listen_invitation_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update listen_invitation_info
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.listenInvitationNo != null" >
+        listen_invitation_no = #{record.listenInvitationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customGuid != null" >
+        custom_guid = #{record.customGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customNo != null" >
+        custom_no = #{record.customNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clueGuid != null" >
+        clue_guid = #{record.clueGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clueNo != null" >
+        clue_no = #{record.clueNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.courseType != null" >
+        course_type = #{record.courseType,jdbcType=INTEGER},
+      </if>
+      <if test="record.liStatus != null" >
+        LI_status = #{record.liStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.liType != null" >
+        LI_type = #{record.liType,jdbcType=INTEGER},
+      </if>
+      <if test="record.liStartTime != null" >
+        LI_start_time = #{record.liStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.liEndtIme != null" >
+        LI_endt_ime = #{record.liEndtIme,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.roomId != null" >
+        room_id = #{record.roomId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createBy != null" >
+        create_by = #{record.createBy,jdbcType=INTEGER},
+      </if>
+      <if test="record.isDelete != null" >
+        is_delete = #{record.isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateBy != null" >
+        update_by = #{record.updateBy,jdbcType=INTEGER},
+      </if>
+      <if test="record.liContent != null" >
+        LI_content = #{record.liContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.courseId != null" >
+        course_id = #{record.courseId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.courseName != null" >
+        course_name = #{record.courseName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update listen_invitation_info
+    set id = #{record.id,jdbcType=INTEGER},
+      listen_invitation_no = #{record.listenInvitationNo,jdbcType=VARCHAR},
+      custom_guid = #{record.customGuid,jdbcType=VARCHAR},
+      custom_no = #{record.customNo,jdbcType=VARCHAR},
+      clue_guid = #{record.clueGuid,jdbcType=VARCHAR},
+      clue_no = #{record.clueNo,jdbcType=VARCHAR},
+      course_type = #{record.courseType,jdbcType=INTEGER},
+      LI_status = #{record.liStatus,jdbcType=INTEGER},
+      LI_type = #{record.liType,jdbcType=INTEGER},
+      LI_start_time = #{record.liStartTime,jdbcType=TIMESTAMP},
+      LI_endt_ime = #{record.liEndtIme,jdbcType=TIMESTAMP},
+      room_id = #{record.roomId,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      create_by = #{record.createBy,jdbcType=INTEGER},
+      is_delete = #{record.isDelete,jdbcType=INTEGER},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      update_by = #{record.updateBy,jdbcType=INTEGER},
+      LI_content = #{record.liContent,jdbcType=VARCHAR},
+      course_id = #{record.courseId,jdbcType=VARCHAR},
+      course_name = #{record.courseName,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.am.es.entity.clue.ListenInvitationInfo" >
+    update listen_invitation_info
+    <set >
+      <if test="listenInvitationNo != null" >
+        listen_invitation_no = #{listenInvitationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="customGuid != null" >
+        custom_guid = #{customGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="customNo != null" >
+        custom_no = #{customNo,jdbcType=VARCHAR},
+      </if>
+      <if test="clueGuid != null" >
+        clue_guid = #{clueGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="clueNo != null" >
+        clue_no = #{clueNo,jdbcType=VARCHAR},
+      </if>
+      <if test="courseType != null" >
+        course_type = #{courseType,jdbcType=INTEGER},
+      </if>
+      <if test="liStatus != null" >
+        LI_status = #{liStatus,jdbcType=INTEGER},
+      </if>
+      <if test="liType != null" >
+        LI_type = #{liType,jdbcType=INTEGER},
+      </if>
+      <if test="liStartTime != null" >
+        LI_start_time = #{liStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="liEndtIme != null" >
+        LI_endt_ime = #{liEndtIme,jdbcType=TIMESTAMP},
+      </if>
+      <if test="roomId != null" >
+        room_id = #{roomId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=INTEGER},
+      </if>
+      <if test="liContent != null" >
+        LI_content = #{liContent,jdbcType=VARCHAR},
+      </if>
+      <if test="courseId != null" >
+        course_id = #{courseId,jdbcType=VARCHAR},
+      </if>
+      <if test="courseName != null" >
+        course_name = #{courseName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.am.es.entity.clue.ListenInvitationInfo" >
+    update listen_invitation_info
+    set listen_invitation_no = #{listenInvitationNo,jdbcType=VARCHAR},
+      custom_guid = #{customGuid,jdbcType=VARCHAR},
+      custom_no = #{customNo,jdbcType=VARCHAR},
+      clue_guid = #{clueGuid,jdbcType=VARCHAR},
+      clue_no = #{clueNo,jdbcType=VARCHAR},
+      course_type = #{courseType,jdbcType=INTEGER},
+      LI_status = #{liStatus,jdbcType=INTEGER},
+      LI_type = #{liType,jdbcType=INTEGER},
+      LI_start_time = #{liStartTime,jdbcType=TIMESTAMP},
+      LI_endt_ime = #{liEndtIme,jdbcType=TIMESTAMP},
+      room_id = #{roomId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=INTEGER},
+      is_delete = #{isDelete,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=INTEGER},
+      LI_content = #{liContent,jdbcType=VARCHAR},
+      course_id = #{courseId,jdbcType=VARCHAR},
+      course_name = #{courseName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectListByPrimaryKeyList" parameterType="java.util.List" resultMap="BaseResultVoMap">
+    SELECT
+      listen_invitation_info.*,
+      feed_back.id feed_back_id,
+      feed_back.listen_invitation_id,
+      feed_back.listen_invitation_no feed_back_listen_invitation_no,
+      feed_back.is_visit,
+      feed_back.start_time,
+      feed_back.long_time,
+      feed_back.student_feed_fack,
+      feed_back.create_time feed_back_create_time,
+      feed_back.create_by feed_back_create_by,
+      feed_back.class_id,
+      feed_back.teacher_id,
+      feed_back.lesson_id,
+      feed_back.note,
+      feed_back.lesson_url
+    FROM
+      listen_invitation_info
+    LEFT JOIN listen_invitation_feed_back feed_back ON listen_invitation_info.id = feed_back.listen_invitation_id
+    <where>
+      listen_invitation_info.id IN
+      <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
+        #{item}
+      </foreach>
+    </where>
+  </select>
+</mapper>

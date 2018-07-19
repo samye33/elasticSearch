@@ -1,9 +1,8 @@
 package com.am.es.service.impl;
 
-import com.am.es.cluedao.ClueTurnRecordMapper;
-import com.am.es.clueentity.ClueTurnRecord;
+import com.am.es.dao.clue.ClueTurnRecordMapper;
 import com.am.es.model.ClueTurnRecordVo;
-import com.am.es.searchservice.SearchClueTurnRecordRepository;
+import com.am.es.service.search.SearchClueTurnRecordRepository;
 import com.am.es.service.ClueTurnRecordService;
 import com.am.es.utils.SearchConditionEncape;
 import org.springframework.beans.factory.annotation.Autowired;

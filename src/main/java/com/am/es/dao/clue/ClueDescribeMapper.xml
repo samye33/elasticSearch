@@ -1,0 +1,738 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.am.es.dao.clue.ClueDescribeMapper" >
+  <resultMap id="BaseResultMap" type="com.am.es.entity.clue.ClueDescribe" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="clue_id" property="clueId" jdbcType="INTEGER" />
+    <result column="clue_no" property="clueNo" jdbcType="VARCHAR" />
+    <result column="custom_id" property="customId" jdbcType="INTEGER" />
+    <result column="custom_no" property="customNo" jdbcType="VARCHAR" />
+    <result column="clue_type" property="clueType" jdbcType="INTEGER" />
+    <result column="clue_status" property="clueStatus" jdbcType="VARCHAR" />
+    <result column="clue_quality" property="clueQuality" jdbcType="INTEGER" />
+    <result column="next_communicate_time" property="nextCommunicateTime" jdbcType="TIMESTAMP" />
+    <result column="last_communicate_time" property="lastCommunicateTime" jdbcType="TIMESTAMP" />
+    <result column="convenience_course_time" property="convenienceCourseTime" jdbcType="VARCHAR" />
+    <result column="exam_time" property="examTime" jdbcType="TIMESTAMP" />
+    <result column="last_communicater" property="lastCommunicater" jdbcType="INTEGER" />
+    <result column="is_deposit" property="isDeposit" jdbcType="INTEGER" />
+    <result column="sale_connet_count" property="saleConnetCount" jdbcType="INTEGER" />
+    <result column="tmk_failure_follow_count" property="tmkFailureFollowCount" jdbcType="INTEGER" />
+    <result column="sale_failure_follow_count" property="saleFailureFollowCount" jdbcType="INTEGER" />
+    <result column="sale_dial_count" property="saleDialCount" jdbcType="INTEGER" />
+    <result column="repeat_consultation_count" property="repeatConsultationCount" jdbcType="INTEGER" />
+    <result column="clue_stage" property="clueStage" jdbcType="INTEGER" />
+    <result column="is_lock" property="isLock" jdbcType="INTEGER" />
+    <result column="old_clue_guid" property="oldClueGuid" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_by" property="createBy" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="INTEGER" />
+    <result column="tmk_get_time" property="tmkGetTime" jdbcType="TIMESTAMP" />
+    <result column="sale_get_time" property="saleGetTime" jdbcType="TIMESTAMP" />
+    <result column="school_manager_get_time" property="schoolManagerGetTime" jdbcType="TIMESTAMP" />
+    <result column="id_guid" property="idGuid" jdbcType="VARCHAR" />
+    <result column="IsMergeClue" property="ismergeclue" jdbcType="INTEGER" />
+    <result column="TrafficState" property="trafficstate" jdbcType="INTEGER" />
+    <result column="FailureReason" property="failurereason" jdbcType="INTEGER" />
+    <result column="Urgency" property="urgency" jdbcType="INTEGER" />
+    <result column="erp_ClueStatus" property="erpCluestatus" jdbcType="VARCHAR" />
+    <result column="LastFollowBy" property="lastfollowby" jdbcType="INTEGER" />
+    <result column="LastFollowTime" property="lastfollowtime" jdbcType="TIMESTAMP" />
+    <result column="update_at" property="updateAt" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, clue_id, clue_no, custom_id, custom_no, clue_type, clue_status, clue_quality, 
+    next_communicate_time, last_communicate_time, convenience_course_time, exam_time, 
+    last_communicater, is_deposit, sale_connet_count, tmk_failure_follow_count, sale_failure_follow_count, 
+    sale_dial_count, repeat_consultation_count, clue_stage, is_lock, old_clue_guid, create_time, 
+    create_by, update_time, update_by, tmk_get_time, sale_get_time, school_manager_get_time, 
+    id_guid, IsMergeClue, TrafficState, FailureReason, Urgency, erp_ClueStatus, LastFollowBy, 
+    LastFollowTime, update_at
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.am.es.entity.clue.ClueDescribeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from clue_describe
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from clue_describe
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from clue_describe
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.am.es.entity.clue.ClueDescribeExample" >
+    delete from clue_describe
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.am.es.entity.clue.ClueDescribe" >
+    insert into clue_describe (id, clue_id, clue_no, 
+      custom_id, custom_no, clue_type, 
+      clue_status, clue_quality, next_communicate_time, 
+      last_communicate_time, convenience_course_time, 
+      exam_time, last_communicater, is_deposit, 
+      sale_connet_count, tmk_failure_follow_count, 
+      sale_failure_follow_count, sale_dial_count, 
+      repeat_consultation_count, clue_stage, is_lock, 
+      old_clue_guid, create_time, create_by, 
+      update_time, update_by, tmk_get_time, 
+      sale_get_time, school_manager_get_time, 
+      id_guid, IsMergeClue, TrafficState, 
+      FailureReason, Urgency, erp_ClueStatus, 
+      LastFollowBy, LastFollowTime, update_at
+      )
+    values (#{id,jdbcType=INTEGER}, #{clueId,jdbcType=INTEGER}, #{clueNo,jdbcType=VARCHAR}, 
+      #{customId,jdbcType=INTEGER}, #{customNo,jdbcType=VARCHAR}, #{clueType,jdbcType=INTEGER}, 
+      #{clueStatus,jdbcType=VARCHAR}, #{clueQuality,jdbcType=INTEGER}, #{nextCommunicateTime,jdbcType=TIMESTAMP}, 
+      #{lastCommunicateTime,jdbcType=TIMESTAMP}, #{convenienceCourseTime,jdbcType=VARCHAR}, 
+      #{examTime,jdbcType=TIMESTAMP}, #{lastCommunicater,jdbcType=INTEGER}, #{isDeposit,jdbcType=INTEGER}, 
+      #{saleConnetCount,jdbcType=INTEGER}, #{tmkFailureFollowCount,jdbcType=INTEGER}, 
+      #{saleFailureFollowCount,jdbcType=INTEGER}, #{saleDialCount,jdbcType=INTEGER}, 
+      #{repeatConsultationCount,jdbcType=INTEGER}, #{clueStage,jdbcType=INTEGER}, #{isLock,jdbcType=INTEGER}, 
+      #{oldClueGuid,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{createBy,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=INTEGER}, #{tmkGetTime,jdbcType=TIMESTAMP}, 
+      #{saleGetTime,jdbcType=TIMESTAMP}, #{schoolManagerGetTime,jdbcType=TIMESTAMP}, 
+      #{idGuid,jdbcType=VARCHAR}, #{ismergeclue,jdbcType=INTEGER}, #{trafficstate,jdbcType=INTEGER}, 
+      #{failurereason,jdbcType=INTEGER}, #{urgency,jdbcType=INTEGER}, #{erpCluestatus,jdbcType=VARCHAR}, 
+      #{lastfollowby,jdbcType=INTEGER}, #{lastfollowtime,jdbcType=TIMESTAMP}, #{updateAt,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.am.es.entity.clue.ClueDescribe" >
+    insert into clue_describe
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="clueId != null" >
+        clue_id,
+      </if>
+      <if test="clueNo != null" >
+        clue_no,
+      </if>
+      <if test="customId != null" >
+        custom_id,
+      </if>
+      <if test="customNo != null" >
+        custom_no,
+      </if>
+      <if test="clueType != null" >
+        clue_type,
+      </if>
+      <if test="clueStatus != null" >
+        clue_status,
+      </if>
+      <if test="clueQuality != null" >
+        clue_quality,
+      </if>
+      <if test="nextCommunicateTime != null" >
+        next_communicate_time,
+      </if>
+      <if test="lastCommunicateTime != null" >
+        last_communicate_time,
+      </if>
+      <if test="convenienceCourseTime != null" >
+        convenience_course_time,
+      </if>
+      <if test="examTime != null" >
+        exam_time,
+      </if>
+      <if test="lastCommunicater != null" >
+        last_communicater,
+      </if>
+      <if test="isDeposit != null" >
+        is_deposit,
+      </if>
+      <if test="saleConnetCount != null" >
+        sale_connet_count,
+      </if>
+      <if test="tmkFailureFollowCount != null" >
+        tmk_failure_follow_count,
+      </if>
+      <if test="saleFailureFollowCount != null" >
+        sale_failure_follow_count,
+      </if>
+      <if test="saleDialCount != null" >
+        sale_dial_count,
+      </if>
+      <if test="repeatConsultationCount != null" >
+        repeat_consultation_count,
+      </if>
+      <if test="clueStage != null" >
+        clue_stage,
+      </if>
+      <if test="isLock != null" >
+        is_lock,
+      </if>
+      <if test="oldClueGuid != null" >
+        old_clue_guid,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateBy != null" >
+        update_by,
+      </if>
+      <if test="tmkGetTime != null" >
+        tmk_get_time,
+      </if>
+      <if test="saleGetTime != null" >
+        sale_get_time,
+      </if>
+      <if test="schoolManagerGetTime != null" >
+        school_manager_get_time,
+      </if>
+      <if test="idGuid != null" >
+        id_guid,
+      </if>
+      <if test="ismergeclue != null" >
+        IsMergeClue,
+      </if>
+      <if test="trafficstate != null" >
+        TrafficState,
+      </if>
+      <if test="failurereason != null" >
+        FailureReason,
+      </if>
+      <if test="urgency != null" >
+        Urgency,
+      </if>
+      <if test="erpCluestatus != null" >
+        erp_ClueStatus,
+      </if>
+      <if test="lastfollowby != null" >
+        LastFollowBy,
+      </if>
+      <if test="lastfollowtime != null" >
+        LastFollowTime,
+      </if>
+      <if test="updateAt != null" >
+        update_at,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="clueId != null" >
+        #{clueId,jdbcType=INTEGER},
+      </if>
+      <if test="clueNo != null" >
+        #{clueNo,jdbcType=VARCHAR},
+      </if>
+      <if test="customId != null" >
+        #{customId,jdbcType=INTEGER},
+      </if>
+      <if test="customNo != null" >
+        #{customNo,jdbcType=VARCHAR},
+      </if>
+      <if test="clueType != null" >
+        #{clueType,jdbcType=INTEGER},
+      </if>
+      <if test="clueStatus != null" >
+        #{clueStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="clueQuality != null" >
+        #{clueQuality,jdbcType=INTEGER},
+      </if>
+      <if test="nextCommunicateTime != null" >
+        #{nextCommunicateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastCommunicateTime != null" >
+        #{lastCommunicateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="convenienceCourseTime != null" >
+        #{convenienceCourseTime,jdbcType=VARCHAR},
+      </if>
+      <if test="examTime != null" >
+        #{examTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastCommunicater != null" >
+        #{lastCommunicater,jdbcType=INTEGER},
+      </if>
+      <if test="isDeposit != null" >
+        #{isDeposit,jdbcType=INTEGER},
+      </if>
+      <if test="saleConnetCount != null" >
+        #{saleConnetCount,jdbcType=INTEGER},
+      </if>
+      <if test="tmkFailureFollowCount != null" >
+        #{tmkFailureFollowCount,jdbcType=INTEGER},
+      </if>
+      <if test="saleFailureFollowCount != null" >
+        #{saleFailureFollowCount,jdbcType=INTEGER},
+      </if>
+      <if test="saleDialCount != null" >
+        #{saleDialCount,jdbcType=INTEGER},
+      </if>
+      <if test="repeatConsultationCount != null" >
+        #{repeatConsultationCount,jdbcType=INTEGER},
+      </if>
+      <if test="clueStage != null" >
+        #{clueStage,jdbcType=INTEGER},
+      </if>
+      <if test="isLock != null" >
+        #{isLock,jdbcType=INTEGER},
+      </if>
+      <if test="oldClueGuid != null" >
+        #{oldClueGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=INTEGER},
+      </if>
+      <if test="tmkGetTime != null" >
+        #{tmkGetTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="saleGetTime != null" >
+        #{saleGetTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="schoolManagerGetTime != null" >
+        #{schoolManagerGetTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="idGuid != null" >
+        #{idGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="ismergeclue != null" >
+        #{ismergeclue,jdbcType=INTEGER},
+      </if>
+      <if test="trafficstate != null" >
+        #{trafficstate,jdbcType=INTEGER},
+      </if>
+      <if test="failurereason != null" >
+        #{failurereason,jdbcType=INTEGER},
+      </if>
+      <if test="urgency != null" >
+        #{urgency,jdbcType=INTEGER},
+      </if>
+      <if test="erpCluestatus != null" >
+        #{erpCluestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="lastfollowby != null" >
+        #{lastfollowby,jdbcType=INTEGER},
+      </if>
+      <if test="lastfollowtime != null" >
+        #{lastfollowtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateAt != null" >
+        #{updateAt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.am.es.entity.clue.ClueDescribeExample" resultType="java.lang.Integer" >
+    select count(*) from clue_describe
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update clue_describe
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.clueId != null" >
+        clue_id = #{record.clueId,jdbcType=INTEGER},
+      </if>
+      <if test="record.clueNo != null" >
+        clue_no = #{record.clueNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customId != null" >
+        custom_id = #{record.customId,jdbcType=INTEGER},
+      </if>
+      <if test="record.customNo != null" >
+        custom_no = #{record.customNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clueType != null" >
+        clue_type = #{record.clueType,jdbcType=INTEGER},
+      </if>
+      <if test="record.clueStatus != null" >
+        clue_status = #{record.clueStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clueQuality != null" >
+        clue_quality = #{record.clueQuality,jdbcType=INTEGER},
+      </if>
+      <if test="record.nextCommunicateTime != null" >
+        next_communicate_time = #{record.nextCommunicateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastCommunicateTime != null" >
+        last_communicate_time = #{record.lastCommunicateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.convenienceCourseTime != null" >
+        convenience_course_time = #{record.convenienceCourseTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.examTime != null" >
+        exam_time = #{record.examTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastCommunicater != null" >
+        last_communicater = #{record.lastCommunicater,jdbcType=INTEGER},
+      </if>
+      <if test="record.isDeposit != null" >
+        is_deposit = #{record.isDeposit,jdbcType=INTEGER},
+      </if>
+      <if test="record.saleConnetCount != null" >
+        sale_connet_count = #{record.saleConnetCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.tmkFailureFollowCount != null" >
+        tmk_failure_follow_count = #{record.tmkFailureFollowCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.saleFailureFollowCount != null" >
+        sale_failure_follow_count = #{record.saleFailureFollowCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.saleDialCount != null" >
+        sale_dial_count = #{record.saleDialCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.repeatConsultationCount != null" >
+        repeat_consultation_count = #{record.repeatConsultationCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.clueStage != null" >
+        clue_stage = #{record.clueStage,jdbcType=INTEGER},
+      </if>
+      <if test="record.isLock != null" >
+        is_lock = #{record.isLock,jdbcType=INTEGER},
+      </if>
+      <if test="record.oldClueGuid != null" >
+        old_clue_guid = #{record.oldClueGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createBy != null" >
+        create_by = #{record.createBy,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateBy != null" >
+        update_by = #{record.updateBy,jdbcType=INTEGER},
+      </if>
+      <if test="record.tmkGetTime != null" >
+        tmk_get_time = #{record.tmkGetTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.saleGetTime != null" >
+        sale_get_time = #{record.saleGetTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.schoolManagerGetTime != null" >
+        school_manager_get_time = #{record.schoolManagerGetTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.idGuid != null" >
+        id_guid = #{record.idGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ismergeclue != null" >
+        IsMergeClue = #{record.ismergeclue,jdbcType=INTEGER},
+      </if>
+      <if test="record.trafficstate != null" >
+        TrafficState = #{record.trafficstate,jdbcType=INTEGER},
+      </if>
+      <if test="record.failurereason != null" >
+        FailureReason = #{record.failurereason,jdbcType=INTEGER},
+      </if>
+      <if test="record.urgency != null" >
+        Urgency = #{record.urgency,jdbcType=INTEGER},
+      </if>
+      <if test="record.erpCluestatus != null" >
+        erp_ClueStatus = #{record.erpCluestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastfollowby != null" >
+        LastFollowBy = #{record.lastfollowby,jdbcType=INTEGER},
+      </if>
+      <if test="record.lastfollowtime != null" >
+        LastFollowTime = #{record.lastfollowtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateAt != null" >
+        update_at = #{record.updateAt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update clue_describe
+    set id = #{record.id,jdbcType=INTEGER},
+      clue_id = #{record.clueId,jdbcType=INTEGER},
+      clue_no = #{record.clueNo,jdbcType=VARCHAR},
+      custom_id = #{record.customId,jdbcType=INTEGER},
+      custom_no = #{record.customNo,jdbcType=VARCHAR},
+      clue_type = #{record.clueType,jdbcType=INTEGER},
+      clue_status = #{record.clueStatus,jdbcType=VARCHAR},
+      clue_quality = #{record.clueQuality,jdbcType=INTEGER},
+      next_communicate_time = #{record.nextCommunicateTime,jdbcType=TIMESTAMP},
+      last_communicate_time = #{record.lastCommunicateTime,jdbcType=TIMESTAMP},
+      convenience_course_time = #{record.convenienceCourseTime,jdbcType=VARCHAR},
+      exam_time = #{record.examTime,jdbcType=TIMESTAMP},
+      last_communicater = #{record.lastCommunicater,jdbcType=INTEGER},
+      is_deposit = #{record.isDeposit,jdbcType=INTEGER},
+      sale_connet_count = #{record.saleConnetCount,jdbcType=INTEGER},
+      tmk_failure_follow_count = #{record.tmkFailureFollowCount,jdbcType=INTEGER},
+      sale_failure_follow_count = #{record.saleFailureFollowCount,jdbcType=INTEGER},
+      sale_dial_count = #{record.saleDialCount,jdbcType=INTEGER},
+      repeat_consultation_count = #{record.repeatConsultationCount,jdbcType=INTEGER},
+      clue_stage = #{record.clueStage,jdbcType=INTEGER},
+      is_lock = #{record.isLock,jdbcType=INTEGER},
+      old_clue_guid = #{record.oldClueGuid,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      create_by = #{record.createBy,jdbcType=INTEGER},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      update_by = #{record.updateBy,jdbcType=INTEGER},
+      tmk_get_time = #{record.tmkGetTime,jdbcType=TIMESTAMP},
+      sale_get_time = #{record.saleGetTime,jdbcType=TIMESTAMP},
+      school_manager_get_time = #{record.schoolManagerGetTime,jdbcType=TIMESTAMP},
+      id_guid = #{record.idGuid,jdbcType=VARCHAR},
+      IsMergeClue = #{record.ismergeclue,jdbcType=INTEGER},
+      TrafficState = #{record.trafficstate,jdbcType=INTEGER},
+      FailureReason = #{record.failurereason,jdbcType=INTEGER},
+      Urgency = #{record.urgency,jdbcType=INTEGER},
+      erp_ClueStatus = #{record.erpCluestatus,jdbcType=VARCHAR},
+      LastFollowBy = #{record.lastfollowby,jdbcType=INTEGER},
+      LastFollowTime = #{record.lastfollowtime,jdbcType=TIMESTAMP},
+      update_at = #{record.updateAt,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.am.es.entity.clue.ClueDescribe" >
+    update clue_describe
+    <set >
+      <if test="clueId != null" >
+        clue_id = #{clueId,jdbcType=INTEGER},
+      </if>
+      <if test="clueNo != null" >
+        clue_no = #{clueNo,jdbcType=VARCHAR},
+      </if>
+      <if test="customId != null" >
+        custom_id = #{customId,jdbcType=INTEGER},
+      </if>
+      <if test="customNo != null" >
+        custom_no = #{customNo,jdbcType=VARCHAR},
+      </if>
+      <if test="clueType != null" >
+        clue_type = #{clueType,jdbcType=INTEGER},
+      </if>
+      <if test="clueStatus != null" >
+        clue_status = #{clueStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="clueQuality != null" >
+        clue_quality = #{clueQuality,jdbcType=INTEGER},
+      </if>
+      <if test="nextCommunicateTime != null" >
+        next_communicate_time = #{nextCommunicateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastCommunicateTime != null" >
+        last_communicate_time = #{lastCommunicateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="convenienceCourseTime != null" >
+        convenience_course_time = #{convenienceCourseTime,jdbcType=VARCHAR},
+      </if>
+      <if test="examTime != null" >
+        exam_time = #{examTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastCommunicater != null" >
+        last_communicater = #{lastCommunicater,jdbcType=INTEGER},
+      </if>
+      <if test="isDeposit != null" >
+        is_deposit = #{isDeposit,jdbcType=INTEGER},
+      </if>
+      <if test="saleConnetCount != null" >
+        sale_connet_count = #{saleConnetCount,jdbcType=INTEGER},
+      </if>
+      <if test="tmkFailureFollowCount != null" >
+        tmk_failure_follow_count = #{tmkFailureFollowCount,jdbcType=INTEGER},
+      </if>
+      <if test="saleFailureFollowCount != null" >
+        sale_failure_follow_count = #{saleFailureFollowCount,jdbcType=INTEGER},
+      </if>
+      <if test="saleDialCount != null" >
+        sale_dial_count = #{saleDialCount,jdbcType=INTEGER},
+      </if>
+      <if test="repeatConsultationCount != null" >
+        repeat_consultation_count = #{repeatConsultationCount,jdbcType=INTEGER},
+      </if>
+      <if test="clueStage != null" >
+        clue_stage = #{clueStage,jdbcType=INTEGER},
+      </if>
+      <if test="isLock != null" >
+        is_lock = #{isLock,jdbcType=INTEGER},
+      </if>
+      <if test="oldClueGuid != null" >
+        old_clue_guid = #{oldClueGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=INTEGER},
+      </if>
+      <if test="tmkGetTime != null" >
+        tmk_get_time = #{tmkGetTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="saleGetTime != null" >
+        sale_get_time = #{saleGetTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="schoolManagerGetTime != null" >
+        school_manager_get_time = #{schoolManagerGetTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="idGuid != null" >
+        id_guid = #{idGuid,jdbcType=VARCHAR},
+      </if>
+      <if test="ismergeclue != null" >
+        IsMergeClue = #{ismergeclue,jdbcType=INTEGER},
+      </if>
+      <if test="trafficstate != null" >
+        TrafficState = #{trafficstate,jdbcType=INTEGER},
+      </if>
+      <if test="failurereason != null" >
+        FailureReason = #{failurereason,jdbcType=INTEGER},
+      </if>
+      <if test="urgency != null" >
+        Urgency = #{urgency,jdbcType=INTEGER},
+      </if>
+      <if test="erpCluestatus != null" >
+        erp_ClueStatus = #{erpCluestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="lastfollowby != null" >
+        LastFollowBy = #{lastfollowby,jdbcType=INTEGER},
+      </if>
+      <if test="lastfollowtime != null" >
+        LastFollowTime = #{lastfollowtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateAt != null" >
+        update_at = #{updateAt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.am.es.entity.clue.ClueDescribe" >
+    update clue_describe
+    set clue_id = #{clueId,jdbcType=INTEGER},
+      clue_no = #{clueNo,jdbcType=VARCHAR},
+      custom_id = #{customId,jdbcType=INTEGER},
+      custom_no = #{customNo,jdbcType=VARCHAR},
+      clue_type = #{clueType,jdbcType=INTEGER},
+      clue_status = #{clueStatus,jdbcType=VARCHAR},
+      clue_quality = #{clueQuality,jdbcType=INTEGER},
+      next_communicate_time = #{nextCommunicateTime,jdbcType=TIMESTAMP},
+      last_communicate_time = #{lastCommunicateTime,jdbcType=TIMESTAMP},
+      convenience_course_time = #{convenienceCourseTime,jdbcType=VARCHAR},
+      exam_time = #{examTime,jdbcType=TIMESTAMP},
+      last_communicater = #{lastCommunicater,jdbcType=INTEGER},
+      is_deposit = #{isDeposit,jdbcType=INTEGER},
+      sale_connet_count = #{saleConnetCount,jdbcType=INTEGER},
+      tmk_failure_follow_count = #{tmkFailureFollowCount,jdbcType=INTEGER},
+      sale_failure_follow_count = #{saleFailureFollowCount,jdbcType=INTEGER},
+      sale_dial_count = #{saleDialCount,jdbcType=INTEGER},
+      repeat_consultation_count = #{repeatConsultationCount,jdbcType=INTEGER},
+      clue_stage = #{clueStage,jdbcType=INTEGER},
+      is_lock = #{isLock,jdbcType=INTEGER},
+      old_clue_guid = #{oldClueGuid,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_by = #{createBy,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_by = #{updateBy,jdbcType=INTEGER},
+      tmk_get_time = #{tmkGetTime,jdbcType=TIMESTAMP},
+      sale_get_time = #{saleGetTime,jdbcType=TIMESTAMP},
+      school_manager_get_time = #{schoolManagerGetTime,jdbcType=TIMESTAMP},
+      id_guid = #{idGuid,jdbcType=VARCHAR},
+      IsMergeClue = #{ismergeclue,jdbcType=INTEGER},
+      TrafficState = #{trafficstate,jdbcType=INTEGER},
+      FailureReason = #{failurereason,jdbcType=INTEGER},
+      Urgency = #{urgency,jdbcType=INTEGER},
+      erp_ClueStatus = #{erpCluestatus,jdbcType=VARCHAR},
+      LastFollowBy = #{lastfollowby,jdbcType=INTEGER},
+      LastFollowTime = #{lastfollowtime,jdbcType=TIMESTAMP},
+      update_at = #{updateAt,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
