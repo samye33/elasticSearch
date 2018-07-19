@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,7 +26,7 @@ public class OrderSerialController {
     @Autowired
     private OrderSerialService orderSerialService;
 
-    @GetMapping("/save")
+    @PostMapping("/save")
     public Result saveOrderSerial(HttpServletRequest request, HttpServletResponse response, String ids) {
         Result ret = new Result();
         String[] id = ids.split(",");
@@ -44,7 +45,6 @@ public class OrderSerialController {
         }
         return ret;
     }
-
     @GetMapping("/delete")
     public Result deleteOrderSerial(HttpServletRequest request, HttpServletResponse response, Integer id) {
         Result ret = new Result();
