@@ -29,7 +29,9 @@ public class CustomInfoServiceImpl implements CustomInfoService {
         //根据传入的list 用户id查询对应的list
         List<CustomInfoVo> list = customInfoMapper.selectListByPrimaryKeyList(customerList);
         //将需要更改的查出来
-        searchCustomInfoRepository.saveAll(list);
+        if (list.size() > 0) {
+            searchCustomInfoRepository.saveAll(list);
+        }
     }
 
     public List<CustomInfoVo> queryCustomInfoList() {

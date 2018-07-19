@@ -24,7 +24,9 @@ public class ListenInvitationInfoServiceImpl implements ListenInvitationInfoServ
         //根据传入的list 用户id查询对应的list
         List<ListenInvitationInfoVo> list = listenInvitationInfoMapper.selectListByPrimaryKeyList(customerList);
         //将需要更改的查出来
-        searchListenInvitationInfoRepository.saveAll(list);
+        if (list.size() > 0) {
+            searchListenInvitationInfoRepository.saveAll(list);
+        }
     }
 
     public void deleteListenInvitationInfo(Integer id) {

@@ -25,7 +25,9 @@ public class OrderProductServiceImpl implements OrderProductService {
         //根据传入的list 用户id查询对应的list
         List<OrderProductVo> list = orderProductMapper.selectListByPrimaryKeyList(orderList);
         //将需要更改的查出来
-        searchOrderProductRepository.saveAll(list);
+        if (list.size() > 0) {
+            searchOrderProductRepository.saveAll(list);
+        }
     }
 
     @Override

@@ -23,7 +23,9 @@ public class OrderSerialServiceImpl implements OrderSerialService {
         //根据传入的list 用户id查询对应的list
         List<OrderSerialVo> list = orderSerialMapper.selectListByPrimaryKeyList(orderList);
         //将需要更改的查出来
-        searchOrderSerialRepository.saveAll(list);
+        if (list.size() > 0) {
+            searchOrderSerialRepository.saveAll(list);
+        }
     }
 
     public void deleteOrderSerial(Integer id) {

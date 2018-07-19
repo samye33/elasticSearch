@@ -24,7 +24,9 @@ public class CustomContactInfoDeatailServiceImpl implements CustomContactInfoDea
         //根据传入的list 用户id查询对应的list
         List<CustomContactInfoDetailVo> list = customContactInfoDetailMapper.selectListByPrimaryKeyList(customerList);
         //将需要更改的查出来
-        searchCustomContactInfoDetailRepository.saveAll(list);
+        if (list.size() > 0) {
+            searchCustomContactInfoDetailRepository.saveAll(list);
+        }
     }
 
     public void deleteCustomContactInfoDetail(Integer id) {

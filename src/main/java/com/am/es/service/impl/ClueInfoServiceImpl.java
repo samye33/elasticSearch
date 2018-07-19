@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 @Component
-public class ClueInfoServiceImpl implements ClueInfoService{
+public class ClueInfoServiceImpl implements ClueInfoService {
 
     @Autowired
     private SearchClueInfoRepository searchClueInfoRepository;
@@ -28,7 +28,10 @@ public class ClueInfoServiceImpl implements ClueInfoService{
         //根据传入的list 用户id查询对应的list
         List<ClueInfoVo> list = clueInfoMapper.selectListByPrimaryKeyList(clueInfoList);
         //将需要更改的查出来
-        searchClueInfoRepository.saveAll(list);
+        if (list.size() > 0) {
+            searchClueInfoRepository.saveAll(list);
+        }
+
     }
 
     public List<ClueInfoVo> queryClueInfoList() {

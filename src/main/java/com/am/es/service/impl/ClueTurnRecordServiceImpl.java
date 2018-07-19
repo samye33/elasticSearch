@@ -24,7 +24,9 @@ public class ClueTurnRecordServiceImpl implements ClueTurnRecordService{
         //根据传入的list 用户id查询对应的list
         List<ClueTurnRecordVo> list = clueTurnRecordMapper.selectListByPrimaryKeyList(clueInfoList);
         //将需要更改的查出来
-        searchClueTurnRecordRepository.saveAll(list);
+        if (list.size() > 0) {
+            searchClueTurnRecordRepository.saveAll(list);
+        }
     }
 
     public void deleteClueTurnRecord(Integer id) {

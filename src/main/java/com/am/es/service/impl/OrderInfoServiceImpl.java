@@ -24,7 +24,9 @@ public class OrderInfoServiceImpl implements OrderInfoService {
         //根据传入的list 用户id查询对应的list
         List<OrderInfoVo> list = orderInfoMapper.selectListByPrimaryKeyList(orderList);
         //将需要更改的查出来
-        searchOrderInfoRepository.saveAll(list);
+        if (list.size() > 0) {
+            searchOrderInfoRepository.saveAll(list);
+        }
     }
 
     public void deleteOrderInfo(Integer id) {

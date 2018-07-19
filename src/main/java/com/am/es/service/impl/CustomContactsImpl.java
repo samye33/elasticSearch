@@ -25,7 +25,9 @@ public class CustomContactsImpl implements CustomContactsService{
         //根据传入的list 用户id查询对应的list
         List<CustomContactsVo> list = customContactsMapper.selectListByPrimaryKeyList(customerList);
         //将需要更改的查出来
-        searchCustomContactsRepository.saveAll(list);
+        if (list.size() > 0) {
+            searchCustomContactsRepository.saveAll(list);
+        }
     }
 
     public void deleteCustomContacts(Integer id) {
