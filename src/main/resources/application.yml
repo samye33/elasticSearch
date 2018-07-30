@@ -2,7 +2,7 @@ logging:
   level:
       com.am.es: DEBUG
 server:
-  port: 8080
+  port: 8088
 spring:
   datasource:
     ds1:
@@ -22,3 +22,13 @@ spring:
       cluster-name: clues-crm
       repositories:
         enabled: true
+
+aliyun:
+  accessKey: LTAIbvZWdIjgY3QE
+  secretKey: 9rsz1EFMwO2anQDhBlMjbL2RHRlJR2
+  tag: alldream
+  topic: am_crm_es
+  onsAddr: http://onsaddr-internet.aliyun.com/rocketmq/nsaddr4client-internet
+  sendMsgTimeoutMillis: 3000
+  suspendTimeMillis: 100
+  maxReconsumeTimes: 20
