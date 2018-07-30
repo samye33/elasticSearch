@@ -9,8 +9,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class}, scanBasePackages = {"com.alldream.ammq"})
-@EnableTransactionManagement
+@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 public class EsApplication extends SpringBootServletInitializer {
 
 	@Override
