@@ -31,7 +31,7 @@ public interface ClueInfoMapper {
 
     int updateByPrimaryKey(ClueInfo record);
 
-    ClueInfo selectByCustomId(Integer CustomId);
+    ClueInfo selectByCustomId(@Param("clueId") Integer CustomId);
 
-    List<ClueQueryResponseModel> selectQueryClueInfo(Integer clueId);
+    List<ClueQueryResponseModel> selectQueryClueInfo(@Param("clueId") Integer clueId);
 }
