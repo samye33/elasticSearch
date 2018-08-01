@@ -560,4 +560,77 @@
             </foreach>
         </where>
     </select>
+
+    <select id="selectQueryClueInfo">
+  SELECT
+	clue_info.id,
+	clue_info.remark remark,
+	clue_info.suggest_contact_time suggestContactTime,
+	clue_info.create_by clueCreateBy,
+	(SELECT sys_user.user_name FROM permission.sys_users sys_user WHERE  clue_info.create_by = sys_user.user_id)AS clueCreateByName,
+	clue_info.create_time clueCreateTime,
+	clue_info.source_channel_code sourceChannelCode,
+	(SELECT base_channel.`name` FROM  crmbase.base_channel base_channel WHERE clue_info.source_channel_code= base_channel.id) AS sourceChannelName,
+	clue_info.channel_code_sub channelCodeSub,
+	(SELECT base_channel.`name` FROM  crmbase.base_channel base_channel WHERE clue_info.channel_code_sub= base_channel.id) AS channelCodeSubName,
+	clue_info.clue_join_activitie clueJoinActivitie,
+	(SELECT activity_form.`name` FROM  crmproduct.activity activity_form WHERE clue_info.clue_join_activitie= activity_form.id) AS clueJoinActivitieName,
+	clue_info.first_channel_code firstChannelCode,
+	(SELECT source.`name` FROM  crmbase.base_customer_source source WHERE clue_info.first_channel_code= source.id) AS firstChannelName,
+	clue_info.effectively_channel_code  effectivelyChannelCode,
+	(SELECT source.`name` FROM  crmbase.base_customer_source source WHERE clue_info.effectively_channel_code= source.id) AS effectivelyChannelCodeName,
+	clue_info.clue_consult_type clueConsultTypeId,
+	(SELECT dictionary.`name` FROM  crmbase.base_dictionary dictionary WHERE clue_info.clue_consult_type= dictionary.id) AS clueConsultTypeName,
+	clue_info.course_type courseTypeId,
+	(SELECT dictionary.`name` FROM  crmbase.base_dictionary dictionary WHERE clue_info.course_type= dictionary.id) AS courseTypeName,
+
+	clue_status.recommender_contact recommenderContact,
+	clue_status.clue_ower_get_time clueOwerGetTime,
+	clue_status.associates associates,
+	clue_status.update_time updateTime,
+	clue_status.repeat_consultation_time repeatConsultationTime,
+	clue_status.clue_owner clueOwner,
+	(SELECT sys_user.user_name FROM permission.sys_users sys_user WHERE  clue_status.clue_owner = sys_user.user_id)AS clueOwnerName,
+	clue_status.recommender recommender,
+	(SELECT sys_user.user_name FROM permission.sys_users sys_user WHERE  clue_status.recommender = sys_user.user_id)AS recommenderName,
+	clue_status.clue_school_manager_owner clueSchoolManagerOwnerId,
+	(SELECT sys_user.user_name FROM permission.sys_users sys_user WHERE  clue_status.clue_school_manager_owner = sys_user.user_id)AS clueSchoolManagerOwnerName, #所属班主任
+
+	clue_describe.convenience_course_time convenienceCourseTime,
+	clue_describe.sale_connet_count saleConnetCount,
+	clue_describe.last_communicate_time lastCommunicateTime,
+	clue_describe.sale_dial_count saleDialCount,
+	clue_describe.sale_failure_follow_count saleFailureFollowCount,
+	clue_describe.next_communicate_time nextCommunicateTime,
+	(SELECT contact_info_detail.show_contacts_no FROM crmclues.custom_contact_info_detail contact_info_detail WHERE contact_info_detail.id=clue_describe.Urgency)AS urgencyName,
+	clue_describe.clue_quality clueQuality,
+	(SELECT dictionary.`name` FROM  crmbase.base_dictionary dictionary WHERE clue_describe.clue_quality= dictionary.id) AS clueQualityName,
+	clue_describe.TrafficState trafficState,
+	(SELECT dictionary.`name` FROM  crmbase.base_dictionary dictionary WHERE clue_describe.TrafficState= dictionary.id) AS trafficStateName,
+	clue_describe.FailureReason failureReason,
+	(SELECT dictionary.`name` FROM  crmbase.base_dictionary dictionary WHERE clue_describe.FailureReason= dictionary.id) AS failureReasonName,
+	clue_describe.clue_status clueStatus,
+	(SELECT dictionary.`name` FROM  crmbase.base_dictionary dictionary WHERE clue_describe.clue_status= dictionary.id) AS clueStatusName,
+
+	custom_info.true_name trueName,
+	custom_info.province provinceCity,
+	custom_info.born_date bornDate,
+	custom_info.enrollment_year enrollmentYear,
+	custom_info.profession profession,
+	custom_info.qq,
+	custom_info.wx_id,
+	custom_info.relationship relationship,
+	(SELECT dictionary.`name` FROM  crmbase.base_dictionary dictionary WHERE custom_info.relationship= dictionary.id) AS relationshipName,
+	custom_info.qualification qualification,
+	(SELECT dictionary.`name` FROM  crmbase.base_dictionary dictionary WHERE custom_info.qualification= dictionary.id) AS qualificationName,
+	custom_info.gender gender,
+	(SELECT dictionary.`name` FROM  crmbase.base_dictionary dictionary WHERE custom_info.gender= dictionary.id) AS genderName
+  FROM
+	crmclues.clue_info clue_info
+  LEFT JOIN crmclues.clue_status clue_status ON clue_info.id = clue_status.clue_id
+  LEFT JOIN crmclues.clue_describe clue_describe ON clue_info.id =clue_describe.clue_id
+  LEFT JOIN crmclues.custom_info custom_info ON custom_info.id =clue_info.custom_id
+
+
+    </select>
 </mapper>
