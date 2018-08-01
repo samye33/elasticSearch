@@ -38,42 +38,6 @@
         <result column="show_main_phone" property="showMainPhone" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <resultMap id="BaseResultVoMap" type="com.am.es.model.clue.CustomInfoVo">
-        <id column="id" property="id" jdbcType="INTEGER"/>
-        <result column="custom_no" property="customNo" jdbcType="VARCHAR"/>
-        <result column="true_name" property="trueName" jdbcType="VARCHAR"/>
-        <result column="parent_name" property="parentName" jdbcType="VARCHAR"/>
-        <result column="e_name" property="eName" jdbcType="VARCHAR"/>
-        <result column="gender" property="gender" jdbcType="INTEGER"/>
-        <result column="country" property="country" jdbcType="VARCHAR"/>
-        <result column="country_code" property="countryCode" jdbcType="VARCHAR"/>
-        <result column="main_phone" property="mainPhone" jdbcType="VARCHAR"/>
-        <result column="born_date" property="bornDate" jdbcType="TIMESTAMP"/>
-        <result column="profession" property="profession" jdbcType="VARCHAR"/>
-        <result column="province" property="province" jdbcType="VARCHAR"/>
-        <result column="is_abroad" property="isAbroad" jdbcType="INTEGER"/>
-        <result column="city" property="city" jdbcType="VARCHAR"/>
-        <result column="school" property="school" jdbcType="VARCHAR"/>
-        <result column="major" property="major" jdbcType="VARCHAR"/>
-        <result column="qualification" property="qualification" jdbcType="INTEGER"/>
-        <result column="enrollment_year" property="enrollmentYear" jdbcType="TIMESTAMP"/>
-        <result column="graduation_time" property="graduationTime" jdbcType="TIMESTAMP"/>
-        <result column="u_center_uid" property="uCenterUid" jdbcType="INTEGER"/>
-        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
-        <result column="create_by" property="createBy" jdbcType="INTEGER"/>
-        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
-        <result column="update_by" property="updateBy" jdbcType="INTEGER"/>
-        <result column="custom_pic" property="customPic" jdbcType="VARCHAR"/>
-        <result column="wx_nick" property="wxNick" jdbcType="VARCHAR"/>
-        <result column="wx_img" property="wxImg" jdbcType="VARCHAR"/>
-        <result column="wx_id" property="wxId" jdbcType="VARCHAR"/>
-        <result column="wx_user_name" property="wxUserName" jdbcType="VARCHAR"/>
-        <result column="wx_union_id" property="wxUnionId" jdbcType="VARCHAR"/>
-        <result column="urgent_name" property="urgentName" jdbcType="VARCHAR"/>
-        <result column="urgent_phone" property="urgentPhone" jdbcType="VARCHAR"/>
-        <result column="has_deal" property="hasDeal" jdbcType="INTEGER"/>
-        <result column="show_main_phone" property="showMainPhone" jdbcType="VARCHAR"/>
-    </resultMap>
     <sql id="Example_Where_Clause">
         <where>
             <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -707,13 +671,4 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-    <select id="selectListByPrimaryKeyList" parameterType="java.util.List" resultMap="BaseResultVoMap">
-        SELECT * FROM custom_info
-        <where>
-            id IN
-            <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
-            #{item}
-            </foreach>
-        </where>
-    </select>
 </mapper>

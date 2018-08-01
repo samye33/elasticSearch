@@ -1,9 +1,9 @@
 package com.am.es.controller;
 
 import com.am.es.enums.HttpStatusCode;
+import com.am.es.model.ClueQueryResponseModel;
 import com.am.es.model.Result;
-import com.am.es.model.clue.ClueInfoVo;
-import com.am.es.service.ClueInfoService;
+import com.am.es.service.ClueQueryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ public class ClueController {
     private static final Logger logger = LoggerFactory.getLogger(ClueController.class);
 
     @Autowired
-    private ClueInfoService clueInfoService;
+    private ClueQueryService clueInfoService;
 
     @PostMapping("/save")
     public Result saveClueInfo(HttpServletRequest request, HttpServletResponse response, String ids) {
@@ -33,9 +33,8 @@ public class ClueController {
         List<Integer> listId = new ArrayList<Integer>();
         try {
             for (int i = 0; i < id.length; i++) {
-                listId.add(Integer.parseInt(id[i]));
+                clueInfoService.saveClueQuery(Integer.parseInt(id[i]));
             }
-            clueInfoService.saveClueInfoList(listId);
             ret.setStatus(HttpStatusCode.CODE_SUCCESS.getValue());
             ret.setMessage(HttpStatusCode.CODE_SUCCESS.getDesc());
         } catch (Exception e) {
@@ -50,7 +49,7 @@ public class ClueController {
     public Result deleteClueInfo(HttpServletRequest request, HttpServletResponse response, Integer id) {
         Result ret = new Result();
         try {
-            clueInfoService.deleteClueInfo(id);
+            clueInfoService.deleteClueQuery(id);
             ret.setStatus(HttpStatusCode.CODE_SUCCESS.getValue());
             ret.setMessage(HttpStatusCode.CODE_SUCCESS.getDesc());
         } catch (Exception e) {
@@ -66,7 +65,7 @@ public class ClueController {
         Result ret = new Result();
         try {
 
-            List<ClueInfoVo> list = clueInfoService.getClueInfoList(map, currentPage, pageSize);
+            List<ClueQueryResponseModel> list = clueInfoService.getClueQueryList(map, currentPage, pageSize);
             ret.setStatus(HttpStatusCode.CODE_SUCCESS.getValue());
             ret.setMessage(HttpStatusCode.CODE_SUCCESS.getDesc());
             ret.setData(list);
@@ -82,7 +81,7 @@ public class ClueController {
     public Result searchAll(HttpServletRequest request, HttpServletResponse response) {
         Result ret = new Result();
         try {
-            List<ClueInfoVo> list = clueInfoService.queryAllClueInfoList();
+            List<ClueQueryResponseModel> list = clueInfoService.queryAllClueQueryList();
             ret.setStatus(HttpStatusCode.CODE_SUCCESS.getValue());
             ret.setMessage(HttpStatusCode.CODE_SUCCESS.getDesc());
             ret.setData(list);

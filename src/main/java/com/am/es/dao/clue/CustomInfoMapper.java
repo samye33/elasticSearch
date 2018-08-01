@@ -2,11 +2,9 @@ package com.am.es.dao.clue;
 
 import com.am.es.entity.clue.CustomInfo;
 import com.am.es.entity.clue.CustomInfoExample;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-
-import com.am.es.model.clue.CustomInfoVo;
-import org.apache.ibatis.annotations.Param;
 
 public interface CustomInfoMapper {
     int countByExample(CustomInfoExample example);
@@ -31,5 +29,4 @@ public interface CustomInfoMapper {
 
     int updateByPrimaryKey(CustomInfo record);
 
-    List<CustomInfoVo> selectListByPrimaryKeyList(List<Integer> list);
 }

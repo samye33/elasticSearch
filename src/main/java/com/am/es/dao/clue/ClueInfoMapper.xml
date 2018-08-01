@@ -20,95 +20,6 @@
         <result column="source_channel_code" property="sourceChannelCode" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <resultMap id="BaseResultMapVo" type="com.am.es.model.clue.ClueInfoVo">
-        <id column="id" property="id" jdbcType="INTEGER"/>
-        <result column="clue_no" property="clueNo" jdbcType="VARCHAR"/>
-        <result column="custom_id" property="customId" jdbcType="INTEGER"/>
-        <result column="custom_no" property="customNo" jdbcType="VARCHAR"/>
-        <result column="intention" property="intention" jdbcType="INTEGER"/>
-        <result column="intention_grade" property="intentionGrade" jdbcType="INTEGER"/>
-        <result column="first_channel_code" property="firstChannelCode" jdbcType="VARCHAR"/>
-        <result column="effectively_channel_code" property="effectivelyChannelCode" jdbcType="VARCHAR"/>
-        <result column="course_type" property="courseType" jdbcType="INTEGER"/>
-        <result column="remark" property="remark" jdbcType="VARCHAR"/>
-        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
-        <result column="create_by" property="createBy" jdbcType="INTEGER"/>
-        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
-        <result column="update_by" property="updateBy" jdbcType="INTEGER"/>
-        <result column="channel_code_sub" property="channelCodeSub" jdbcType="INTEGER"/>
-        <result column="source_channel_code" property="sourceChannelCode" jdbcType="VARCHAR"/>
-        <association property="clueStatusVo" javaType="com.am.es.model.clue.ClueStatusVo">
-            <id column="status_id" property="id" jdbcType="INTEGER" />
-            <result column="status_clue_id" property="clueId" jdbcType="INTEGER" />
-            <result column="status_clue_no" property="clueNo" jdbcType="VARCHAR" />
-            <result column="status_custom_id" property="customId" jdbcType="INTEGER" />
-            <result column="status_custom_no" property="customNo" jdbcType="VARCHAR" />
-            <result column="clue_source" property="clueSource" jdbcType="INTEGER" />
-            <result column="clue_sale_owner" property="clueSaleOwner" jdbcType="INTEGER" />
-            <result column="clue_tmk_owner" property="clueTmkOwner" jdbcType="INTEGER" />
-            <result column="clue_cs_owner" property="clueCsOwner" jdbcType="INTEGER" />
-            <result column="clue_school_manager_owner" property="clueSchoolManagerOwner" jdbcType="INTEGER" />
-            <result column="clue_owner_deparment" property="clueOwnerDeparment" jdbcType="INTEGER" />
-            <result column="clue_owner" property="clueOwner" jdbcType="INTEGER" />
-            <result column="clue_ower_get_time" property="clueOwerGetTime" jdbcType="TIMESTAMP" />
-            <result column="repeat_consultation_channel" property="repeatConsultationChannel" jdbcType="VARCHAR" />
-            <result column="repeat_consultation_owner" property="repeatConsultationOwner" jdbcType="INTEGER" />
-            <result column="repeat_consultation_time" property="repeatConsultationTime" jdbcType="TIMESTAMP" />
-            <result column="recommender" property="recommender" jdbcType="VARCHAR" />
-            <result column="recommend_time" property="recommendTime" jdbcType="TIMESTAMP" />
-            <result column="status_create_time" property="createTime" jdbcType="TIMESTAMP" />
-            <result column="status_update_time" property="updateTime" jdbcType="TIMESTAMP" />
-            <result column="status_create_by" property="createBy" jdbcType="INTEGER" />
-            <result column="status_update_by" property="updateBy" jdbcType="INTEGER" />
-            <result column="id_guid" property="idGuid" jdbcType="VARCHAR" />
-            <result column="recommend_type" property="recommendType" jdbcType="INTEGER" />
-            <result column="erp_recommender" property="erpRecommender" jdbcType="VARCHAR" />
-            <result column="erp_clue_owner" property="erpClueOwner" jdbcType="VARCHAR" />
-            <result column="associates" property="associates" jdbcType="VARCHAR" />
-            <result column="is_private_pool" property="isPrivatePool" jdbcType="TINYINT" />
-            <result column="clue_owner_communicate_count" property="clueOwnerCommunicateCount" jdbcType="INTEGER" />
-        </association>
-        <association property="clueDescribeVo" javaType="com.am.es.model.clue.ClueDescribeVo">
-            <id column="describe_id" property="id" jdbcType="INTEGER" />
-            <result column="describe_clue_id" property="clueId" jdbcType="INTEGER" />
-            <result column="describe_clue_no" property="clueNo" jdbcType="VARCHAR" />
-            <result column="describe_custom_id" property="customId" jdbcType="INTEGER" />
-            <result column="describe_custom_no" property="customNo" jdbcType="VARCHAR" />
-            <result column="clue_type" property="clueType" jdbcType="INTEGER" />
-            <result column="clue_status" property="clueStatus" jdbcType="VARCHAR" />
-            <result column="clue_quality" property="clueQuality" jdbcType="INTEGER" />
-            <result column="next_communicate_time" property="nextCommunicateTime" jdbcType="TIMESTAMP" />
-            <result column="last_communicate_time" property="lastCommunicateTime" jdbcType="TIMESTAMP" />
-            <result column="convenience_course_time" property="convenienceCourseTime" jdbcType="VARCHAR" />
-            <result column="exam_time" property="examTime" jdbcType="TIMESTAMP" />
-            <result column="last_communicater" property="lastCommunicater" jdbcType="INTEGER" />
-            <result column="is_deposit" property="isDeposit" jdbcType="INTEGER" />
-            <result column="sale_connet_count" property="saleConnetCount" jdbcType="INTEGER" />
-            <result column="tmk_failure_follow_count" property="tmkFailureFollowCount" jdbcType="INTEGER" />
-            <result column="sale_failure_follow_count" property="saleFailureFollowCount" jdbcType="INTEGER" />
-            <result column="sale_dial_count" property="saleDialCount" jdbcType="INTEGER" />
-            <result column="repeat_consultation_count" property="repeatConsultationCount" jdbcType="INTEGER" />
-            <result column="clue_stage" property="clueStage" jdbcType="INTEGER" />
-            <result column="is_lock" property="isLock" jdbcType="INTEGER" />
-            <result column="old_clue_guid" property="oldClueGuid" jdbcType="VARCHAR" />
-            <result column="describe_create_time" property="createTime" jdbcType="TIMESTAMP" />
-            <result column="describe_create_by" property="createBy" jdbcType="INTEGER" />
-            <result column="describe_update_time" property="updateTime" jdbcType="TIMESTAMP" />
-            <result column="describe_update_by" property="updateBy" jdbcType="INTEGER" />
-            <result column="tmk_get_time" property="tmkGetTime" jdbcType="TIMESTAMP" />
-            <result column="sale_get_time" property="saleGetTime" jdbcType="TIMESTAMP" />
-            <result column="school_manager_get_time" property="schoolManagerGetTime" jdbcType="TIMESTAMP" />
-            <result column="describe_id_guid" property="idGuid" jdbcType="VARCHAR" />
-            <result column="IsMergeClue" property="ismergeclue" jdbcType="INTEGER" />
-            <result column="TrafficState" property="trafficstate" jdbcType="INTEGER" />
-            <result column="FailureReason" property="failurereason" jdbcType="INTEGER" />
-            <result column="Urgency" property="urgency" jdbcType="INTEGER" />
-            <result column="erp_ClueStatus" property="erpCluestatus" jdbcType="VARCHAR" />
-            <result column="LastFollowBy" property="lastfollowby" jdbcType="INTEGER" />
-            <result column="LastFollowTime" property="lastfollowtime" jdbcType="TIMESTAMP" />
-            <result column="update_at" property="updateAt" jdbcType="TIMESTAMP" />
-        </association>
-    </resultMap>
     <sql id="Example_Where_Clause">
         <where>
             <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -476,160 +387,108 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-    <select id="selectListByPrimaryKeyList" parameterType="java.util.List" resultMap="BaseResultMapVo">
-        SELECT
-        clue_info.*,
-        clue_status.id status_id,
-        clue_status.clue_id status_clue_id,
-        clue_status.clue_no status_clue_no,
-        clue_status.custom_id status_custom_id,
-        clue_status.custom_no status_custom_no,
-        clue_status.clue_source,
-        clue_status.clue_sale_owner,
-        clue_status.clue_tmk_owner,
-        clue_status.clue_cs_owner,
-        clue_status.clue_school_manager_owner,
-        clue_status.clue_owner_deparment,
-        clue_status.clue_owner,
-        clue_status.clue_ower_get_time,
-        clue_status.repeat_consultation_channel,
-        clue_status.repeat_consultation_owner,
-        clue_status.repeat_consultation_time,
-        clue_status.recommender,
-        clue_status.recommend_time,
-        clue_status.create_time status_create_time,
-        clue_status.update_time status_update_time,
-        clue_status.create_by status_create_by,
-        clue_status.update_by status_update_by,
-        clue_status.id_guid,
-        clue_status.recommend_type,
-        clue_status.erp_recommender,
-        clue_status.erp_clue_owner,
-        clue_status.associates,
-        clue_status.is_private_pool,
-        clue_status.clue_owner_communicate_count,
+    <select id="selectByCustomId" resultMap="" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from clue_info
+        where custom_id = #{CustomId,jdbcType=INTEGER}
 
-        clue_describe.id describe_id,
-        clue_describe.clue_id describe_clue_id,
-        clue_describe.clue_no describe_clue_no,
-        clue_describe.custom_id describe_custom_id,
-        clue_describe.custom_no describe_custom_no,
-        clue_describe.clue_type,
-        clue_describe.clue_status,
-        clue_describe.clue_quality,
-        clue_describe.next_communicate_time,
-        clue_describe.last_communicate_time,
-        clue_describe.convenience_course_time,
-        clue_describe.exam_time,
-        clue_describe.last_communicater,
-        clue_describe.is_deposit,
-        clue_describe.sale_connet_count,
-        clue_describe.tmk_failure_follow_count,
-        clue_describe.sale_failure_follow_count,
-        clue_describe.sale_dial_count,
-        clue_describe.repeat_consultation_count,
-        clue_describe.clue_stage,
-        clue_describe.is_lock,
-        clue_describe.old_clue_guid,
-        clue_describe.create_time describe_create_time,
-        clue_describe.create_by describe_create_by,
-        clue_describe.update_time describe_update_time,
-        clue_describe.update_by describe_update_by,
-        clue_describe.tmk_get_time,
-        clue_describe.sale_get_time,
-        clue_describe.school_manager_get_time,
-        clue_describe.id_guid describe_id_guid,
-        clue_describe.IsMergeClue,
-        clue_describe.TrafficState,
-        clue_describe.FailureReason,
-        clue_describe.Urgency,
-        clue_describe.erp_ClueStatus,
-        clue_describe.LastFollowBy,
-        clue_describe.LastFollowTime,
-        clue_describe.update_at
-        FROM
-          clue_info
-        LEFT JOIN
-          clue_status ON clue_info.custom_id = clue_status.custom_id
-        LEFT JOIN
-          clue_describe ON clue_describe.custom_id = clue_info.custom_id
-        <where>
-            clue_info.id  IN
-            <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
-                #{item}
-            </foreach>
-        </where>
     </select>
 
-    <select id="selectQueryClueInfo">
-  SELECT
-	clue_info.id,
-	clue_info.remark remark,
-	clue_info.suggest_contact_time suggestContactTime,
-	clue_info.create_by clueCreateBy,
-	(SELECT sys_user.user_name FROM permission.sys_users sys_user WHERE  clue_info.create_by = sys_user.user_id)AS clueCreateByName,
-	clue_info.create_time clueCreateTime,
-	clue_info.source_channel_code sourceChannelCode,
-	(SELECT base_channel.`name` FROM  crmbase.base_channel base_channel WHERE clue_info.source_channel_code= base_channel.id) AS sourceChannelName,
-	clue_info.channel_code_sub channelCodeSub,
-	(SELECT base_channel.`name` FROM  crmbase.base_channel base_channel WHERE clue_info.channel_code_sub= base_channel.id) AS channelCodeSubName,
-	clue_info.clue_join_activitie clueJoinActivitie,
-	(SELECT activity_form.`name` FROM  crmproduct.activity activity_form WHERE clue_info.clue_join_activitie= activity_form.id) AS clueJoinActivitieName,
-	clue_info.first_channel_code firstChannelCode,
-	(SELECT source.`name` FROM  crmbase.base_customer_source source WHERE clue_info.first_channel_code= source.id) AS firstChannelName,
-	clue_info.effectively_channel_code  effectivelyChannelCode,
-	(SELECT source.`name` FROM  crmbase.base_customer_source source WHERE clue_info.effectively_channel_code= source.id) AS effectivelyChannelCodeName,
-	clue_info.clue_consult_type clueConsultTypeId,
-	(SELECT dictionary.`name` FROM  crmbase.base_dictionary dictionary WHERE clue_info.clue_consult_type= dictionary.id) AS clueConsultTypeName,
-	clue_info.course_type courseTypeId,
-	(SELECT dictionary.`name` FROM  crmbase.base_dictionary dictionary WHERE clue_info.course_type= dictionary.id) AS courseTypeName,
+    <select id="selectQueryClueInfo" resultType="com.am.es.model.ClueQueryResponseModel"
+            parameterType="java.lang.Integer">
+        SELECT
+        clue_info.id,
+        clue_info.remark remark,
+        clue_info.suggest_contact_time suggestContactTime,
+        clue_info.create_by clueCreateBy,
+        (SELECT sys_user.user_name FROM permission.sys_users sys_user WHERE clue_info.create_by = sys_user.user_id)AS
+        clueCreateByName,
+        clue_info.create_time clueCreateTime,
+        clue_info.source_channel_code sourceChannelCode,
+        (SELECT base_channel.`name` FROM crmbase.base_channel base_channel WHERE clue_info.source_channel_code=
+        base_channel.id) AS sourceChannelName,
+        clue_info.channel_code_sub channelCodeSub,
+        (SELECT base_channel.`name` FROM crmbase.base_channel base_channel WHERE clue_info.channel_code_sub=
+        base_channel.id) AS channelCodeSubName,
+        clue_info.clue_join_activitie clueJoinActivitie,
+        (SELECT activity_form.`name` FROM crmproduct.activity activity_form WHERE clue_info.clue_join_activitie=
+        activity_form.id) AS clueJoinActivitieName,
+        clue_info.first_channel_code firstChannelCode,
+        (SELECT source.`name` FROM crmbase.base_customer_source source WHERE clue_info.first_channel_code= source.id) AS
+        firstChannelName,
+        clue_info.effectively_channel_code effectivelyChannelCode,
+        (SELECT source.`name` FROM crmbase.base_customer_source source WHERE clue_info.effectively_channel_code=
+        source.id) AS effectivelyChannelCodeName,
+        clue_info.clue_consult_type clueConsultTypeId,
+        (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE clue_info.clue_consult_type=
+        dictionary.id) AS clueConsultTypeName,
+        clue_info.course_type courseTypeId,
+        (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE clue_info.course_type= dictionary.id) AS
+        courseTypeName,
 
-	clue_status.recommender_contact recommenderContact,
-	clue_status.clue_ower_get_time clueOwerGetTime,
-	clue_status.associates associates,
-	clue_status.update_time updateTime,
-	clue_status.repeat_consultation_time repeatConsultationTime,
-	clue_status.clue_owner clueOwner,
-	(SELECT sys_user.user_name FROM permission.sys_users sys_user WHERE  clue_status.clue_owner = sys_user.user_id)AS clueOwnerName,
-	clue_status.recommender recommender,
-	(SELECT sys_user.user_name FROM permission.sys_users sys_user WHERE  clue_status.recommender = sys_user.user_id)AS recommenderName,
-	clue_status.clue_school_manager_owner clueSchoolManagerOwnerId,
-	(SELECT sys_user.user_name FROM permission.sys_users sys_user WHERE  clue_status.clue_school_manager_owner = sys_user.user_id)AS clueSchoolManagerOwnerName, #所属班主任
+        clue_status.recommender_contact recommenderContact,
+        clue_status.clue_ower_get_time clueOwerGetTime,
+        clue_status.associates associates,
+        clue_status.update_time updateTime,
+        clue_status.repeat_consultation_time repeatConsultationTime,
+        clue_status.clue_owner clueOwner,
+        (SELECT sys_user.user_name FROM permission.sys_users sys_user WHERE clue_status.clue_owner = sys_user.user_id)AS
+        clueOwnerName,
+        clue_status.recommender recommender,
+        (SELECT sys_user.user_name FROM permission.sys_users sys_user WHERE clue_status.recommender =
+        sys_user.user_id)AS recommenderName,
+        clue_status.clue_school_manager_owner clueSchoolManagerOwnerId,
+        (SELECT sys_user.user_name FROM permission.sys_users sys_user WHERE clue_status.clue_school_manager_owner =
+        sys_user.user_id)AS clueSchoolManagerOwnerName, #所属班主任
 
-	clue_describe.convenience_course_time convenienceCourseTime,
-	clue_describe.sale_connet_count saleConnetCount,
-	clue_describe.last_communicate_time lastCommunicateTime,
-	clue_describe.sale_dial_count saleDialCount,
-	clue_describe.sale_failure_follow_count saleFailureFollowCount,
-	clue_describe.next_communicate_time nextCommunicateTime,
-	(SELECT contact_info_detail.show_contacts_no FROM crmclues.custom_contact_info_detail contact_info_detail WHERE contact_info_detail.id=clue_describe.Urgency)AS urgencyName,
-	clue_describe.clue_quality clueQuality,
-	(SELECT dictionary.`name` FROM  crmbase.base_dictionary dictionary WHERE clue_describe.clue_quality= dictionary.id) AS clueQualityName,
-	clue_describe.TrafficState trafficState,
-	(SELECT dictionary.`name` FROM  crmbase.base_dictionary dictionary WHERE clue_describe.TrafficState= dictionary.id) AS trafficStateName,
-	clue_describe.FailureReason failureReason,
-	(SELECT dictionary.`name` FROM  crmbase.base_dictionary dictionary WHERE clue_describe.FailureReason= dictionary.id) AS failureReasonName,
-	clue_describe.clue_status clueStatus,
-	(SELECT dictionary.`name` FROM  crmbase.base_dictionary dictionary WHERE clue_describe.clue_status= dictionary.id) AS clueStatusName,
+        clue_describe.convenience_course_time convenienceCourseTime,
+        clue_describe.sale_connet_count saleConnetCount,
+        clue_describe.last_communicate_time lastCommunicateTime,
+        clue_describe.sale_dial_count saleDialCount,
+        clue_describe.sale_failure_follow_count saleFailureFollowCount,
+        clue_describe.next_communicate_time nextCommunicateTime,
+        (SELECT contact_info_detail.show_contacts_no FROM crmclues.custom_contact_info_detail contact_info_detail WHERE
+        contact_info_detail.id=clue_describe.Urgency)AS urgencyName,
+        clue_describe.clue_quality clueQuality,
+        (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE clue_describe.clue_quality=
+        dictionary.id) AS clueQualityName,
+        clue_describe.TrafficState trafficState,
+        (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE clue_describe.TrafficState=
+        dictionary.id) AS trafficStateName,
+        clue_describe.FailureReason failureReason,
+        (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE clue_describe.FailureReason=
+        dictionary.id) AS failureReasonName,
+        clue_describe.clue_status clueStatus,
+        (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE clue_describe.clue_status=
+        dictionary.id) AS clueStatusName,
 
-	custom_info.true_name trueName,
-	custom_info.province provinceCity,
-	custom_info.born_date bornDate,
-	custom_info.enrollment_year enrollmentYear,
-	custom_info.profession profession,
-	custom_info.qq,
-	custom_info.wx_id,
-	custom_info.relationship relationship,
-	(SELECT dictionary.`name` FROM  crmbase.base_dictionary dictionary WHERE custom_info.relationship= dictionary.id) AS relationshipName,
-	custom_info.qualification qualification,
-	(SELECT dictionary.`name` FROM  crmbase.base_dictionary dictionary WHERE custom_info.qualification= dictionary.id) AS qualificationName,
-	custom_info.gender gender,
-	(SELECT dictionary.`name` FROM  crmbase.base_dictionary dictionary WHERE custom_info.gender= dictionary.id) AS genderName
-  FROM
-	crmclues.clue_info clue_info
-  LEFT JOIN crmclues.clue_status clue_status ON clue_info.id = clue_status.clue_id
-  LEFT JOIN crmclues.clue_describe clue_describe ON clue_info.id =clue_describe.clue_id
-  LEFT JOIN crmclues.custom_info custom_info ON custom_info.id =clue_info.custom_id
+        custom_info.true_name trueName,
+        custom_info.province provinceCity,
+        custom_info.born_date bornDate,
+        custom_info.enrollment_year enrollmentYear,
+        custom_info.profession profession,
+        custom_info.qq,
+        custom_info.wx_id,
+        custom_info.relationship relationship,
+        (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE custom_info.relationship= dictionary.id)
+        AS relationshipName,
+        custom_info.qualification qualification,
+        (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE custom_info.qualification=
+        dictionary.id) AS qualificationName,
+        custom_info.gender gender,
+        (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE custom_info.gender= dictionary.id) AS
+        genderName
+        FROM
+        crmclues.clue_info clue_info
+        LEFT JOIN crmclues.clue_status clue_status ON clue_info.id = clue_status.clue_id
+        LEFT JOIN crmclues.clue_describe clue_describe ON clue_info.id =clue_describe.clue_id
+        LEFT JOIN crmclues.custom_info custom_info ON custom_info.id =clue_info.custom_id
+        <if test="clueId!=0 and clueId!=null">
+            <where>
+                clue_info.id =#{clueId,jdbcType=INTEGER}
+            </where>
+        </if>
 
 
     </select>

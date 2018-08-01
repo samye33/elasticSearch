@@ -6,7 +6,6 @@ import com.am.es.entity.clue.ClueInfoExample;
 import java.util.List;
 
 import com.am.es.model.ClueQueryResponseModel;
-import com.am.es.model.clue.ClueInfoVo;
 import org.apache.ibatis.annotations.Param;
 
 public interface ClueInfoMapper {
@@ -32,8 +31,7 @@ public interface ClueInfoMapper {
 
     int updateByPrimaryKey(ClueInfo record);
 
-    //传入的Integer的id为clueInfo表的id
-    List<ClueInfoVo> selectListByPrimaryKeyList(List<Integer> clueInfoList);
+    ClueInfo selectByCustomId(Integer CustomId);
 
     List<ClueQueryResponseModel> selectQueryClueInfo(Integer clueId);
 }
