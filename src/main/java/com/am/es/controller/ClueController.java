@@ -2,6 +2,7 @@ package com.am.es.controller;
 
 import com.am.es.enums.HttpStatusCode;
 import com.am.es.model.ClueQueryResponseModel;
+import com.am.es.model.PageClueInfo;
 import com.am.es.model.Result;
 import com.am.es.service.ClueQueryService;
 import org.slf4j.Logger;
@@ -64,10 +65,10 @@ public class ClueController {
     public Result searchClueInfo(HttpServletRequest request, HttpServletResponse response, Map map) {
         Result ret = new Result();
         try {
-            List<ClueQueryResponseModel> list = clueInfoService.getClueQueryList(map);
+            PageClueInfo page = clueInfoService.getClueQueryList(map);
             ret.setStatus(HttpStatusCode.CODE_SUCCESS.getValue());
             ret.setMessage(HttpStatusCode.CODE_SUCCESS.getDesc());
-            ret.setData(list);
+            ret.setData(page);
         } catch (Exception e) {
             ret.setStatus(HttpStatusCode.CODE_SERVER_INTERNAL_ERROR.getValue());
             ret.setMessage(HttpStatusCode.CODE_SERVER_INTERNAL_ERROR.getDesc());
@@ -80,10 +81,10 @@ public class ClueController {
     public Result searchAll(HttpServletRequest request, HttpServletResponse response) {
         Result ret = new Result();
         try {
-            List<ClueQueryResponseModel> list = clueInfoService.queryAllClueQueryList();
+            PageClueInfo page = clueInfoService.queryAllClueQueryList();
             ret.setStatus(HttpStatusCode.CODE_SUCCESS.getValue());
             ret.setMessage(HttpStatusCode.CODE_SUCCESS.getDesc());
-            ret.setData(list);
+            ret.setData(page);
         } catch (Exception e) {
             ret.setStatus(HttpStatusCode.CODE_SERVER_INTERNAL_ERROR.getValue());
             ret.setMessage(HttpStatusCode.CODE_SERVER_INTERNAL_ERROR.getDesc());

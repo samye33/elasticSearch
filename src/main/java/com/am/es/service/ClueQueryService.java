@@ -1,8 +1,7 @@
 package com.am.es.service;
 
-import com.am.es.model.ClueQueryResponseModel;
+import com.am.es.model.PageClueInfo;
 
-import java.util.List;
 import java.util.Map;
 
 public interface ClueQueryService {
@@ -10,7 +9,7 @@ public interface ClueQueryService {
 
     void deleteClueQuery(Integer id);
 
-    List<ClueQueryResponseModel> getClueQueryList(Map<String, ?> map);
+    PageClueInfo getClueQueryList(Map<String, ?> map);
 
-    List<ClueQueryResponseModel> queryAllClueQueryList();
+    PageClueInfo queryAllClueQueryList();
 }
