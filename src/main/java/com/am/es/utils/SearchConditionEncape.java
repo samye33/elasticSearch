@@ -30,11 +30,12 @@ public class SearchConditionEncape {
             } else if (("fuzzy").equals(type)) {
                 builder.must(new QueryStringQueryBuilder("*" + value + "*").field(key));
             } else if (("sort").equals(type)) {
+                String field = jsonObject.getString("field");
                 FieldSortBuilder sort = null;
                 if (("desc").equals(value)) {
-                    sort = SortBuilders.fieldSort("userId").order(SortOrder.DESC);
+                    sort = SortBuilders.fieldSort(field).order(SortOrder.DESC);
                 } else {
-                    sort = SortBuilders.fieldSort("userId").order(SortOrder.ASC);
+                    sort = SortBuilders.fieldSort(field).order(SortOrder.ASC);
                 }
                 //将排序设置到构建中
                 nativeSearchQueryBuilder.withSort(sort);
