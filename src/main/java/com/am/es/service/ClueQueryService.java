@@ -10,7 +10,7 @@ public interface ClueQueryService {
 
     void deleteClueQuery(Integer id);
 
-    List<ClueQueryResponseModel> getClueQueryList(Map<String, ?> map, Integer currentPage, Integer pageSize);
+    List<ClueQueryResponseModel> getClueQueryList(Map<String, ?> map);
 
     List<ClueQueryResponseModel> queryAllClueQueryList();
 }

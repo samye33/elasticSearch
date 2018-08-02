@@ -41,8 +41,10 @@ public class ClueQueryServiceImpl implements ClueQueryService {
     }
 
     @Override
-    public List<ClueQueryResponseModel> getClueQueryList(Map<String, ?> map, Integer currentPage, Integer pageSize) {
+    public List<ClueQueryResponseModel> getClueQueryList(Map<String, ?> map) {
         List<ClueQueryResponseModel> list = null;
+        Integer currentPage = (Integer) map.get("currentPage");
+        Integer pageSize = (Integer) map.get("pageSize");
         SearchConditionEncape searchConditionEncape = new SearchConditionEncape();
         NativeSearchQuery query = searchConditionEncape.queryCondition(map, currentPage, pageSize);
         list = searchClueQueryRepository.search(query).getContent();

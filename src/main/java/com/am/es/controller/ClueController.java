@@ -61,11 +61,10 @@ public class ClueController {
     }
 
     @GetMapping("/searchCondition")
-    public Result searchClueInfo(HttpServletRequest request, HttpServletResponse response, Map map, Integer currentPage, Integer pageSize) {
+    public Result searchClueInfo(HttpServletRequest request, HttpServletResponse response, Map map) {
         Result ret = new Result();
         try {
-
-            List<ClueQueryResponseModel> list = clueInfoService.getClueQueryList(map, currentPage, pageSize);
+            List<ClueQueryResponseModel> list = clueInfoService.getClueQueryList(map);
             ret.setStatus(HttpStatusCode.CODE_SUCCESS.getValue());
             ret.setMessage(HttpStatusCode.CODE_SUCCESS.getDesc());
             ret.setData(list);

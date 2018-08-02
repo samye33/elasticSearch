@@ -19,6 +19,9 @@ public class SearchConditionEncape {
         NativeSearchQueryBuilder nativeSearchQueryBuilder = new NativeSearchQueryBuilder();
         for (Map.Entry<String, ?> entry : map.entrySet()) {
             String key = entry.getKey();
+            if (key.equals("currentPage") || key.equals("pageSize")) {
+                continue;
+            }
             Object obj = entry.getValue();
             JSONObject jsonObject = (JSONObject) obj;
             //根据type判断是准确查询还是模糊查询
