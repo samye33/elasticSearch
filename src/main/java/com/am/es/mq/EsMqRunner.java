@@ -65,13 +65,12 @@ public class EsMqRunner implements CommandLineRunner {
             @Override
             public Action consume(Message message, ConsumeContext context) {
 
-                System.out.println("接受到消息: " + message);
                 byte[] body = message.getBody();
                 Charset charset = Charset.defaultCharset();
                 ByteBuffer buf = ByteBuffer.wrap(body);
                 CharBuffer cBuf = charset.decode(buf);
                 String ret = cBuf.toString();
-                LOGGER.info("returning json is:" + ret);
+                System.out.println("returning json is:" + ret);
                 distinguishDB(ret);
                 return Action.CommitMessage;
             }
