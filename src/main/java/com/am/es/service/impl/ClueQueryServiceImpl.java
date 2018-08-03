@@ -50,7 +50,7 @@ public class ClueQueryServiceImpl implements ClueQueryService {
         SearchConditionEncape searchConditionEncape = new SearchConditionEncape();
         NativeSearchQuery query = searchConditionEncape.queryCondition(map, currentPage, pageSize);
         Page<ClueQueryResponseModel> search = searchClueQueryRepository.search(query);
-        int total = search.getTotalPages();
+        long total = search.getTotalElements();
         List<ClueQueryResponseModel> list = search.getContent();
         pages.setTotal(total);
         pages.setList(list);
