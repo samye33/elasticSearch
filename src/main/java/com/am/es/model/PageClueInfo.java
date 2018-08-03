@@ -6,7 +6,7 @@ import java.util.List;
 
 @Data
 public class PageClueInfo {
-    private int total;
+    private long total;
 
     private List<ClueQueryResponseModel> list;
 }
