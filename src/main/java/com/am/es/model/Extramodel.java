@@ -33,8 +33,6 @@ public class Extramodel {
 
     private Integer clueStatus;
 
-    private Integer gender;
-
     private Integer qualification;
 
 }

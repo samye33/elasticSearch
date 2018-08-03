@@ -92,7 +92,7 @@ public class ClueQueryResponseModel extends Extramodel implements Serializable {
 
     private String relationshipName;
 
-    private String genderName;
+    private Integer gender;
     //学历
     private String qualificationName;
 }

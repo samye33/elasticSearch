@@ -472,9 +472,7 @@
         custom_info.qualification qualification,
         (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE custom_info.qualification=
         dictionary.id) AS qualificationName,
-        custom_info.gender gender,
-        (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE custom_info.gender= dictionary.id) AS
-        genderName
+        custom_info.gender gender
         FROM
         crmclues.clue_info clue_info
         LEFT JOIN crmclues.clue_status clue_status ON clue_info.id = clue_status.clue_id
