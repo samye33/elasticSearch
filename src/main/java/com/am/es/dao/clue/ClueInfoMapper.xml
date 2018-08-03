@@ -435,9 +435,7 @@
         clue_status.clue_owner clueOwner,
         (SELECT sys_user.user_name FROM permission.sys_users sys_user WHERE clue_status.clue_owner = sys_user.user_id)AS
         clueOwnerName,
-        clue_status.recommender recommender,
-        (SELECT sys_user.user_name FROM permission.sys_users sys_user WHERE clue_status.recommender =
-        sys_user.user_id)AS recommenderName,
+        clue_status.recommender recommenderName,
         clue_status.clue_school_manager_owner clueSchoolManagerOwnerId,
         (SELECT sys_user.user_name FROM permission.sys_users sys_user WHERE clue_status.clue_school_manager_owner =
         sys_user.user_id)AS clueSchoolManagerOwnerName, #所属班主任

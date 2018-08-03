@@ -23,8 +23,6 @@ public class Extramodel {
 
     private Integer clueOwner;
 
-    private Integer recommender;
-
     private Integer clueSchoolManagerOwnerId;
 
     private Integer clueQuality;
