@@ -35,4 +35,8 @@ public class Extramodel {
 
     private Integer qualification;
 
+    private String provinceCode;
+
+    private String cityCode;
+
 }

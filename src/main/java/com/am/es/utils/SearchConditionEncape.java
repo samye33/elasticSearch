@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.query.QueryStringQueryBuilder;
+import org.elasticsearch.index.query.RangeQueryBuilder;
 import org.elasticsearch.search.sort.FieldSortBuilder;
 import org.elasticsearch.search.sort.SortBuilders;
 import org.elasticsearch.search.sort.SortOrder;
@@ -42,6 +43,10 @@ public class SearchConditionEncape {
                 }
                 //将排序设置到构建中
                 nativeSearchQueryBuilder.withSort(sort);
+            } else if ("time".equals(type)) {
+                String startTime = value.split("~")[0];
+                String endTime = value.split("~")[1];
+                builder.must(QueryBuilders.rangeQuery(key).from(startTime).to(endTime));
             }
         }
         PageRequest page = new PageRequest(currentPage, pageSize);

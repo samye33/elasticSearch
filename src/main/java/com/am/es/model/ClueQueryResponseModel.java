@@ -33,8 +33,6 @@ public class ClueQueryResponseModel extends Extramodel implements Serializable {
 
     private String courseTypeName;
 
-    private String recommenderContact;
-
     private String clueOwerGetTime;
 
     private String associates;
@@ -73,8 +71,11 @@ public class ClueQueryResponseModel extends Extramodel implements Serializable {
 
     private String trueName;
 
-    //关联字段province
-    private String provinceCity;
+    private String provinceName;
+
+    private String cityName;
+
+    private String provinceCityName;
     //关联字段born_date
     private String bornDate;
     //关联字段enrollment_year
@@ -82,17 +83,19 @@ public class ClueQueryResponseModel extends Extramodel implements Serializable {
 
     private String profession;
 
-    private String wxId;
+    private String wxUserName;
 
     private String qq;
 
-    private String contactName;
+    private String mainPhone;
 
-    private String phone;
+    private String showMainPhone;
 
     private String relationshipName;
 
     private Integer gender;
     //学历
     private String qualificationName;
+
+    private String contactName;
 }
