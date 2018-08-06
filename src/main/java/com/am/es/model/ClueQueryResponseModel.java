@@ -87,8 +87,6 @@ public class ClueQueryResponseModel extends Extramodel implements Serializable {
 
     private String qq;
 
-    private String mainPhone;
-
     private String showMainPhone;
 
     private String relationshipName;

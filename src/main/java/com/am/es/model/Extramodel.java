@@ -43,4 +43,6 @@ public class Extramodel {
 
     private Integer preGroupId;
 
+    private String mainPhone;
+
 }
