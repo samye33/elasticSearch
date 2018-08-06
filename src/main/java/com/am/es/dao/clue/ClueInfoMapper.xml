@@ -422,6 +422,7 @@
 	clue_status.clue_ower_get_time clueOwerGetTime,
 	clue_status.associates associates,
 	clue_status.update_time updateTime,
+	clue_status.recommender_contact showRecommenderContacat,
 	clue_status.repeat_consultation_time repeatConsultationTime,
 	clue_status.clue_owner clueOwner,
 	(SELECT sys_user.user_name FROM permission.sys_users sys_user WHERE  clue_status.clue_owner = sys_user.user_id)AS clueOwnerName,
@@ -462,7 +463,10 @@
 	custom_info.relationship relationshipName,
 	custom_info.qualification qualification,
 	(SELECT dictionary.`name` FROM  crmbase.base_dictionary dictionary WHERE custom_info.qualification= dictionary.id) AS qualificationName,
-	custom_info.gender gender
+	custom_info.gender gender,
+
+	(SELECT turn_record.pre_user_id FROM crmclues.clue_turn_record turn_record WHERE turn_record.clue_id=clue_info.id ORDER BY turn_record.create_time DESC LIMIT 1)AS preUserId,
+	(SELECT turn_record.pre_group_id FROM crmclues.clue_turn_record turn_record WHERE turn_record.clue_id=clue_info.id ORDER BY turn_record.create_time DESC LIMIT 1)AS preGroupId
 
   FROM
 	crmclues.clue_info clue_info
