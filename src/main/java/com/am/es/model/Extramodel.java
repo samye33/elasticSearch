@@ -39,4 +39,8 @@ public class Extramodel {
 
     private String cityCode;
 
+    private Integer preUserId;
+
+    private Integer preGroupId;
+
 }

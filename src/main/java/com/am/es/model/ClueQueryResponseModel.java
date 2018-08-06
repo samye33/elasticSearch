@@ -98,4 +98,6 @@ public class ClueQueryResponseModel extends Extramodel implements Serializable {
     private String qualificationName;
 
     private String contactName;
+
+    private String showRecommenderContacat;
 }
