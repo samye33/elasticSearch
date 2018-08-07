@@ -33,7 +33,15 @@ public class SearchConditionEncape {
             String value = jsonObject.getString("value");
             //type为term 为准确查询;fuzzy为模糊查询;sort为排序;not为不满足条件;time为时间范围；rangeNum为数字范围
             if (("term").equals(type)) {
-                builder.must(QueryBuilders.termQuery(key, value));
+                if (value.startsWith("[") && value.endsWith("]")) {
+                    value = value.substring(0, value.length() - 1);
+                    value = value.substring(1, value.length());
+                    String arr[] = value.split(",");
+                    QueryBuilders.termQuery(key, arr);
+                } else {
+                    builder.must(QueryBuilders.termQuery(key, value));
+                }
+
             } else if (("fuzzy").equals(type)) {
                 builder.must(new QueryStringQueryBuilder("*" + value + "*").field(key));
             } else if (("sort").equals(type)) {
@@ -50,8 +58,6 @@ public class SearchConditionEncape {
                 String[] arr = value.split("~");
                 if (arr.length >= 1) {
                     String start = arr[0];
-
-
                     RangeQueryBuilder rangeQueryBuilder = QueryBuilders.rangeQuery(key);
                     if (StringUtils.isNotBlank(start)) {
                         rangeQueryBuilder.from(start).includeLower(true);
@@ -66,7 +72,15 @@ public class SearchConditionEncape {
                 }
 
             } else if ("not".equals(type)) {
-                builder.mustNot(QueryBuilders.termQuery(key, value));
+                if (value.startsWith("[") && value.endsWith("]")) {
+                    value = value.substring(0, value.length() - 1);
+                    value = value.substring(1, value.length());
+                    String arr[] = value.split(",");
+                    builder.mustNot(QueryBuilders.termQuery(key, arr));
+                } else {
+                    builder.mustNot(QueryBuilders.termQuery(key, value));
+                }
+
             }
         }
         PageRequest page = new PageRequest(currentPage, pageSize);
