@@ -48,9 +48,11 @@ public class ClueTurnRecordServiceImpl implements ClueTurnRecordService {
         searchClueTurnRecordRepository.delete(clueTurnRecordVo);
     }
 
-    public List<ClueTurnRecordVo> getClueTurnRecordList(Map<String, ?> map, Integer currentPage, Integer pageSize) {
+    public List<ClueTurnRecordVo> getClueTurnRecordList(Map<String, String> map) {
         List<ClueTurnRecordVo> list = null;
         SearchConditionEncape searchConditionEncape = new SearchConditionEncape();
+        Integer currentPage = Integer.parseInt(map.get("currentPage"));
+        Integer pageSize = Integer.parseInt(map.get("pageSize"));
         NativeSearchQuery query = searchConditionEncape.queryCondition(map, currentPage, pageSize);
         list = searchClueTurnRecordRepository.search(query).getContent();
         return list;

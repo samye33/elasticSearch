@@ -5,17 +5,16 @@ import com.am.es.model.ClueQueryResponseModel;
 import com.am.es.model.PageClueInfo;
 import com.am.es.model.Result;
 import com.am.es.service.ClueQueryService;
+import com.am.es.utils.SearchConditionEncape;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -61,10 +60,12 @@ public class ClueController {
         return ret;
     }
 
-    @GetMapping("/searchCondition")
-    public Result searchClueInfo(HttpServletRequest request, HttpServletResponse response, Map map) {
+    @PostMapping("/searchCondition")
+    public Result searchClueInfo(HttpServletRequest request, HttpServletResponse response, String parm) {
         Result ret = new Result();
         try {
+            System.out.println(parm);
+            Map map = SearchConditionEncape.stringToMap(parm);
             PageClueInfo page = clueInfoService.getClueQueryList(map);
             ret.setStatus(HttpStatusCode.CODE_SUCCESS.getValue());
             ret.setMessage(HttpStatusCode.CODE_SUCCESS.getDesc());

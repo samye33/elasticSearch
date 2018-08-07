@@ -62,11 +62,10 @@ public class ClueTurnRecordController {
     }
 
     @GetMapping("/searchCondition")
-    public Result searchClueTurnRecord(HttpServletRequest request, HttpServletResponse response, Map map, Integer currentPage, Integer pageSize) {
+    public Result searchClueTurnRecord(HttpServletRequest request, HttpServletResponse response, Map map) {
         Result ret = new Result();
         try {
-
-            List<ClueTurnRecordVo> list = clueTurnRecordService.getClueTurnRecordList(map, currentPage, pageSize);
+            List<ClueTurnRecordVo> list = clueTurnRecordService.getClueTurnRecordList(map);
             ret.setStatus(HttpStatusCode.CODE_SUCCESS.getValue());
             ret.setMessage(HttpStatusCode.CODE_SUCCESS.getDesc());
             ret.setData(list);

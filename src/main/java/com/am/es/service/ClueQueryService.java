@@ -9,7 +9,7 @@ public interface ClueQueryService {
 
     void deleteClueQuery(Integer id);
 
-    PageClueInfo getClueQueryList(Map<String, ?> map);
+    PageClueInfo getClueQueryList(Map<String, String> map);
 
     PageClueInfo queryAllClueQueryList();
 }

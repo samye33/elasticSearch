@@ -10,7 +10,7 @@ public interface ClueTurnRecordService {
 
     void deleteClueTurnRecord(Integer id);
 
-    List<ClueTurnRecordVo> getClueTurnRecordList(Map<String, ?> map, Integer currentPage, Integer pageSize);
+    List<ClueTurnRecordVo> getClueTurnRecordList(Map<String, String> map);
 
     List<ClueTurnRecordVo> queryAllClueTurnRecordList();
 }

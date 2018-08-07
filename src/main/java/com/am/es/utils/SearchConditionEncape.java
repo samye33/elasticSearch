@@ -13,19 +13,21 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Stack;
 
 public class SearchConditionEncape {
-    public NativeSearchQuery queryCondition(Map<String, ?> map, Integer currentPage, Integer pageSize) {
+    public NativeSearchQuery queryCondition(Map<String, String> map, Integer currentPage, Integer pageSize) {
         BoolQueryBuilder builder = QueryBuilders.boolQuery();
         NativeSearchQueryBuilder nativeSearchQueryBuilder = new NativeSearchQueryBuilder();
-        for (Map.Entry<String, ?> entry : map.entrySet()) {
+        for (Map.Entry<String, String> entry : map.entrySet()) {
             String key = entry.getKey();
             if (key.equals("currentPage") || key.equals("pageSize")) {
                 continue;
             }
-            Object obj = entry.getValue();
-            JSONObject jsonObject = (JSONObject) obj;
+            String str = entry.getValue();
+            JSONObject jsonObject = JSONObject.parseObject(str);
             //根据type判断是准确查询还是模糊查询
             String type = jsonObject.getString("type");
             String value = jsonObject.getString("value");
@@ -45,16 +47,24 @@ public class SearchConditionEncape {
                 //将排序设置到构建中
                 nativeSearchQueryBuilder.withSort(sort);
             } else if ("range".equals(type)) {
-                String start = value.split("~")[0];
-                String end = value.split("~")[1];
-                RangeQueryBuilder rangeQueryBuilder = QueryBuilders.rangeQuery(key);
-                if (StringUtils.isNotBlank(start)) {
-                    rangeQueryBuilder.from(start).includeLower(true);
+                String[] arr = value.split("~");
+                if (arr.length >= 1) {
+                    String start = arr[0];
+
+
+                    RangeQueryBuilder rangeQueryBuilder = QueryBuilders.rangeQuery(key);
+                    if (StringUtils.isNotBlank(start)) {
+                        rangeQueryBuilder.from(start).includeLower(true);
+                    }
+                    if (arr.length == 2) {
+                        String end = arr[1];
+                        if (StringUtils.isNotBlank(end)) {
+                            rangeQueryBuilder.to(end).includeUpper(true);
+                        }
+                    }
+                    builder.must(rangeQueryBuilder);
                 }
-                if (StringUtils.isNotBlank(end)) {
-                    rangeQueryBuilder.to(end).includeUpper(true);
-                }
-                builder.must(rangeQueryBuilder);
+
             } else if ("not".equals(type)) {
                 builder.mustNot(QueryBuilders.termQuery(key, value));
             }
@@ -67,5 +77,56 @@ public class SearchConditionEncape {
         //生产NativeSearchQuery
         NativeSearchQuery query = nativeSearchQueryBuilder.build();
         return query;
+    }
+
+    public static Map<String, Object> stringToMap(String str) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        if (str.startsWith("{") && str.endsWith("}")) {
+            str = str.substring(1, str.length());
+            str = str.substring(0, str.length() - 1);
+            String[] eArr = str.split("=");
+            String key = "";
+            for (int i = 0; i < eArr.length; i++) {
+                String tempStr = eArr[i];
+                //如果为最后一个直接做为值进行封装
+                if (i == eArr.length - 1) {
+                    map.put(key, tempStr.replace(" ", ""));
+                } else {
+                    //判断是否有逗号
+                    if (tempStr.contains(",")) {
+                        Stack<String> stack = new Stack<String>();
+                        //从分离的字符串中获取上一个key的value和下一个key的name
+                        for (int j = 0; j < tempStr.length(); j++) {
+                            char c = tempStr.charAt(j);
+                            if (!(c + "").equals(",")) {
+                                stack.push(c + "");
+                            } else if ((c + "").equals(" ")) {
+                                continue;
+                            } else {
+                                String sStr = stack.pop();
+                                if (sStr.equals("\"")) {
+                                    stack.push(sStr);
+                                    stack.push(c + "");
+                                } else {
+                                    String jsonStr = tempStr.substring(0, j);
+                                    String newKey = tempStr.substring(j + 1, tempStr.length());
+                                    map.put(key, jsonStr.replace(" ", ""));
+                                    key = newKey.replace(" ", "");
+                                    //清空栈
+                                    stack.clear();
+                                    break;
+                                }
+                            }
+                        }
+                    } else {
+                        key = tempStr.replace(" ", "");
+                    }
+                }
+            }
+        } else {
+            System.out.println("不是正确的Map格式");
+        }
+
+        return map;
     }
 }
