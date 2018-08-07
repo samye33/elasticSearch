@@ -47,10 +47,12 @@ public class SearchConditionEncape {
             } else if (("sort").equals(type)) {
                 String field = jsonObject.getString("field");
                 FieldSortBuilder sort = null;
-                if (("desc").equals(value)) {
-                    sort = SortBuilders.fieldSort(field).order(SortOrder.DESC);
-                } else {
-                    sort = SortBuilders.fieldSort(field).order(SortOrder.ASC);
+                if (StringUtils.isNotBlank(field)) {
+                    if (("desc").equals(value)) {
+                        sort = SortBuilders.fieldSort(field).order(SortOrder.DESC);
+                    } else {
+                        sort = SortBuilders.fieldSort(field).order(SortOrder.ASC);
+                    }
                 }
                 //将排序设置到构建中
                 nativeSearchQueryBuilder.withSort(sort);
