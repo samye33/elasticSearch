@@ -43,7 +43,7 @@ public class SearchConditionEncape {
                 }
 
             } else if (("fuzzy").equals(type)) {
-                builder.must(new QueryStringQueryBuilder("*" + value + "*").field(key));
+                builder.must(QueryBuilders.matchQuery(key, "*" + value + "*"));
             } else if (("sort").equals(type)) {
                 String field = jsonObject.getString("field");
                 FieldSortBuilder sort = null;
