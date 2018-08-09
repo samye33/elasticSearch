@@ -108,34 +108,62 @@ public class SearchConditionEncape {
                 if (i == eArr.length - 1) {
                     map.put(key, tempStr.replace(" ", ""));
                 } else {
-                    //判断是否有逗号
-                    if (tempStr.contains(",")) {
-                        Stack<String> stack = new Stack<String>();
-                        //从分离的字符串中获取上一个key的value和下一个key的name
+                    //判断字符串中是否包含又"'{', '}','[',']'"字符
+                    if ((tempStr).contains("{") || (tempStr).equals("[") || (tempStr).equals("}") || (tempStr).equals("]")) {
+                        Stack<String> stackChar = new Stack<String>();
+                        Integer stackLength = null;
                         for (int j = 0; j < tempStr.length(); j++) {
                             char c = tempStr.charAt(j);
-                            if (!(c + "").equals(",")) {
-                                stack.push(c + "");
-                            } else if ((c + "").equals(" ")) {
-                                continue;
-                            } else {
-                                String sStr = stack.pop();
-                                if (sStr.equals("\"")) {
-                                    stack.push(sStr);
-                                    stack.push(c + "");
-                                } else {
+                            if ((c + "").equals("{") || (c + "").equals("[")) {
+                                stackChar.push(c + "");
+                                stackLength = stackChar.size();
+                            } else if ((c + "").equals("}") || (c + "").equals("]")) {
+                                stackChar.pop();
+                                stackLength = stackChar.size();
+                            } else if ((c + "").equals(",")) {
+                                if (stackLength == 0) {
+                                    //跳出该循环，并从该处进行分离
                                     String jsonStr = tempStr.substring(0, j);
                                     String newKey = tempStr.substring(j + 1, tempStr.length());
                                     map.put(key, jsonStr.replace(" ", ""));
                                     key = newKey.replace(" ", "");
                                     //清空栈
-                                    stack.clear();
+                                    stackChar.clear();
                                     break;
                                 }
                             }
                         }
                     } else {
-                        key = tempStr.replace(" ", "");
+                        //判断是否有逗号
+                        if (tempStr.contains(",")) {
+                            Stack<String> stack = new Stack<String>();
+
+                            //从分离的字符串中获取上一个key的value和下一个key的name
+                            for (int j = 0; j < tempStr.length(); j++) {
+                                char c = tempStr.charAt(j);
+                                if (!(c + "").equals(",")) {
+                                    stack.push(c + "");
+                                } else if ((c + "").equals(" ")) {
+                                    continue;
+                                } else {
+                                    String sStr = stack.pop();
+                                    if (sStr.equals("\"")) {
+                                        stack.push(sStr);
+                                        stack.push(c + "");
+                                    } else {
+                                        String jsonStr = tempStr.substring(0, j);
+                                        String newKey = tempStr.substring(j + 1, tempStr.length());
+                                        map.put(key, jsonStr.replace(" ", ""));
+                                        key = newKey.replace(" ", "");
+                                        //清空栈
+                                        stack.clear();
+                                        break;
+                                    }
+                                }
+                            }
+                        } else {
+                            key = tempStr.replace(" ", "");
+                        }
                     }
                 }
             }
