@@ -109,7 +109,7 @@ public class SearchConditionEncape {
                     map.put(key, tempStr.replace(" ", ""));
                 } else {
                     //判断字符串中是否包含又"'{', '}','[',']'"字符
-                    if ((tempStr).contains("{") || (tempStr).equals("[") || (tempStr).equals("}") || (tempStr).equals("]")) {
+                    if ((tempStr).contains("{") || (tempStr).contains("[") || (tempStr).contains("}") || (tempStr).contains("]")) {
                         Stack<String> stackChar = new Stack<String>();
                         Integer stackLength = null;
                         for (int j = 0; j < tempStr.length(); j++) {
