@@ -16,8 +16,6 @@ public class ClueDescribe implements Serializable {
 
     private Integer clueType;
 
-    private String clueStatus;
-
     private Integer clueQuality;
 
     private Date nextCommunicateTime;
@@ -128,14 +126,6 @@ public class ClueDescribe implements Serializable {
 
     public void setClueType(Integer clueType) {
         this.clueType = clueType;
-    }
-
-    public String getClueStatus() {
-        return clueStatus;
-    }
-
-    public void setClueStatus(String clueStatus) {
-        this.clueStatus = clueStatus;
     }
 
     public Integer getClueQuality() {

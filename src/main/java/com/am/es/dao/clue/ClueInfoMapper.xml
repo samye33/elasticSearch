@@ -429,6 +429,8 @@
 	clue_status.recommender recommenderName,
 	clue_status.clue_school_manager_owner clueSchoolManagerOwnerId,
 	(SELECT sys_user.true_name FROM permission.sys_users sys_user WHERE  clue_status.clue_school_manager_owner = sys_user.user_id)AS clueSchoolManagerOwnerName,
+    clue_status.clue_status clueStatus,
+	(SELECT dictionary.`name` FROM  crmbase.base_dictionary dictionary WHERE clue_status.clue_status= dictionary.id) AS clueStatusName,
 
 	clue_describe.convenience_course_time convenienceCourseTime,
 	clue_describe.sale_connet_count saleConnetCount,
@@ -443,8 +445,6 @@
 	(SELECT dictionary.`name` FROM  crmbase.base_dictionary dictionary WHERE clue_describe.TrafficState= dictionary.id) AS trafficStateName,
 	clue_describe.FailureReason failureReason,
 	(SELECT dictionary.`name` FROM  crmbase.base_dictionary dictionary WHERE clue_describe.FailureReason= dictionary.id) AS failureReasonName,
-	clue_describe.clue_status clueStatus,
-	(SELECT dictionary.`name` FROM  crmbase.base_dictionary dictionary WHERE clue_describe.clue_status= dictionary.id) AS clueStatusName,
 
 	custom_info.true_name trueName,
 	custom_info.parent_name contactName,

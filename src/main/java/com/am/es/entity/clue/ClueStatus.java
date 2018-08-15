@@ -62,6 +62,8 @@ public class ClueStatus implements Serializable {
 
     private Integer clueOwnerCommunicateCount;
 
+    private Integer clueStatus;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {
@@ -294,5 +296,13 @@ public class ClueStatus implements Serializable {
 
     public void setClueOwnerCommunicateCount(Integer clueOwnerCommunicateCount) {
         this.clueOwnerCommunicateCount = clueOwnerCommunicateCount;
+    }
+
+    public Integer getClueStatus() {
+        return clueStatus;
+    }
+
+    public void setClueStatus(Integer clueStatus) {
+        this.clueStatus = clueStatus;
     }
 }

@@ -50,9 +50,8 @@ public class ClueQueryServiceImpl implements ClueQueryService {
         SearchConditionEncape searchConditionEncape = new SearchConditionEncape();
         NativeSearchQuery query = searchConditionEncape.queryCondition(map, (currentPage - 1), pageSize);
         Page<ClueQueryResponseModel> search = searchClueQueryRepository.search(query);
-        long total = search.getTotalElements();
         List<ClueQueryResponseModel> list = search.getContent();
-        pages.setTotal(total);
+        pages.setTotal(list.size());
         pages.setList(list);
         return pages;
     }
@@ -66,9 +65,8 @@ public class ClueQueryServiceImpl implements ClueQueryService {
         nativeSearchQueryBuilder.withQuery(builder);
         NativeSearchQuery query = nativeSearchQueryBuilder.build();
         Page<ClueQueryResponseModel> search = searchClueQueryRepository.search(query);
-        long total = search.getTotalElements();
         List<ClueQueryResponseModel> list = search.getContent();
-        pages.setTotal(total);
+        pages.setTotal(list.size());
         pages.setList(list);
         return pages;
     }

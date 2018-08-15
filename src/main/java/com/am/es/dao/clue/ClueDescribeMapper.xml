@@ -8,7 +8,6 @@
     <result column="custom_id" property="customId" jdbcType="INTEGER" />
     <result column="custom_no" property="customNo" jdbcType="VARCHAR" />
     <result column="clue_type" property="clueType" jdbcType="INTEGER" />
-    <result column="clue_status" property="clueStatus" jdbcType="VARCHAR" />
     <result column="clue_quality" property="clueQuality" jdbcType="INTEGER" />
     <result column="next_communicate_time" property="nextCommunicateTime" jdbcType="TIMESTAMP" />
     <result column="last_communicate_time" property="lastCommunicateTime" jdbcType="TIMESTAMP" />
@@ -100,7 +99,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, clue_id, clue_no, custom_id, custom_no, clue_type, clue_status, clue_quality, 
+    id, clue_id, clue_no, custom_id, custom_no, clue_type, clue_quality,
     next_communicate_time, last_communicate_time, convenience_course_time, exam_time, 
     last_communicater, is_deposit, sale_connet_count, tmk_failure_follow_count, sale_failure_follow_count, 
     sale_dial_count, repeat_consultation_count, clue_stage, is_lock, old_clue_guid, create_time, 
@@ -140,8 +139,7 @@
   </delete>
   <insert id="insert" parameterType="com.am.es.entity.clue.ClueDescribe" >
     insert into clue_describe (id, clue_id, clue_no, 
-      custom_id, custom_no, clue_type, 
-      clue_status, clue_quality, next_communicate_time, 
+      custom_id, custom_no, clue_type, clue_quality, next_communicate_time,
       last_communicate_time, convenience_course_time, 
       exam_time, last_communicater, is_deposit, 
       sale_connet_count, tmk_failure_follow_count, 
@@ -156,7 +154,7 @@
       )
     values (#{id,jdbcType=INTEGER}, #{clueId,jdbcType=INTEGER}, #{clueNo,jdbcType=VARCHAR}, 
       #{customId,jdbcType=INTEGER}, #{customNo,jdbcType=VARCHAR}, #{clueType,jdbcType=INTEGER}, 
-      #{clueStatus,jdbcType=VARCHAR}, #{clueQuality,jdbcType=INTEGER}, #{nextCommunicateTime,jdbcType=TIMESTAMP}, 
+      #{clueQuality,jdbcType=INTEGER}, #{nextCommunicateTime,jdbcType=TIMESTAMP},
       #{lastCommunicateTime,jdbcType=TIMESTAMP}, #{convenienceCourseTime,jdbcType=VARCHAR}, 
       #{examTime,jdbcType=TIMESTAMP}, #{lastCommunicater,jdbcType=INTEGER}, #{isDeposit,jdbcType=INTEGER}, 
       #{saleConnetCount,jdbcType=INTEGER}, #{tmkFailureFollowCount,jdbcType=INTEGER}, 
@@ -190,9 +188,6 @@
       </if>
       <if test="clueType != null" >
         clue_type,
-      </if>
-      <if test="clueStatus != null" >
-        clue_status,
       </if>
       <if test="clueQuality != null" >
         clue_quality,
@@ -306,9 +301,6 @@
       </if>
       <if test="clueType != null" >
         #{clueType,jdbcType=INTEGER},
-      </if>
-      <if test="clueStatus != null" >
-        #{clueStatus,jdbcType=VARCHAR},
       </if>
       <if test="clueQuality != null" >
         #{clueQuality,jdbcType=INTEGER},
@@ -432,9 +424,6 @@
       <if test="record.clueType != null" >
         clue_type = #{record.clueType,jdbcType=INTEGER},
       </if>
-      <if test="record.clueStatus != null" >
-        clue_status = #{record.clueStatus,jdbcType=VARCHAR},
-      </if>
       <if test="record.clueQuality != null" >
         clue_quality = #{record.clueQuality,jdbcType=INTEGER},
       </if>
@@ -541,7 +530,6 @@
       custom_id = #{record.customId,jdbcType=INTEGER},
       custom_no = #{record.customNo,jdbcType=VARCHAR},
       clue_type = #{record.clueType,jdbcType=INTEGER},
-      clue_status = #{record.clueStatus,jdbcType=VARCHAR},
       clue_quality = #{record.clueQuality,jdbcType=INTEGER},
       next_communicate_time = #{record.nextCommunicateTime,jdbcType=TIMESTAMP},
       last_communicate_time = #{record.lastCommunicateTime,jdbcType=TIMESTAMP},
@@ -594,9 +582,6 @@
       </if>
       <if test="clueType != null" >
         clue_type = #{clueType,jdbcType=INTEGER},
-      </if>
-      <if test="clueStatus != null" >
-        clue_status = #{clueStatus,jdbcType=VARCHAR},
       </if>
       <if test="clueQuality != null" >
         clue_quality = #{clueQuality,jdbcType=INTEGER},
@@ -701,7 +686,6 @@
       custom_id = #{customId,jdbcType=INTEGER},
       custom_no = #{customNo,jdbcType=VARCHAR},
       clue_type = #{clueType,jdbcType=INTEGER},
-      clue_status = #{clueStatus,jdbcType=VARCHAR},
       clue_quality = #{clueQuality,jdbcType=INTEGER},
       next_communicate_time = #{nextCommunicateTime,jdbcType=TIMESTAMP},
       last_communicate_time = #{lastCommunicateTime,jdbcType=TIMESTAMP},
