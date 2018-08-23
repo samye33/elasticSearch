@@ -477,6 +477,10 @@
   LEFT JOIN crmclues.custom_info custom_info ON custom_info.id =clue_info.custom_id
   LEFT JOIN crmbase.base_province_area province_area ON province_area.identity_guid=custom_info.province
   LEFT JOIN crmbase.base_province_area city_area ON city_area.identity_guid=custom_info.city
-
+        <if test="clueId!=0 and clueId!=null">
+            <where>
+                clue_info.id =#{clueId,jdbcType=INTEGER}
+            </where>
+        </if>
     </select>
 </mapper>
