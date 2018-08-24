@@ -39,9 +39,9 @@ public class EsMqRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        LOGGER.info("mq starting ..");
+//        LOGGER.info("mq starting ..");
         //订阅线索新增消息
-        addMq();
+//        addMq();
     }
 
     public void addMq() {

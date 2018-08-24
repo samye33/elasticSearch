@@ -11,21 +11,21 @@
         </commentGenerator>
 
         <!--数据库连接配置 -->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://c.all-dream.com/crmorder"
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://c.all-dream.com/crmclues"
                         userId="root" password="aomengzhibo123"/> <!--数据库链接URL，用户名、密码 -->
 
         <!--各种输出配置 -->
-        <javaModelGenerator targetPackage="com.am.es.entity.order" targetProject="src\main\java\">
+        <javaModelGenerator targetPackage="com.am.es.entity.clue" targetProject="src\main\java\">
             <property name="enableSubPackages" value="true"/>
         </javaModelGenerator><!-- 实体类 model -->
-        <sqlMapGenerator targetPackage="com.am.es.dao.order" targetProject="src\main\java\">
+        <sqlMapGenerator targetPackage="com.am.es.dao.clue" targetProject="src\main\java\">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator><!-- 生成映射文件的包名和位置-->
-        <javaClientGenerator targetPackage="com.am.es.dao.order" targetProject="src\main\java\" type="XMLMAPPER">
+        <javaClientGenerator targetPackage="com.am.es.dao.clue" targetProject="src\main\java\" type="XMLMAPPER">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator><!-- 生成DAO的包名和位置-->
 
         <!--需要逆向的表 -->
-        <table tableName="order_product"></table>
+        <table tableName="es_record_id"></table>
     </context>
 </generatorConfiguration>

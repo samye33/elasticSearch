@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.am.es.dao.clue.EsRecordIdMapper">
+    <resultMap id="BaseResultMap" type="com.am.es.entity.clue.EsRecordId">
+        <result column="id" property="id" jdbcType="INTEGER"/>
+        <result column="type" property="type" jdbcType="INTEGER"/>
+        <result column="form" property="form" jdbcType="VARCHAR"/>
+        <result column="flag" property="flag" jdbcType="INTEGER"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, type, form , flag
+    </sql>
+    <insert id="insert" parameterType="com.am.es.entity.clue.EsRecordId">
+    insert into es_record_id (id, type, form,flag
+      )
+    values (#{id,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{form,jdbcType=VARCHAR},#{flag,jdbcType=INTEGER}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.am.es.entity.clue.EsRecordId">
+        insert into es_record_id
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="form != null">
+                form,
+            </if>
+            <if test="flag != null">
+                flag,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=INTEGER},
+            </if>
+            <if test="form != null">
+                #{form,jdbcType=VARCHAR},
+            </if>
+            <if test="flag != null">
+                #{flag,jdbcType=INTEGER}
+            </if>
+        </trim>
+    </insert>
+    <select id="selectAllLimit" resultMap="BaseResultMap">
+        SELECT * FROM es_record_id WHERE flag=0 ORDER BY id limit 0,10
+    </select>
+
+    <update id="updateFlagByAll" parameterType="com.am.es.entity.clue.EsRecordId">
+        UPDATE
+          es_record_id
+        SET
+         flag= #{flag,jdbcType=INTEGER}
+        WHERE
+          id=#{id,jdbcType=INTEGER}
+        AND
+          form= #{form,jdbcType=VARCHAR}
+        AND
+          type=#{type,jdbcType=INTEGER}
+
+    </update>
+    <delete id="deleteByIdTypeForm" parameterType="com.am.es.entity.clue.EsRecordId">
+        DELETE FROM
+          es_record_id
+        WHERE
+          id=#{id,jdbcType=INTEGER}
+        AND
+          form= #{form,jdbcType=VARCHAR}
+        AND
+          type= #{type,jdbcType=INTEGER}
+    </delete>
+</mapper>
