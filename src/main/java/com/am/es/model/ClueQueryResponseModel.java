@@ -99,5 +99,5 @@ public class ClueQueryResponseModel extends Extramodel implements Serializable {
 
     private String showRecommenderContacat;
 
-    private String saleLevelName;
+    private String saleClueLevelName;
 }

@@ -45,6 +45,6 @@ public class Extramodel {
 
     private String mainPhone;
 
-    private Integer saleLevel;
+    private Integer saleClueLevel;
 
 }
