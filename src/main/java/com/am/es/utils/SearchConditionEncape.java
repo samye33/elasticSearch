@@ -46,12 +46,23 @@ public class SearchConditionEncape {
                 builder.must(QueryBuilders.matchQuery(key, "*" + value + "*"));
             } else if (("sort").equals(type)) {
                 String field = jsonObject.getString("field");
+                String attr = jsonObject.getString("attr");
                 FieldSortBuilder sort = null;
                 if (StringUtils.isNotBlank(field)) {
                     if (("desc").equals(value)) {
-                        sort = SortBuilders.fieldSort(field).order(SortOrder.DESC);
+                        if (("1").equals(attr)) {
+                            sort = SortBuilders.fieldSort(field).order(SortOrder.DESC);
+                        } else if (("2").equals(attr)) {
+                            sort = SortBuilders.fieldSort(field + ".keyword").order(SortOrder.DESC);
+                        }
+
                     } else {
-                        sort = SortBuilders.fieldSort(field).order(SortOrder.ASC);
+                        if (("1").equals(attr)) {
+                            sort = SortBuilders.fieldSort(field).order(SortOrder.ASC);
+                        } else if (("2").equals(attr)) {
+                            sort = SortBuilders.fieldSort(field + ".keyword").order(SortOrder.ASC);
+                        }
+
                     }
                 }
                 //将排序设置到构建中
@@ -72,7 +83,6 @@ public class SearchConditionEncape {
                     }
                     builder.must(rangeQueryBuilder);
                 }
-
             } else if ("not".equals(type)) {
                 if (value.startsWith("[") && value.endsWith("]")) {
                     value = value.substring(0, value.length() - 1);

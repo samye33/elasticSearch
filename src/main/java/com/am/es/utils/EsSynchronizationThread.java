@@ -31,7 +31,6 @@ public class EsSynchronizationThread implements Runnable {
     @Override
     public void run() {
         try {
-            EsRecordIdExample esRecordIdExample = new EsRecordIdExample();
             esRecordId.setFlag(1);
             LOGGER.info("更新该记录的id");
             esRecordIdMapper.updateFlagByAll(esRecordId);
