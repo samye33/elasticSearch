@@ -36,6 +36,8 @@ public class ClueQueryResponseModel extends Extramodel implements Serializable {
     private String clueOwerGetTime;
 
     private String associates;
+
+    private String associatesName;
     //表clue_status的update_time
     private String updateTime;
     //绑定字段repeat_consultation_time
