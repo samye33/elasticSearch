@@ -13,6 +13,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
@@ -36,6 +38,11 @@ public class SearchConditionEncape {
                 if (value.startsWith("[") && value.endsWith("]")) {
                     value = value.substring(0, value.length() - 1);
                     value = value.substring(1, value.length());
+                    try {
+                        value= URLDecoder.decode(value,"utf-8");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     String arr[] = value.split(",");
                     QueryBuilders.termQuery(key, arr);
                 } else {
@@ -93,6 +100,13 @@ public class SearchConditionEncape {
                     builder.mustNot(QueryBuilders.termQuery(key, value));
                 }
 
+            }else if ("match".equals(type)){
+                try {
+                    value= URLDecoder.decode(value,"utf-8");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                builder.must(QueryBuilders.matchQuery(key,  value));
             }
         }
         PageRequest page = new PageRequest(currentPage, pageSize);
