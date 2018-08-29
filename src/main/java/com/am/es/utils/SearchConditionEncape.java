@@ -15,9 +15,7 @@ import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilde
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Stack;
+import java.util.*;
 
 public class SearchConditionEncape {
     public NativeSearchQuery queryCondition(Map<String, String> map, Integer currentPage, Integer pageSize) {
@@ -33,18 +31,20 @@ public class SearchConditionEncape {
             //根据type判断是准确查询还是模糊查询
             String type = jsonObject.getString("type");
             String value = jsonObject.getString("value");
-            //type为term 为准确查询;fuzzy为模糊查询;sort为排序;not为不满足条件;time为时间范围；rangeNum为数字范围
+            //type为term 为准确查询;fuzzy为模糊查询;sort为排序;not为不满足条件;time为时间范围；rangeNum为数字范围,match为字符匹配
             if (("term").equals(type)) {
                 if (value.startsWith("[") && value.endsWith("]")) {
                     value = value.substring(0, value.length() - 1);
                     value = value.substring(1, value.length());
                     try {
-                        value= URLDecoder.decode(value,"utf-8");
+                        value = URLDecoder.decode(value, "utf-8");
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
+
                     String arr[] = value.split(",");
-                    QueryBuilders.termQuery(key, arr);
+                    builder.must(QueryBuilders.termsQuery(key, arr));
+
                 } else {
                     builder.must(QueryBuilders.termQuery(key, value));
                 }
@@ -53,23 +53,12 @@ public class SearchConditionEncape {
                 builder.must(QueryBuilders.matchQuery(key, "*" + value + "*"));
             } else if (("sort").equals(type)) {
                 String field = jsonObject.getString("field");
-                String attr = jsonObject.getString("attr");
                 FieldSortBuilder sort = null;
                 if (StringUtils.isNotBlank(field)) {
                     if (("desc").equals(value)) {
-                        if (("1").equals(attr)) {
-                            sort = SortBuilders.fieldSort(field).order(SortOrder.DESC);
-                        } else if (("2").equals(attr)) {
-                            sort = SortBuilders.fieldSort(field + ".keyword").order(SortOrder.DESC);
-                        }
-
+                        sort = SortBuilders.fieldSort(field).order(SortOrder.DESC);
                     } else {
-                        if (("1").equals(attr)) {
-                            sort = SortBuilders.fieldSort(field).order(SortOrder.ASC);
-                        } else if (("2").equals(attr)) {
-                            sort = SortBuilders.fieldSort(field + ".keyword").order(SortOrder.ASC);
-                        }
-
+                        sort = SortBuilders.fieldSort(field).order(SortOrder.ASC);
                     }
                 }
                 //将排序设置到构建中
@@ -95,18 +84,18 @@ public class SearchConditionEncape {
                     value = value.substring(0, value.length() - 1);
                     value = value.substring(1, value.length());
                     String arr[] = value.split(",");
-                    builder.mustNot(QueryBuilders.termQuery(key, arr));
+                    builder.mustNot(QueryBuilders.termsQuery(key, arr));
                 } else {
                     builder.mustNot(QueryBuilders.termQuery(key, value));
                 }
 
-            }else if ("match".equals(type)){
+            } else if ("match".equals(type)) {
                 try {
-                    value= URLDecoder.decode(value,"utf-8");
+                    value = URLDecoder.decode(value, "utf-8");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                builder.must(QueryBuilders.matchQuery(key,  value));
+                builder.must(QueryBuilders.matchQuery(key, value));
             }
         }
         PageRequest page = new PageRequest(currentPage, pageSize);
