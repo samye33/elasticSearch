@@ -31,6 +31,9 @@ public class SearchConditionEncape {
             //根据type判断是准确查询还是模糊查询
             String type = jsonObject.getString("type");
             String value = jsonObject.getString("value");
+            if (StringUtils.isBlank(value)) {
+                continue;
+            }
             //type为term 为准确查询;fuzzy为模糊查询;sort为排序;not为不满足条件;time为时间范围；rangeNum为数字范围,match为字符匹配
             if (("term").equals(type)) {
                 if (value.startsWith("[") && value.endsWith("]")) {
@@ -64,6 +67,7 @@ public class SearchConditionEncape {
                 //将排序设置到构建中
                 nativeSearchQueryBuilder.withSort(sort);
             } else if ("range".equals(type)) {
+
                 String[] arr = value.split("~");
                 if (arr.length >= 1) {
                     String start = arr[0];
@@ -84,9 +88,9 @@ public class SearchConditionEncape {
                     value = value.substring(0, value.length() - 1);
                     value = value.substring(1, value.length());
                     String arr[] = value.split(",");
-                    builder.mustNot(QueryBuilders.termsQuery(key, arr));
+                    builder.mustNot(QueryBuilders.termsQuery("preUserId", arr));
                 } else {
-                    builder.mustNot(QueryBuilders.termQuery(key, value));
+                    builder.mustNot(QueryBuilders.termQuery("preUserId", value));
                 }
 
             } else if ("match".equals(type)) {
@@ -96,6 +100,8 @@ public class SearchConditionEncape {
                     e.printStackTrace();
                 }
                 builder.must(QueryBuilders.matchQuery(key, value));
+            } else if ("wildcard".equals(type)) {
+                builder.must(QueryBuilders.wildcardQuery(key, value + "*"));
             }
         }
         PageRequest page = new PageRequest(currentPage, pageSize);

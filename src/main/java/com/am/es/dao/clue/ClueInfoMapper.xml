@@ -424,6 +424,7 @@
 
         clue_status.clue_ower_get_time clueOwerGetTime,
         clue_status.associates associates,
+        (SELECT sys_user.true_name FROM permission.sys_users sys_user WHERE  clue_status.associates = sys_user.user_id)AS associatesName,
         clue_status.update_time updateTime,
         clue_status.recommender_contact showRecommenderContacat,
         clue_status.repeat_consultation_time repeatConsultationTime,
