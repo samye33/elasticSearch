@@ -24,7 +24,7 @@ public class Schedule {
     @Autowired
     private GetClueIdService getClueIdService;
 
-//    @Scheduled(cron = "0/15 * * * * ?")
+    @Scheduled(cron = "0/15 * * * * ?")
     public void scanTaskJob() {
         List<EsRecordId> esRecordIdList = esRecordIdMapper.selectAllLimit();
         for (int i = 0; i < esRecordIdList.size(); i++) {
