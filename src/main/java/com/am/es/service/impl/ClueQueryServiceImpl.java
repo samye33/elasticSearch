@@ -40,6 +40,7 @@ public class ClueQueryServiceImpl implements ClueQueryService {
         ClueQueryResponseModel clueQueryResponseModel = new ClueQueryResponseModel();
         clueQueryResponseModel.setId(id);
         searchClueQueryRepository.delete(clueQueryResponseModel);
+//        searchClueQueryRepository.deleteAll();
     }
 
     @Override

@@ -403,7 +403,7 @@
         clue_info.create_by clueCreateBy,
         (SELECT sys_user.true_name FROM permission.sys_users sys_user WHERE  clue_info.create_by = sys_user.user_id)AS clueCreateByName,
         first_base_batch.sale_level saleLevel,
-        (SELECT dictionary.`name` FROM  crmbase.base_dictionary dictionary WHERE first_base_batch.sale_level= dictionary.id) AS saleLevelName,
+        (SELECT dictionary.`name` FROM  crmbase.base_dictionary dictionary WHERE first_base_batch.sale_level= dictionary.id) AS saleClueLevelName,
         clue_info.create_time clueCreateTime,
         clue_info.source_channel_code sourceChannelCode,
         (SELECT base_channel.`name` FROM  crmbase.base_channel base_channel WHERE clue_info.source_channel_code= base_channel.id) AS sourceChannelName,
