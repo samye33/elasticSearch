@@ -33,8 +33,9 @@ public class ClueController {
         List<Integer> listId = new ArrayList<Integer>();
         try {
             for (int i = 0; i < id.length; i++) {
-                clueInfoService.saveClueQuery(Integer.parseInt(id[i]));
+                listId.add(Integer.parseInt(id[i]));
             }
+            clueInfoService.saveClueQuery(listId);
             ret.setStatus(HttpStatusCode.CODE_SUCCESS.getValue());
             ret.setMessage(HttpStatusCode.CODE_SUCCESS.getDesc());
         } catch (Exception e) {

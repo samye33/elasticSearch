@@ -394,47 +394,58 @@
         where custom_id = #{customId,jdbcType=INTEGER}
     </select>
 
-    <select id="selectQueryClueInfo" resultType="com.am.es.model.ClueQueryResponseModel"
-            parameterType="java.lang.Integer">
+    <select id="selectQueryClueInfo" resultType="com.am.es.model.ClueQueryResponseModel">
         SELECT
         clue_info.id,
         clue_info.remark remark,
         clue_info.suggest_contact_time suggestContactTime,
         clue_info.create_by clueCreateBy,
-        (SELECT sys_user.true_name FROM permission.sys_users sys_user WHERE  clue_info.create_by = sys_user.user_id)AS clueCreateByName,
+        (SELECT sys_user.true_name FROM permission.sys_users sys_user WHERE clue_info.create_by = sys_user.user_id)AS
+        clueCreateByName,
         first_base_batch.sale_level saleLevel,
-        (SELECT dictionary.`name` FROM  crmbase.base_dictionary dictionary WHERE first_base_batch.sale_level= dictionary.id) AS saleClueLevelName,
+        (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE first_base_batch.sale_level=
+        dictionary.id) AS saleClueLevelName,
         clue_info.create_time clueCreateTime,
         clue_info.source_channel_code sourceChannelCode,
-        (SELECT base_channel.`name` FROM  crmbase.base_channel base_channel WHERE clue_info.source_channel_code= base_channel.id) AS sourceChannelName,
+        (SELECT base_channel.`name` FROM crmbase.base_channel base_channel WHERE clue_info.source_channel_code=
+        base_channel.id) AS sourceChannelName,
         clue_info.channel_code_sub channelCodeSub,
-        (SELECT base_batch.`name` FROM  crmbase.base_batch base_batch WHERE clue_info.channel_code_sub= base_batch.id) AS channelCodeSubName,
+        (SELECT base_batch.`name` FROM crmbase.base_batch base_batch WHERE clue_info.channel_code_sub= base_batch.id) AS
+        channelCodeSubName,
         clue_info.clue_join_activitie clueJoinActivitie,
-        (SELECT activity_form.`name` FROM  crmproduct.activity activity_form WHERE clue_info.clue_join_activitie= activity_form.id) AS clueJoinActivitieName,
+        (SELECT activity_form.`name` FROM crmproduct.activity activity_form WHERE clue_info.clue_join_activitie=
+        activity_form.id) AS clueJoinActivitieName,
         clue_info.first_channel_code firstChannelCode,
 
         first_base_batch.`name` firstChannelName,
 
-        clue_info.effectively_channel_code  effectivelyChannelCode,
-        (SELECT base_batch.`name` FROM  crmbase.base_batch base_batch WHERE clue_info.effectively_channel_code= base_batch.id) AS effectivelyChannelCodeName,
+        clue_info.effectively_channel_code effectivelyChannelCode,
+        (SELECT base_batch.`name` FROM crmbase.base_batch base_batch WHERE clue_info.effectively_channel_code=
+        base_batch.id) AS effectivelyChannelCodeName,
         clue_info.clue_consult_type clueConsultTypeId,
-        (SELECT dictionary.`name` FROM  crmbase.base_dictionary dictionary WHERE clue_info.clue_consult_type= dictionary.id) AS clueConsultTypeName,
+        (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE clue_info.clue_consult_type=
+        dictionary.id) AS clueConsultTypeName,
         clue_info.course_type courseTypeId,
-        (SELECT dictionary.`name` FROM  crmbase.base_dictionary dictionary WHERE clue_info.course_type= dictionary.id) AS courseTypeName,
+        (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE clue_info.course_type= dictionary.id) AS
+        courseTypeName,
 
         clue_status.clue_ower_get_time clueOwerGetTime,
         clue_status.associates associates,
-        (SELECT sys_user.true_name FROM permission.sys_users sys_user WHERE  clue_status.associates = sys_user.user_id)AS associatesName,
+        (SELECT sys_user.true_name FROM permission.sys_users sys_user WHERE clue_status.associates = sys_user.user_id)AS
+        associatesName,
         clue_status.update_time updateTime,
         clue_status.recommender_contact showRecommenderContacat,
         clue_status.repeat_consultation_time repeatConsultationTime,
         clue_status.clue_owner clueOwner,
-        (SELECT sys_user.true_name FROM permission.sys_users sys_user WHERE  clue_status.clue_owner = sys_user.user_id)AS clueOwnerName,
+        (SELECT sys_user.true_name FROM permission.sys_users sys_user WHERE clue_status.clue_owner = sys_user.user_id)AS
+        clueOwnerName,
         clue_status.recommender recommenderName,
         clue_status.clue_school_manager_owner clueSchoolManagerOwnerId,
-        (SELECT sys_user.true_name FROM permission.sys_users sys_user WHERE  clue_status.clue_school_manager_owner = sys_user.user_id)AS clueSchoolManagerOwnerName,
+        (SELECT sys_user.true_name FROM permission.sys_users sys_user WHERE clue_status.clue_school_manager_owner =
+        sys_user.user_id)AS clueSchoolManagerOwnerName,
         clue_status.clue_status clueStatus,
-        (SELECT dictionary.`name` FROM  crmbase.base_dictionary dictionary WHERE clue_status.clue_status= dictionary.id) AS clueStatusName,
+        (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE clue_status.clue_status= dictionary.id)
+        AS clueStatusName,
 
         clue_describe.convenience_course_time convenienceCourseTime,
         clue_describe.sale_connet_count saleConnetCount,
@@ -442,13 +453,17 @@
         clue_describe.sale_dial_count saleDialCount,
         clue_describe.sale_failure_follow_count saleFailureFollowCount,
         clue_describe.next_communicate_time nextCommunicateTime,
-        (SELECT dictionary.`name` FROM  crmbase.base_dictionary dictionary WHERE dictionary.id=clue_describe.Urgency)AS urgencyName,
+        (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE dictionary.id=clue_describe.Urgency)AS
+        urgencyName,
         first_base_batch.`level` clueQuality,
-        (SELECT dictionary.`name` FROM  crmbase.base_dictionary dictionary WHERE first_base_batch.`level`= dictionary.id) AS clueQualityName,
+        (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE first_base_batch.`level`= dictionary.id)
+        AS clueQualityName,
         clue_describe.TrafficState trafficState,
-        (SELECT dictionary.`name` FROM  crmbase.base_dictionary dictionary WHERE clue_describe.TrafficState= dictionary.id) AS trafficStateName,
+        (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE clue_describe.TrafficState=
+        dictionary.id) AS trafficStateName,
         clue_describe.FailureReason failureReason,
-        (SELECT dictionary.`name` FROM  crmbase.base_dictionary dictionary WHERE clue_describe.FailureReason= dictionary.id) AS failureReasonName,
+        (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE clue_describe.FailureReason=
+        dictionary.id) AS failureReasonName,
 
         custom_info.true_name trueName,
         custom_info.parent_name contactName,
@@ -466,11 +481,14 @@
         custom_info.wx_user_name wxUserName,
         custom_info.relationship relationshipName,
         custom_info.qualification qualification,
-        (SELECT dictionary.`name` FROM  crmbase.base_dictionary dictionary WHERE custom_info.qualification= dictionary.id) AS qualificationName,
+        (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE custom_info.qualification=
+        dictionary.id) AS qualificationName,
         custom_info.gender gender,
 
-        (SELECT turn_record.pre_user_id FROM crmclues.clue_turn_record turn_record WHERE turn_record.clue_id=clue_info.id ORDER BY turn_record.create_time DESC LIMIT 1)AS preUserId,
-        (SELECT turn_record.pre_group_id FROM crmclues.clue_turn_record turn_record WHERE turn_record.clue_id=clue_info.id ORDER BY turn_record.create_time DESC LIMIT 1)AS preGroupId
+        (SELECT turn_record.pre_user_id FROM crmclues.clue_turn_record turn_record WHERE
+        turn_record.clue_id=clue_info.id ORDER BY turn_record.create_time DESC LIMIT 1)AS preUserId,
+        (SELECT turn_record.pre_group_id FROM crmclues.clue_turn_record turn_record WHERE
+        turn_record.clue_id=clue_info.id ORDER BY turn_record.create_time DESC LIMIT 1)AS preGroupId
 
         FROM
         crmclues.clue_info clue_info
@@ -480,10 +498,15 @@
         LEFT JOIN crmbase.base_province_area province_area ON province_area.identity_guid=custom_info.province
         LEFT JOIN crmbase.base_province_area city_area ON city_area.identity_guid=custom_info.city
         LEFT JOIN crmbase.base_batch first_base_batch ON first_base_batch.id=clue_info.first_channel_code
-        <if test="clueId!=0 and clueId!=null">
-            <where>
-                clue_info.id =#{clueId,jdbcType=INTEGER}
-            </where>
-        </if>
+        <where>
+            clue_info.id IN
+            <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
+                 #{item}
+            </foreach>
+        </where>
+    </select>
+
+    <select id="selectByBatchId" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        SELECT id  FROM clue_info  WHERE first_channel_code = #{batchId,jdbcType=INTEGER}
     </select>
 </mapper>

@@ -8,6 +8,9 @@ import com.am.es.service.GetClueIdService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class EsSynchronizationThread implements Runnable {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EsSynchronizationThread.class);
@@ -51,13 +54,16 @@ public class EsSynchronizationThread implements Runnable {
 
     private Boolean distinguishDB(EsRecordId esRecordId) {
         Boolean flag = false;
+        List<Integer>list=new ArrayList<Integer>();
         switch (esRecordId.getForm()) {
             case "clueInfo":
                 if (esRecordId.getType() == 1) {
-                    clueQueryService.saveClueQuery(esRecordId.getId());
+                    list.add(esRecordId.getId());
+                    clueQueryService.saveClueQuery(list);
                 } else if (esRecordId.getType() == -1) {
                     clueQueryService.deleteClueQuery(esRecordId.getId());
                 }
+                flag = true;
                 break;
             case "customInfo":
                 Integer clueId = getClueIdService.getClueIdBycustomerId(esRecordId.getId());
@@ -66,13 +72,20 @@ public class EsSynchronizationThread implements Runnable {
                     return flag;
                 }
                 if (esRecordId.getType() == 1) {
-                    clueQueryService.saveClueQuery(clueId);
+                    list.add(clueId);
+                    clueQueryService.saveClueQuery(list);
                 } else if (esRecordId.getType() == -1) {
                     clueQueryService.deleteClueQuery(clueId);
                 }
+                flag = true;
                 break;
+
+            case "batch":
+                Integer batchId = esRecordId.getId();
+                clueQueryService.saveBatchId(batchId);
+
         }
-        flag = true;
+
         return flag;
     }
 }

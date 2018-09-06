@@ -48,7 +48,7 @@
         </trim>
     </insert>
     <select id="selectAllLimit" resultMap="BaseResultMap">
-        SELECT DISTINCT * FROM es_record_id WHERE flag=0 ORDER BY id limit 0,20
+        SELECT DISTINCT * FROM es_record_id WHERE flag=0 ORDER BY id limit 0,10
     </select>
 
     <update id="updateFlagByAll" parameterType="com.am.es.entity.clue.EsRecordId">

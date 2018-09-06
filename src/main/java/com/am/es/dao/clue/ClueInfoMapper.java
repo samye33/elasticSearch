@@ -33,5 +33,7 @@ public interface ClueInfoMapper {
 
     ClueInfo selectByCustomId(@Param("customId") Integer customId);
 
-    List<ClueQueryResponseModel> selectQueryClueInfo(@Param("clueId") Integer clueId);
+    List<ClueQueryResponseModel> selectQueryClueInfo(List<Integer> list);
+
+    List<Integer> selectByBatchId(Integer batchId);
 }
