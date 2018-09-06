@@ -40,7 +40,12 @@ public class ClueQueryServiceImpl implements ClueQueryService {
         ClueQueryResponseModel clueQueryResponseModel = new ClueQueryResponseModel();
         clueQueryResponseModel.setId(id);
         searchClueQueryRepository.delete(clueQueryResponseModel);
+        //刪除所有数据
 //        searchClueQueryRepository.deleteAll();
+        //同步数据库所有数据
+//        List<ClueQueryResponseModel> list = clueInfoMapper.selectAll();
+//        System.out.println("this data length is:" + list.size());
+//        searchClueQueryRepository.saveAll(list);
     }
 
     @Override

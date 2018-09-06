@@ -36,4 +36,6 @@ public interface ClueInfoMapper {
     List<ClueQueryResponseModel> selectQueryClueInfo(List<Integer> list);
 
     List<Integer> selectByBatchId(Integer batchId);
+
+    List<ClueQueryResponseModel> selectAll();
 }
