@@ -60,7 +60,7 @@ public class EsSynchronizationThread implements Runnable {
                     list.add(esRecordId.getId());
                     Integer length = clueQueryService.saveClueQuery(list);
                     if (length > 0) {
-                        flag=true;
+                        flag = true;
                     }
                 } else if (esRecordId.getType() == -1) {
                     clueQueryService.deleteClueQuery(esRecordId.getId());
@@ -87,7 +87,6 @@ public class EsSynchronizationThread implements Runnable {
                 if (length > 0) {
                     flag = true;
                 }
-
         }
 
         return flag;
