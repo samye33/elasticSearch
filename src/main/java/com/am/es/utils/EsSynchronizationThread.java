@@ -54,7 +54,7 @@ public class EsSynchronizationThread implements Runnable {
 
     private Boolean distinguishDB(EsRecordId esRecordId) {
         Boolean flag = false;
-        List<Integer>list=new ArrayList<Integer>();
+        List<Integer> list = new ArrayList<Integer>();
         switch (esRecordId.getForm()) {
             case "clueInfo":
                 if (esRecordId.getType() == 1) {
@@ -83,7 +83,7 @@ public class EsSynchronizationThread implements Runnable {
             case "batch":
                 Integer batchId = esRecordId.getId();
                 clueQueryService.saveBatchId(batchId);
-
+                flag = true;
         }
 
         return flag;
