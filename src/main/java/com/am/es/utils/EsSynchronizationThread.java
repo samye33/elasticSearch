@@ -2,7 +2,6 @@ package com.am.es.utils;
 
 import com.am.es.dao.clue.EsRecordIdMapper;
 import com.am.es.entity.clue.EsRecordId;
-import com.am.es.entity.clue.EsRecordIdExample;
 import com.am.es.service.ClueQueryService;
 import com.am.es.service.GetClueIdService;
 import org.slf4j.Logger;
@@ -59,11 +58,13 @@ public class EsSynchronizationThread implements Runnable {
             case "clueInfo":
                 if (esRecordId.getType() == 1) {
                     list.add(esRecordId.getId());
-                    clueQueryService.saveClueQuery(list);
+                    Integer length = clueQueryService.saveClueQuery(list);
+                    if (length > 0) {
+                        flag=true;
+                    }
                 } else if (esRecordId.getType() == -1) {
                     clueQueryService.deleteClueQuery(esRecordId.getId());
                 }
-                flag = true;
                 break;
             case "customInfo":
                 Integer clueId = getClueIdService.getClueIdBycustomerId(esRecordId.getId());
@@ -82,8 +83,11 @@ public class EsSynchronizationThread implements Runnable {
 
             case "batch":
                 Integer batchId = esRecordId.getId();
-                clueQueryService.saveBatchId(batchId);
-                flag = true;
+                Integer length = clueQueryService.saveBatchId(batchId);
+                if (length > 0) {
+                    flag = true;
+                }
+
         }
 
         return flag;

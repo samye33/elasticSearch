@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface ClueQueryService {
-    void saveClueQuery(List<Integer> id);
+    Integer saveClueQuery(List<Integer> id);
 
     void deleteClueQuery(Integer id);
 
@@ -14,5 +14,5 @@ public interface ClueQueryService {
 
     PageClueInfo queryAllClueQueryList();
 
-    void saveBatchId(Integer batchId);
+    Integer saveBatchId(Integer batchId);
 }

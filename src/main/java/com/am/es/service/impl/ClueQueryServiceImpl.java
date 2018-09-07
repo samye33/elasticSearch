@@ -27,12 +27,12 @@ public class ClueQueryServiceImpl implements ClueQueryService {
     private SearchClueQueryRepository searchClueQueryRepository;
 
     @Override
-    public void saveClueQuery(List<Integer> clueId) {
+    public Integer saveClueQuery(List<Integer> clueId) {
         List<ClueQueryResponseModel> list = clueInfoMapper.selectQueryClueInfo(clueId);
         if (list.size() > 0) {
             searchClueQueryRepository.saveAll(list);
         }
-
+        return list.size();
     }
 
     @Override
@@ -78,8 +78,9 @@ public class ClueQueryServiceImpl implements ClueQueryService {
     }
 
     @Override
-    public void saveBatchId(Integer batchId) {
+    public Integer saveBatchId(Integer batchId) {
         List<Integer> list = clueInfoMapper.selectByBatchId(batchId);
-        saveClueQuery(list);
+        Integer length = saveClueQuery(list);
+        return length;
     }
 }
