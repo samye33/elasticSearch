@@ -28,7 +28,11 @@ public class ClueQueryServiceImpl implements ClueQueryService {
 
     @Override
     public Integer saveClueQuery(List<Integer> clueId) {
-        List<ClueQueryResponseModel> list = clueInfoMapper.selectQueryClueInfo(clueId);
+
+        List<ClueQueryResponseModel> list = null;
+        if (clueId.size() > 0) {
+            list = clueInfoMapper.selectQueryClueInfo(clueId);
+        }
         if (list.size() > 0) {
             searchClueQueryRepository.saveAll(list);
         }
