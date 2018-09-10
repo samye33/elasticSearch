@@ -58,10 +58,7 @@ public class EsSynchronizationThread implements Runnable {
             case "clueInfo":
                 if (esRecordId.getType() == 1) {
                     list.add(esRecordId.getId());
-                    Integer length = clueQueryService.saveClueQuery(list);
-                    if (length > 0) {
-                        flag = true;
-                    }
+                    flag = clueQueryService.saveClueQuery(list);
                 } else if (esRecordId.getType() == -1) {
                     clueQueryService.deleteClueQuery(esRecordId.getId());
                 }
@@ -83,10 +80,7 @@ public class EsSynchronizationThread implements Runnable {
 
             case "batch":
                 Integer batchId = esRecordId.getId();
-                Integer length = clueQueryService.saveBatchId(batchId);
-                if (length > 0) {
-                    flag = true;
-                }
+                flag = clueQueryService.saveBatchId(batchId);
         }
 
         return flag;
