@@ -34,7 +34,7 @@ public class SearchConditionEncape {
             if (StringUtils.isBlank(value)) {
                 continue;
             }
-            //type为term 为准确查询;fuzzy为模糊查询;sort为排序;not为不满足条件;time为时间范围；rangeNum为数字范围,match为字符匹配
+            //type为term 为准确查询;fuzzy为模糊查询;sort为排序;not为不满足条件;time为时间范围；rangeNum为数字范围,match为字符匹配,QueryString
             if (("term").equals(type)) {
                 if (value.startsWith("[") && value.endsWith("]")) {
                     value = value.substring(0, value.length() - 1);
@@ -105,6 +105,13 @@ public class SearchConditionEncape {
             } else if ("should".equals(type)) {
                 builder.should(QueryBuilders.termQuery(key, 0));
                 builder.should(QueryBuilders.existsQuery(key));
+            }else if ("queryString".equals(type)){
+                try {
+                    value = URLDecoder.decode(value, "utf-8");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                builder.must(QueryBuilders.queryStringQuery(value).field(key));
             }
         }
         PageRequest page = new PageRequest(currentPage, pageSize);
