@@ -44,22 +44,22 @@ public class ClueQueryServiceImpl implements ClueQueryService {
     @Override
     public List<Integer> deleteClueQuery(List<Integer> list) {
         List<Integer> res = new ArrayList<Integer>();
-//        for (int i = 0; i < list.size(); i++) {
-//            try {
-//                ClueQueryResponseModel clueQueryResponseModel = new ClueQueryResponseModel();
-//                clueQueryResponseModel.setId(list.get(i));
-//                searchClueQueryRepository.delete(clueQueryResponseModel);
-//            } catch (Exception e) {
-//                res.add(list.get(i));
-//                e.printStackTrace();
-//            }
-//        }
+        for (int i = 0; i < list.size(); i++) {
+            try {
+                ClueQueryResponseModel clueQueryResponseModel = new ClueQueryResponseModel();
+                clueQueryResponseModel.setId(list.get(i));
+                searchClueQueryRepository.delete(clueQueryResponseModel);
+            } catch (Exception e) {
+                res.add(list.get(i));
+                e.printStackTrace();
+            }
+        }
         //刪除所有数据
 //        searchClueQueryRepository.deleteAll();
         //同步数据库所有数据
-        List<ClueQueryResponseModel> lists = clueInfoMapper.selectAll();
-        System.out.println("this data length is:" + lists.size());
-        searchClueQueryRepository.saveAll(lists);
+//        List<ClueQueryResponseModel> lists = clueInfoMapper.selectAll();
+//        System.out.println("this data length is:" + lists.size());
+//        searchClueQueryRepository.saveAll(lists);
         return res;
     }
 
