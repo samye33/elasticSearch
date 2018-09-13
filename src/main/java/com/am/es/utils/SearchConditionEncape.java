@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang.StringUtils;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
-import org.elasticsearch.index.query.QueryStringQueryBuilder;
 import org.elasticsearch.index.query.RangeQueryBuilder;
 import org.elasticsearch.search.sort.FieldSortBuilder;
 import org.elasticsearch.search.sort.SortBuilders;
@@ -13,9 +12,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Stack;
 
 public class SearchConditionEncape {
     public NativeSearchQuery queryCondition(Map<String, String> map, Integer currentPage, Integer pageSize) {
@@ -105,9 +105,11 @@ public class SearchConditionEncape {
             } else if ("should".equals(type)) {
                 builder.should(QueryBuilders.termQuery(key, 0));
                 builder.should(QueryBuilders.existsQuery(key));
-            }else if ("queryString".equals(type)){
+            } else if ("queryString".equals(type)) {
                 try {
                     value = URLDecoder.decode(value, "utf-8");
+                    value = value.replace("[", (char) 92 + "[").replace("]",(char) 92 + "]");
+                    System.out.println(value);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
