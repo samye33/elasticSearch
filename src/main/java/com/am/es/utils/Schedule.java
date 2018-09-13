@@ -24,11 +24,10 @@ public class Schedule {
     @Autowired
     private GetClueIdService getClueIdService;
 
-    @Scheduled(cron = "0 0/1 * * * ?")
+    @Scheduled(cron = "0/30 * * * * ?")
     public void scanTaskJob() {
         //定时查询clueInfo线索信息并进行同步es
         try {
-
             List<Integer> clueIdSaveList = esRecordIdMapper.selectByCondition("clueInfo", 1);
             if (clueIdSaveList.size() > 0) {
                 ThreadPools.executorService.execute(new EsClueIdListSynchronizationThread(clueIdSaveList, null, null, clueQueryService, esRecordIdMapper, "clueInfo", 1, getClueIdService));
