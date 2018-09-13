@@ -114,7 +114,7 @@ public class SearchConditionEncape {
         nativeSearchQueryBuilder.withQuery(builder);
         //生产NativeSearchQuery
         NativeSearchQuery query = nativeSearchQueryBuilder.build();
-        System.out.println(query.toString());
+        System.out.println(query.getQuery().toString());
         return query;
     }
 
