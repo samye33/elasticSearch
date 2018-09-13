@@ -24,11 +24,34 @@ public class Schedule {
     @Autowired
     private GetClueIdService getClueIdService;
 
-    @Scheduled(cron = "0/15 * * * * ?")
+    @Scheduled(cron = "0 0/1 * * * ?")
     public void scanTaskJob() {
-        List<EsRecordId> esRecordIdList = esRecordIdMapper.selectAllLimit();
-        for (int i = 0; i < esRecordIdList.size(); i++) {
-            ThreadPools.executorService.execute(new EsSynchronizationThread(esRecordIdList.get(i), esRecordIdMapper, clueQueryService, getClueIdService));
+        //定时查询clueInfo线索信息并进行同步es
+        try {
+
+            List<Integer> clueIdSaveList = esRecordIdMapper.selectByCondition("clueInfo", 1);
+            if (clueIdSaveList.size() > 0) {
+                ThreadPools.executorService.execute(new EsClueIdListSynchronizationThread(clueIdSaveList, null, null, clueQueryService, esRecordIdMapper, "clueInfo", 1, getClueIdService));
+            }
+            //定时查询customInfo线索信息并进行同步es
+            List<Integer> customIdSaveList = esRecordIdMapper.selectByCondition("customInfo", 1);
+            if (customIdSaveList.size() > 0) {
+                ThreadPools.executorService.execute(new EsClueIdListSynchronizationThread(null, customIdSaveList, null, clueQueryService, esRecordIdMapper, "customInfo", 1, getClueIdService));
+            }
+            List<Integer> clueIdDeleteList = esRecordIdMapper.selectByCondition("clueInfo", -1);
+            if (clueIdDeleteList.size() > 0) {
+                ThreadPools.executorService.execute(new EsClueIdListSynchronizationThread(clueIdDeleteList, null, null, clueQueryService, esRecordIdMapper, "clueInfo", -1, getClueIdService));
+            }
+            List<Integer> customIdDeleteList = esRecordIdMapper.selectByCondition("customInfo", -1);
+            if (customIdDeleteList.size() > 0) {
+                ThreadPools.executorService.execute(new EsClueIdListSynchronizationThread(null, customIdDeleteList, null, clueQueryService, esRecordIdMapper, "customInfo", -1, getClueIdService));
+            }
+            List<Integer> batchIdDeleteList = esRecordIdMapper.selectByCondition("batch", 1);
+            for (int i = 0; i < batchIdDeleteList.size(); i++) {
+                ThreadPools.executorService.execute(new EsClueIdListSynchronizationThread(null, null, batchIdDeleteList.get(i), clueQueryService, esRecordIdMapper, "batch", 1, getClueIdService));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

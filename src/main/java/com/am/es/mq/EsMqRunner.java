@@ -90,7 +90,7 @@ public class EsMqRunner implements CommandLineRunner {
                 if ("save".equals(type)) {
                     clueQueryService.saveClueQuery(list);
                 } else if ("delete".equals(type)) {
-                    clueQueryService.deleteClueQuery(id);
+                    clueQueryService.deleteClueQuery(list);
                 }
                 break;
             case "ClueTurnRecordMapper":
@@ -102,11 +102,11 @@ public class EsMqRunner implements CommandLineRunner {
                 break;
 
             case "CustomInfoMapper":
-                id = getClueIdService.getClueIdBycustomerId(id);
+//                id = getClueIdService.getClueIdBycustomerId(id);
                 if ("save".equals(type)) {
                     clueQueryService.saveClueQuery(list);
                 } else if ("delete".equals(type)) {
-                    clueQueryService.deleteClueQuery(id);
+                    clueQueryService.deleteClueQuery(list);
                 }
                 break;
             case "ClueDescribeMapper":
@@ -115,7 +115,7 @@ public class EsMqRunner implements CommandLineRunner {
                 if ("save".equals(type)) {
                     clueQueryService.saveClueQuery(list);
                 } else if ("delete".equals(type)) {
-                    clueQueryService.deleteClueQuery(clueId);
+                    clueQueryService.deleteClueQuery(list);
                 }
                 break;
             case "ClueStatusMapper":
@@ -124,7 +124,7 @@ public class EsMqRunner implements CommandLineRunner {
                 if ("save".equals(type)) {
                     clueQueryService.saveClueQuery(list);
                 } else if ("delete".equals(type)) {
-                    clueQueryService.deleteClueQuery(id);
+                    clueQueryService.deleteClueQuery(list);
                 }
                 break;
 

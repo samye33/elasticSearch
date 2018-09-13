@@ -8,7 +8,7 @@ import java.util.Map;
 public interface ClueQueryService {
     Boolean saveClueQuery(List<Integer> id);
 
-    void deleteClueQuery(Integer id);
+    List<Integer> deleteClueQuery(List<Integer> id);
 
     PageClueInfo getClueQueryList(Map<String, String> map);
 

@@ -50,7 +50,9 @@ public class ClueController {
     public Result deleteClueInfo(HttpServletRequest request, HttpServletResponse response, Integer id) {
         Result ret = new Result();
         try {
-            clueInfoService.deleteClueQuery(id);
+            List<Integer>list=new ArrayList<Integer>();
+            list.add(id);
+            clueInfoService.deleteClueQuery(list);
             ret.setStatus(HttpStatusCode.CODE_SUCCESS.getValue());
             ret.setMessage(HttpStatusCode.CODE_SUCCESS.getDesc());
         } catch (Exception e) {

@@ -102,6 +102,9 @@ public class SearchConditionEncape {
                 builder.must(QueryBuilders.matchQuery(key, value));
             } else if ("wildcard".equals(type)) {
                 builder.must(QueryBuilders.wildcardQuery(key, value + "*"));
+            } else if ("should".equals(type)) {
+                builder.should(QueryBuilders.termQuery(key, 0));
+                builder.should(QueryBuilders.existsQuery(key));
             }
         }
         PageRequest page = new PageRequest(currentPage, pageSize);
@@ -144,7 +147,7 @@ public class SearchConditionEncape {
                                     //跳出该循环，并从该处进行分离
                                     String jsonStr = tempStr.substring(0, j);
                                     String newKey = tempStr.substring(j + 1, tempStr.length());
-                                    map.put(key, jsonStr.replace(" ", ""));
+                                    map.put(key, jsonStr);
                                     key = newKey.replace(" ", "");
                                     //清空栈
                                     stackChar.clear();
@@ -172,7 +175,7 @@ public class SearchConditionEncape {
                                     } else {
                                         String jsonStr = tempStr.substring(0, j);
                                         String newKey = tempStr.substring(j + 1, tempStr.length());
-                                        map.put(key, jsonStr.replace(" ", ""));
+                                        map.put(key, jsonStr);
                                         key = newKey.replace(" ", "");
                                         //清空栈
                                         stack.clear();

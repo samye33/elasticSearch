@@ -501,7 +501,7 @@
         <where>
             clue_info.id IN
             <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
-                 #{item}
+                #{item}
             </foreach>
         </where>
     </select>
@@ -613,5 +613,16 @@
         LEFT JOIN crmbase.base_province_area province_area ON province_area.identity_guid=custom_info.province
         LEFT JOIN crmbase.base_province_area city_area ON city_area.identity_guid=custom_info.city
         LEFT JOIN crmbase.base_batch first_base_batch ON first_base_batch.id=clue_info.first_channel_code
+    </select>
+    <select id="selectByCustomIdList" resultType="java.lang.Integer">
+        select
+        DISTINCT
+          id
+        from clue_info
+        where id IN
+        <foreach collection="list" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+
     </select>
 </mapper>

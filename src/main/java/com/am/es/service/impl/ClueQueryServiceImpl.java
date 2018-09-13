@@ -14,6 +14,7 @@ import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -41,16 +42,25 @@ public class ClueQueryServiceImpl implements ClueQueryService {
     }
 
     @Override
-    public void deleteClueQuery(Integer id) {
-        ClueQueryResponseModel clueQueryResponseModel = new ClueQueryResponseModel();
-        clueQueryResponseModel.setId(id);
-        searchClueQueryRepository.delete(clueQueryResponseModel);
+    public List<Integer> deleteClueQuery(List<Integer> list) {
+        List<Integer> res = new ArrayList<Integer>();
+        for (int i = 0; i < list.size(); i++) {
+            try {
+                ClueQueryResponseModel clueQueryResponseModel = new ClueQueryResponseModel();
+                clueQueryResponseModel.setId(list.get(i));
+                searchClueQueryRepository.delete(clueQueryResponseModel);
+            } catch (Exception e) {
+                res.add(list.get(i));
+                e.printStackTrace();
+            }
+        }
         //刪除所有数据
 //        searchClueQueryRepository.deleteAll();
         //同步数据库所有数据
-//        List<ClueQueryResponseModel> list = clueInfoMapper.selectAll();
-//        System.out.println("this data length is:" + list.size());
-//        searchClueQueryRepository.saveAll(list);
+//        List<ClueQueryResponseModel> lists = clueInfoMapper.selectAll();
+//        System.out.println("this data length is:" + lists.size());
+//        searchClueQueryRepository.saveAll(lists);
+        return res;
     }
 
     @Override
@@ -85,6 +95,6 @@ public class ClueQueryServiceImpl implements ClueQueryService {
     @Override
     public Boolean saveBatchId(Integer batchId) {
         List<Integer> list = clueInfoMapper.selectByBatchId(batchId);
-        return  saveClueQuery(list);
+        return saveClueQuery(list);
     }
 }

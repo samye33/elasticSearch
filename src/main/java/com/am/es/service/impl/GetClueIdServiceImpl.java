@@ -8,6 +8,8 @@ import com.am.es.service.GetClueIdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class GetClueIdServiceImpl implements GetClueIdService {
 
@@ -23,8 +25,8 @@ public class GetClueIdServiceImpl implements GetClueIdService {
 
 
     @Override
-    public Integer getClueIdBycustomerId(Integer customId) {
-        return clueInfoMapper.selectByCustomId(customId).getId();
+    public List<Integer> getClueIdBycustomerId(List<Integer> customId) {
+        return clueInfoMapper.selectByCustomIdList(customId);
     }
 
     @Override

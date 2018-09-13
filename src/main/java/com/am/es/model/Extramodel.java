@@ -47,4 +47,6 @@ public class Extramodel {
 
     private Integer saleClueLevel;
 
+    private Integer clueOwnerDeparment;
+
 }

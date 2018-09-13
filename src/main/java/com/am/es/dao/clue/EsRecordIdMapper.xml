@@ -50,28 +50,46 @@
     <select id="selectAllLimit" resultMap="BaseResultMap">
         SELECT DISTINCT * FROM es_record_id WHERE flag=0 ORDER BY id limit 0,10
     </select>
+    <select id="selectByCondition" resultType="java.lang.Integer">
+        SELECT
+	      id
+        FROM
+	      es_record_id
+        WHERE form=#{form} AND type=#{type}
+        GROUP BY
+	      id
+    </select>
 
-    <update id="updateFlagByAll" parameterType="com.am.es.entity.clue.EsRecordId">
+    <update id="updateFlagByAll" parameterType="java.util.Map">
         UPDATE
-          es_record_id
+        es_record_id
         SET
-         flag= #{flag,jdbcType=INTEGER}
+        flag= #{flag,jdbcType=INTEGER}
         WHERE
-          id=#{id,jdbcType=INTEGER}
+        form= #{form,jdbcType=VARCHAR}
+        AND
+          type=#{type,jdbcType=INTEGER}
+        <if test="idList !=null and idList.size>0">
+          AND id IN
+            <foreach collection="idList" item="item" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+    </update>
+    <delete id="deleteByIdTypeForm" parameterType="java.util.Map">
+        DELETE FROM
+          es_record_id
+        WHERE
+          flag=1
         AND
           form= #{form,jdbcType=VARCHAR}
         AND
           type=#{type,jdbcType=INTEGER}
-
-    </update>
-    <delete id="deleteByIdTypeForm" parameterType="com.am.es.entity.clue.EsRecordId">
-        DELETE FROM
-          es_record_id
-        WHERE
-          id=#{id,jdbcType=INTEGER}
-        AND
-          form= #{form,jdbcType=VARCHAR}
-        AND
-          type= #{type,jdbcType=INTEGER}
+        <if test="idList !=null and idList.size>0">
+            AND id IN
+            <foreach collection="idList" item="item" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
     </delete>
 </mapper>

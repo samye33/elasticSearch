@@ -32,6 +32,7 @@ public class EsSynchronizationThread implements Runnable {
 
     @Override
     public void run() {
+        /*
         try {
             esRecordId.setFlag(1);
             LOGGER.info("更新该记录的id");
@@ -49,6 +50,7 @@ public class EsSynchronizationThread implements Runnable {
         } catch (Exception e) {
             LOGGER.error("", e);
         }
+        */
     }
 
     private Boolean distinguishDB(EsRecordId esRecordId) {
@@ -60,23 +62,23 @@ public class EsSynchronizationThread implements Runnable {
                     list.add(esRecordId.getId());
                     flag = clueQueryService.saveClueQuery(list);
                 } else if (esRecordId.getType() == -1) {
-                    clueQueryService.deleteClueQuery(esRecordId.getId());
+                    list.add(esRecordId.getId());
+                    clueQueryService.deleteClueQuery(list);
                 }
                 break;
             case "customInfo":
-                Integer clueId = getClueIdService.getClueIdBycustomerId(esRecordId.getId());
-                if (null == clueId) {
-                    LOGGER.info("我要返回了");
-                    return flag;
-                }
-                if (esRecordId.getType() == 1) {
-                    list.add(clueId);
-                    clueQueryService.saveClueQuery(list);
-                } else if (esRecordId.getType() == -1) {
-                    clueQueryService.deleteClueQuery(clueId);
-                }
-                flag = true;
-                break;
+//                list = getClueIdService.getClueIdBycustomerId(esRecordId.getId());
+//                if (null == list) {
+//                    LOGGER.info("我要返回了");
+//                    return flag;
+//                }
+//                if (esRecordId.getType() == 1) {
+//                    clueQueryService.saveClueQuery(list);
+//                } else if (esRecordId.getType() == -1) {
+//                    clueQueryService.deleteClueQuery(clueId);
+//                }
+//                flag = true;
+//                break;
 
             case "batch":
                 Integer batchId = esRecordId.getId();

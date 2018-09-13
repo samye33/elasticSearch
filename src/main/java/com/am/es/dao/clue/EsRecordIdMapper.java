@@ -1,8 +1,10 @@
 package com.am.es.dao.clue;
 
 import com.am.es.entity.clue.EsRecordId;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 public interface EsRecordIdMapper {
     int insert(EsRecordId record);
@@ -11,7 +13,9 @@ public interface EsRecordIdMapper {
 
     List<EsRecordId> selectAllLimit();
 
-    int updateFlagByAll(EsRecordId record);
+    int updateFlagByAll(Map map);
 
-    int deleteByIdTypeForm(EsRecordId record);
+    int deleteByIdTypeForm(Map map);
+
+    List<Integer> selectByCondition(@Param("form") String form, @Param("type") Integer type);
 }
