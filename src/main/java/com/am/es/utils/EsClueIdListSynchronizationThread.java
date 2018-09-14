@@ -72,7 +72,16 @@ public class EsClueIdListSynchronizationThread implements Runnable {
                     esRecordIdMapper.updateFlagByAll(map);
                 }
             } else {
-                clueQueryService.saveBatchId(batchId);
+                map.put("flag", 1);
+                map.put("idList", customIdList);
+                esRecordIdMapper.updateFlagByAll(map);
+                Boolean flag = clueQueryService.saveBatchId(batchId);
+                if (flag) {
+                    esRecordIdMapper.deleteByIdTypeForm(map);
+                } else {
+                    map.put("flag", 0);
+                    esRecordIdMapper.updateFlagByAll(map);
+                }
             }
         } else {
             if (clueIdlist != null) {
