@@ -6,6 +6,7 @@ import com.am.es.model.PageClueInfo;
 import com.am.es.model.Result;
 import com.am.es.service.ClueQueryService;
 import com.am.es.utils.SearchConditionEncape;
+import com.sun.org.apache.regexp.internal.RE;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +51,7 @@ public class ClueController {
     public Result deleteClueInfo(HttpServletRequest request, HttpServletResponse response, Integer id) {
         Result ret = new Result();
         try {
-            List<Integer>list=new ArrayList<Integer>();
+            List<Integer> list = new ArrayList<Integer>();
             list.add(id);
             clueInfoService.deleteClueQuery(list);
             ret.setStatus(HttpStatusCode.CODE_SUCCESS.getValue());
@@ -93,6 +94,18 @@ public class ClueController {
             ret.setStatus(HttpStatusCode.CODE_SERVER_INTERNAL_ERROR.getValue());
             ret.setMessage(HttpStatusCode.CODE_SERVER_INTERNAL_ERROR.getDesc());
             logger.error("", e);
+        }
+        return ret;
+    }
+
+    @GetMapping("/test")
+    public Result test(HttpServletRequest request, HttpServletResponse response) {
+        Result ret = new Result();
+        try {
+            PageClueInfo page=clueInfoService.test();
+            ret.setData(page);
+        } catch (Exception e) {
+
         }
         return ret;
     }

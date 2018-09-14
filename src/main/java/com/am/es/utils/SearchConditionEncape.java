@@ -47,7 +47,6 @@ public class SearchConditionEncape {
 
                     String arr[] = value.split(",");
                     builder.must(QueryBuilders.termsQuery(key, arr));
-
                 } else {
                     builder.must(QueryBuilders.termQuery(key, value));
                 }
@@ -66,8 +65,7 @@ public class SearchConditionEncape {
                 }
                 //将排序设置到构建中
                 nativeSearchQueryBuilder.withSort(sort);
-            } else if ("range".equals(type)) {
-
+            } else if ("mustRange".equals(type)) {
                 String[] arr = value.split("~");
                 if (arr.length >= 1) {
                     String start = arr[0];
@@ -102,18 +100,34 @@ public class SearchConditionEncape {
                 builder.must(QueryBuilders.matchQuery(key, value));
             } else if ("wildcard".equals(type)) {
                 builder.must(QueryBuilders.wildcardQuery(key, value + "*"));
-            } else if ("should".equals(type)) {
+            } else if ("shouldNull".equals(type)) {
                 builder.should(QueryBuilders.termQuery(key, 0));
                 builder.should(QueryBuilders.existsQuery(key));
             } else if ("queryString".equals(type)) {
                 try {
                     value = URLDecoder.decode(value, "utf-8");
-                    value = value.replace("[", (char) 92 + "[").replace("]",(char) 92 + "]");
+                    value = value.replace("[", (char) 92 + "[").replace("]", (char) 92 + "]");
                     System.out.println(value);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
                 builder.must(QueryBuilders.queryStringQuery(value).field(key));
+            } else if ("shouldRange".equals(type)) {
+                String[] arr = value.split("~");
+                if (arr.length >= 1) {
+                    String start = arr[0];
+                    RangeQueryBuilder rangeQueryBuilder = QueryBuilders.rangeQuery(key);
+                    if (StringUtils.isNotBlank(start)) {
+                        rangeQueryBuilder.from(start).includeLower(true);
+                    }
+                    if (arr.length == 2) {
+                        String end = arr[1];
+                        if (StringUtils.isNotBlank(end)) {
+                            rangeQueryBuilder.to(end).includeUpper(true);
+                        }
+                    }
+                    builder.should(rangeQueryBuilder);
+                }
             }
         }
         PageRequest page = new PageRequest(currentPage, pageSize);
@@ -138,7 +152,7 @@ public class SearchConditionEncape {
                 String tempStr = eArr[i];
                 //如果为最后一个直接做为值进行封装
                 if (i == eArr.length - 1) {
-                    map.put(key, tempStr.replace(" ", ""));
+                    map.put(key, tempStr);
                 } else {
                     //判断字符串中是否包含又"'{', '}','[',']'"字符
                     if ((tempStr).contains("{") || (tempStr).contains("[") || (tempStr).contains("}") || (tempStr).contains("]")) {

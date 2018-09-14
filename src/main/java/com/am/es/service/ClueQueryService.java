@@ -15,4 +15,6 @@ public interface ClueQueryService {
     PageClueInfo queryAllClueQueryList();
 
     Boolean saveBatchId(Integer batchId);
+
+    PageClueInfo test();
 }

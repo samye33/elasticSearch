@@ -44,22 +44,22 @@ public class ClueQueryServiceImpl implements ClueQueryService {
     @Override
     public List<Integer> deleteClueQuery(List<Integer> list) {
         List<Integer> res = new ArrayList<Integer>();
-//        for (int i = 0; i < list.size(); i++) {
-//            try {
-//                ClueQueryResponseModel clueQueryResponseModel = new ClueQueryResponseModel();
-//                clueQueryResponseModel.setId(list.get(i));
-//                searchClueQueryRepository.delete(clueQueryResponseModel);
-//            } catch (Exception e) {
-//                res.add(list.get(i));
-//                e.printStackTrace();
-//            }
-//        }
+        for (int i = 0; i < list.size(); i++) {
+            try {
+                ClueQueryResponseModel clueQueryResponseModel = new ClueQueryResponseModel();
+                clueQueryResponseModel.setId(list.get(i));
+                searchClueQueryRepository.delete(clueQueryResponseModel);
+            } catch (Exception e) {
+                res.add(list.get(i));
+                e.printStackTrace();
+            }
+        }
         //刪除所有数据
 //        searchClueQueryRepository.deleteAll();
         //同步数据库所有数据
-        List<ClueQueryResponseModel> lists = clueInfoMapper.selectAll();
-        System.out.println("this data length is:" + lists.size());
-        searchClueQueryRepository.saveAll(lists);
+//        List<ClueQueryResponseModel> lists = clueInfoMapper.selectAll();
+//        System.out.println("this data length is:" + lists.size());
+//        searchClueQueryRepository.saveAll(lists);
         return res;
     }
 
@@ -96,5 +96,26 @@ public class ClueQueryServiceImpl implements ClueQueryService {
     public Boolean saveBatchId(Integer batchId) {
         List<Integer> list = clueInfoMapper.selectByBatchId(batchId);
         return saveClueQuery(list);
+    }
+
+    @Override
+    public PageClueInfo test() {
+        PageClueInfo pages = new PageClueInfo();
+        BoolQueryBuilder builder = QueryBuilders.boolQuery();
+        builder.must(QueryBuilders.termQuery("clueOwner", 0));
+        builder.must(QueryBuilders.termQuery("clueOwnerDeparment", 0));
+        BoolQueryBuilder builders = QueryBuilders.boolQuery();
+        builders.should(QueryBuilders.rangeQuery("clueCreateTime.keyword").from("2018-09-14 00:00:00").to("2018-09-14 23:59:59"));
+        builders.should(QueryBuilders.rangeQuery("repeatConsultationTime.keyword").from("2018-09-12 00:00:00").to("2018-09-12 23:59:59"));
+        builder.must(builders);
+        NativeSearchQueryBuilder nativeSearchQueryBuilder = new NativeSearchQueryBuilder();
+        nativeSearchQueryBuilder.withQuery(builder);
+        NativeSearchQuery query = nativeSearchQueryBuilder.build();
+        System.out.println(query.getQuery().toString());
+        Page<ClueQueryResponseModel> search = searchClueQueryRepository.search(query);
+        List<ClueQueryResponseModel> list = search.getContent();
+        pages.setTotal(search.getTotalElements());
+        pages.setList(list);
+        return pages;
     }
 }
