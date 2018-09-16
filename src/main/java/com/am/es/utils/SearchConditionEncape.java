@@ -1,8 +1,10 @@
 package com.am.es.utils;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang.StringUtils;
 import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.query.RangeQueryBuilder;
 import org.elasticsearch.search.sort.FieldSortBuilder;
@@ -18,24 +20,125 @@ import java.util.Map;
 import java.util.Stack;
 
 public class SearchConditionEncape {
-    public NativeSearchQuery queryCondition(Map<String, String> map, Integer currentPage, Integer pageSize) {
+    /**
+     * @param map
+     * @param currentPage
+     * @param pageSize
+     * @return org.springframework.data.elasticsearch.core.query.NativeSearchQuery
+     * @author sam.ye
+     * @desc
+     */
+    public NativeSearchQuery queryConditions(Map<String, String> map, Integer currentPage, Integer pageSize) {
         BoolQueryBuilder builder = QueryBuilders.boolQuery();
         NativeSearchQueryBuilder nativeSearchQueryBuilder = new NativeSearchQueryBuilder();
-        for (Map.Entry<String, String> entry : map.entrySet()) {
-            String key = entry.getKey();
-            if (key.equals("currentPage") || key.equals("pageSize")) {
-                continue;
+
+        //获取Must的封装条件对象
+        String mustStr = map.get("must");
+        String shouldStr = map.get("should");
+        String notStr = map.get("not");
+        String sortStr = map.get("sort");
+        JSONArray mustArr = null, shouldArr = null, notArr = null;
+        JSONObject jsonSort = null;
+        if (StringUtils.isNotBlank(mustStr)) {
+            mustArr = JSONArray.parseArray(mustStr);
+            builder = recursionEncape(builder, mustArr, "must");
+        }
+        if (StringUtils.isNotBlank(shouldStr)) {
+            shouldArr = JSONArray.parseArray(shouldStr);
+            builder = recursionEncape(builder, shouldArr, "should");
+        }
+        if (StringUtils.isNotBlank(notStr)) {
+            notArr = JSONArray.parseArray(notStr);
+            builder = recursionEncape(builder, notArr, "not");
+        }
+        //将搜索条件设置到构建中
+        nativeSearchQueryBuilder.withQuery(builder);
+        if (currentPage != null && pageSize > 0) {
+            PageRequest page = new PageRequest(currentPage, pageSize);
+            //将分页设置到构建中
+            nativeSearchQueryBuilder.withPageable(page);
+        }
+        if (StringUtils.isNotBlank(sortStr)) {
+            jsonSort = JSONObject.parseObject(sortStr);
+            String key = jsonSort.getString("key");
+            String value = jsonSort.getString("value");
+            FieldSortBuilder sort = null;
+            if (("desc").equals(value)) {
+                sort = SortBuilders.fieldSort(key).order(SortOrder.DESC);
+            } else {
+                sort = SortBuilders.fieldSort(key).order(SortOrder.ASC);
             }
-            String str = entry.getValue();
-            JSONObject jsonObject = JSONObject.parseObject(str);
-            //根据type判断是准确查询还是模糊查询
-            String type = jsonObject.getString("type");
-            String value = jsonObject.getString("value");
-            if (StringUtils.isBlank(value)) {
-                continue;
+            //将排序设置到构建中
+            nativeSearchQueryBuilder.withSort(sort);
+        }
+        NativeSearchQuery query = nativeSearchQueryBuilder.build();
+        System.out.println(query.getQuery().toString());
+        return query;
+    }
+
+    private BoolQueryBuilder recursionEncape(BoolQueryBuilder builder, JSONArray jsonArray, String logic) {
+        //如果有子查询则用递归来进行多层查询封装
+        BoolQueryBuilder newBuilder = QueryBuilders.boolQuery();
+        for (int i = 0; i < jsonArray.size(); i++) {
+            //如果jsonObject对象中存在child数组，且不为空，则表示该查询存在子查询
+            JSONObject jsonObject = jsonArray.getJSONObject(i);
+            //如果是child不为null，则递归封装；反之则进行正常封装
+            JSONObject child = jsonObject.getJSONObject("child");
+            if (null != child) {
+                String newLogic = child.getString("logic");
+                JSONArray childArray = child.getJSONArray("arrCondition");
+                newBuilder = recursionEncape(newBuilder, childArray, newLogic);
+                if ("must".equals(logic)) {
+                    builder.must(newBuilder);
+                } else if ("should".equals(logic)) {
+                    builder.should(newBuilder);
+                } else {
+                    builder.mustNot(newBuilder);
+                }
+            } else {
+                String key = jsonObject.getString("key");
+                String value = jsonObject.getString("value");
+                //json中key为es的查询字段；value为查询值；type为查询类型[term 为准确查询;fuzzy为模糊查询;range为范围查询,match为字符匹配,QueryString字符串查询（可查询带特殊字符）]
+                String type = jsonObject.getString("type");
+                if ("must".equals(logic)) {
+                    if (type.equals("null")) {
+                        builder.must(QueryBuilders.existsQuery(key));
+                    } else {
+                        QueryBuilder queryBuilder = queryEncape(key, value, type);
+                        if (null != queryBuilder) {
+                            builder.must(queryBuilder);
+                        }
+
+                    }
+                } else if ("should".equals(logic)) {
+                    if (type.equals("null")) {
+                        builder.should(QueryBuilders.termQuery(key, 0));
+                        builder.should(QueryBuilders.existsQuery(key));
+                    } else {
+                        QueryBuilder queryBuilder = queryEncape(key, value, type);
+                        if (null != queryBuilder) {
+                            builder.should(queryBuilder);
+                        }
+                    }
+                } else {
+                    if (type.equals("null")) {
+                        builder.mustNot(QueryBuilders.existsQuery(key));
+                    } else {
+                        QueryBuilder queryBuilder = queryEncape(key, value, type);
+                        if (null != queryBuilder) {
+                            builder.mustNot(queryBuilder);
+                        }
+                    }
+                }
             }
-            //type为term 为准确查询;fuzzy为模糊查询;sort为排序;not为不满足条件;time为时间范围；rangeNum为数字范围,match为字符匹配,QueryString
-            if (("term").equals(type)) {
+        }
+        return builder;
+    }
+
+    private QueryBuilder queryEncape(String key, String value, String type) {
+        QueryBuilder queryBuilder = null;
+        switch (type) {
+            case "term":
                 if (value.startsWith("[") && value.endsWith("]")) {
                     value = value.substring(0, value.length() - 1);
                     value = value.substring(1, value.length());
@@ -44,28 +147,25 @@ public class SearchConditionEncape {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-
                     String arr[] = value.split(",");
-                    builder.must(QueryBuilders.termsQuery(key, arr));
+                    queryBuilder = QueryBuilders.termsQuery(key, arr);
                 } else {
-                    builder.must(QueryBuilders.termQuery(key, value));
+                    queryBuilder = QueryBuilders.termQuery(key, value);
                 }
+                break;
+            case "match":
+                try {
+                    value = URLDecoder.decode(value, "utf-8");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                queryBuilder = QueryBuilders.matchQuery(key, value);
+                break;
 
-            } else if (("fuzzy").equals(type)) {
-                builder.must(QueryBuilders.matchQuery(key, "*" + value + "*"));
-            } else if (("sort").equals(type)) {
-                String field = jsonObject.getString("field");
-                FieldSortBuilder sort = null;
-                if (StringUtils.isNotBlank(field)) {
-                    if (("desc").equals(value)) {
-                        sort = SortBuilders.fieldSort(field).order(SortOrder.DESC);
-                    } else {
-                        sort = SortBuilders.fieldSort(field).order(SortOrder.ASC);
-                    }
-                }
-                //将排序设置到构建中
-                nativeSearchQueryBuilder.withSort(sort);
-            } else if ("mustRange".equals(type)) {
+            case "fuzzy":
+                QueryBuilders.matchQuery(key, "*" + value + "*");
+                break;
+            case "range":
                 String[] arr = value.split("~");
                 if (arr.length >= 1) {
                     String start = arr[0];
@@ -79,67 +179,34 @@ public class SearchConditionEncape {
                             rangeQueryBuilder.to(end).includeUpper(true);
                         }
                     }
-                    builder.must(rangeQueryBuilder);
+                    queryBuilder = rangeQueryBuilder;
                 }
-            } else if ("not".equals(type)) {
-                if (value.startsWith("[") && value.endsWith("]")) {
-                    value = value.substring(0, value.length() - 1);
-                    value = value.substring(1, value.length());
-                    String arr[] = value.split(",");
-                    builder.mustNot(QueryBuilders.termsQuery("preUserId", arr));
-                } else {
-                    builder.mustNot(QueryBuilders.termQuery("preUserId", value));
-                }
+                break;
+            case "wildcard":
+                QueryBuilders.wildcardQuery(key, value + "*");
+                break;
 
-            } else if ("match".equals(type)) {
+            case "queryString":
                 try {
-                    value = URLDecoder.decode(value, "utf-8");
+                    value = URLDecoder.decode(value, "utf-8").replace("[", (char) 92 + "[").replace("]", (char) 92 + "]");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                builder.must(QueryBuilders.matchQuery(key, value));
-            } else if ("wildcard".equals(type)) {
-                builder.must(QueryBuilders.wildcardQuery(key, value + "*"));
-            } else if ("shouldNull".equals(type)) {
-                builder.should(QueryBuilders.termQuery(key, 0));
-                builder.should(QueryBuilders.existsQuery(key));
-            } else if ("queryString".equals(type)) {
-                try {
-                    value = URLDecoder.decode(value, "utf-8");
-                    value = value.replace("[", (char) 92 + "[").replace("]", (char) 92 + "]");
-                    System.out.println(value);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                builder.must(QueryBuilders.queryStringQuery(value).field(key));
-            } else if ("shouldRange".equals(type)) {
-                String[] arr = value.split("~");
-                if (arr.length >= 1) {
-                    String start = arr[0];
-                    RangeQueryBuilder rangeQueryBuilder = QueryBuilders.rangeQuery(key);
-                    if (StringUtils.isNotBlank(start)) {
-                        rangeQueryBuilder.from(start).includeLower(true);
-                    }
-                    if (arr.length == 2) {
-                        String end = arr[1];
-                        if (StringUtils.isNotBlank(end)) {
-                            rangeQueryBuilder.to(end).includeUpper(true);
-                        }
-                    }
-                    builder.should(rangeQueryBuilder);
-                }
-            }
+                QueryBuilders.queryStringQuery(value).field(key);
+                break;
+            default:
+                break;
+
         }
-        PageRequest page = new PageRequest(currentPage, pageSize);
-        //将分页设置到构建中
-        nativeSearchQueryBuilder.withPageable(page);
-        //将搜索条件设置到构建中
-        nativeSearchQueryBuilder.withQuery(builder);
-        //生产NativeSearchQuery
-        NativeSearchQuery query = nativeSearchQueryBuilder.build();
-        System.out.println(query.getQuery().toString());
-        return query;
+        return queryBuilder;
     }
+
+    /**
+     * @param str
+     * @return java.util.Map<java.lang.String,java.lang.Object>
+     * @author sam.ye
+     * @desc 将标准格式的Str转为Map格式
+     */
 
     public static Map<String, Object> stringToMap(String str) {
         Map<String, Object> map = new HashMap<String, Object>();
