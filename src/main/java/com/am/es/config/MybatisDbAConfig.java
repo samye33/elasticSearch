@@ -30,7 +30,8 @@ public class MybatisDbAConfig {
     @Bean
     @Primary
     public SqlSessionTemplate sqlSessionTemplate1() throws Exception {
-        SqlSessionTemplate template = new SqlSessionTemplate(sqlSessionFactory1()); // 使用上面配置的Factory
+        // 使用上面配置的Factory
+        SqlSessionTemplate template = new SqlSessionTemplate(sqlSessionFactory1());
         return template;
     }
 }
