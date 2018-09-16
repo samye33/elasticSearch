@@ -2,6 +2,7 @@ package com.am.es.utils;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.sun.deploy.util.StringUtils;
 import org.apache.commons.lang.StringUtils;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
@@ -100,35 +101,45 @@ public class SearchConditionEncape {
                 String value = jsonObject.getString("value");
                 //json中key为es的查询字段；value为查询值；type为查询类型[term 为准确查询;fuzzy为模糊查询;range为范围查询,match为字符匹配,QueryString字符串查询（可查询带特殊字符）]
                 String type = jsonObject.getString("type");
-                if ("must".equals(logic)) {
-                    if (type.equals("null")) {
-                        builder.must(QueryBuilders.existsQuery(key));
-                    } else {
-                        QueryBuilder queryBuilder = queryEncape(key, value, type);
-                        if (null != queryBuilder) {
-                            builder.must(queryBuilder);
-                        }
+                if (StringUtils.isBlank(key) || StringUtils.isBlank(value) || StringUtils.isBlank(type)) {
+                    continue;
+                }
+                try {
 
-                    }
-                } else if ("should".equals(logic)) {
-                    if (type.equals("null")) {
-                        builder.should(QueryBuilders.termQuery(key, 0));
-                        builder.should(QueryBuilders.existsQuery(key));
+
+                    if ("must".equals(logic)) {
+                        if (type.equals("null")) {
+                            builder.must(QueryBuilders.existsQuery(key));
+                        } else {
+                            QueryBuilder queryBuilder = queryEncape(key, value, type);
+                            if (null != queryBuilder) {
+                                builder.must(queryBuilder);
+                            }
+
+                        }
+                    } else if ("should".equals(logic)) {
+                        if (type.equals("null")) {
+                            builder.should(QueryBuilders.termQuery(key, 0));
+                            builder.should(QueryBuilders.existsQuery(key));
+                        } else {
+                            QueryBuilder queryBuilder = queryEncape(key, value, type);
+                            if (null != queryBuilder) {
+                                builder.should(queryBuilder);
+                            }
+                        }
                     } else {
-                        QueryBuilder queryBuilder = queryEncape(key, value, type);
-                        if (null != queryBuilder) {
-                            builder.should(queryBuilder);
+                        if (type.equals("null")) {
+                            builder.mustNot(QueryBuilders.existsQuery(key));
+                        } else {
+                            QueryBuilder queryBuilder = queryEncape(key, value, type);
+                            if (null != queryBuilder) {
+                                builder.mustNot(queryBuilder);
+                            }
                         }
                     }
-                } else {
-                    if (type.equals("null")) {
-                        builder.mustNot(QueryBuilders.existsQuery(key));
-                    } else {
-                        QueryBuilder queryBuilder = queryEncape(key, value, type);
-                        if (null != queryBuilder) {
-                            builder.mustNot(queryBuilder);
-                        }
-                    }
+                } catch (Exception e) {
+                    System.out.println("key,value,type的值分别为" + key + "," + value + "," + type);
+                    e.printStackTrace();
                 }
             }
         }
