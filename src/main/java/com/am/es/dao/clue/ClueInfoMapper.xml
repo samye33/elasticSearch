@@ -400,6 +400,7 @@
         clue_info.remark remark,
         clue_info.suggest_contact_time suggestContactTime,
         clue_info.create_by clueCreateBy,
+        clue_info.clue_type clueType,
         (SELECT sys_user.true_name FROM permission.sys_users sys_user WHERE clue_info.create_by = sys_user.user_id)AS
         clueCreateByName,
         first_base_batch.sale_level saleLevel,
@@ -455,6 +456,7 @@
         clue_describe.sale_dial_count saleDialCount,
         clue_describe.sale_failure_follow_count saleFailureFollowCount,
         clue_describe.next_communicate_time nextCommunicateTime,
+        clue_describe.last_call_time lastCallTime,
         (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE dictionary.id=clue_describe.Urgency)AS
         urgencyName,
         first_base_batch.`level` clueQuality,
@@ -517,6 +519,7 @@
         clue_info.remark remark,
         clue_info.suggest_contact_time suggestContactTime,
         clue_info.create_by clueCreateBy,
+         clue_info.clue_type clueType,
         (SELECT sys_user.true_name FROM permission.sys_users sys_user WHERE clue_info.create_by = sys_user.user_id)AS
         clueCreateByName,
         first_base_batch.sale_level saleLevel,
@@ -572,6 +575,7 @@
         clue_describe.sale_dial_count saleDialCount,
         clue_describe.sale_failure_follow_count saleFailureFollowCount,
         clue_describe.next_communicate_time nextCommunicateTime,
+        clue_describe.last_call_time lastCallTime,
         (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE dictionary.id=clue_describe.Urgency)AS
         urgencyName,
         first_base_batch.`level` clueQuality,

@@ -103,42 +103,36 @@ public class SearchConditionEncape {
                 if (StringUtils.isBlank(key) || StringUtils.isBlank(value) || StringUtils.isBlank(type)) {
                     continue;
                 }
-                try {
 
-
-                    if ("must".equals(logic)) {
-                        if (type.equals("null")) {
-                            builder.must(QueryBuilders.existsQuery(key));
-                        } else {
-                            QueryBuilder queryBuilder = queryEncape(key, value, type);
-                            if (null != queryBuilder) {
-                                builder.must(queryBuilder);
-                            }
-
-                        }
-                    } else if ("should".equals(logic)) {
-                        if (type.equals("null")) {
-                            builder.should(QueryBuilders.termQuery(key, 0));
-                            builder.should(QueryBuilders.existsQuery(key));
-                        } else {
-                            QueryBuilder queryBuilder = queryEncape(key, value, type);
-                            if (null != queryBuilder) {
-                                builder.should(queryBuilder);
-                            }
-                        }
+                if ("must".equals(logic)) {
+                    if (type.equals("null")) {
+                        builder.must(QueryBuilders.existsQuery(key));
                     } else {
-                        if (type.equals("null")) {
-                            builder.mustNot(QueryBuilders.existsQuery(key));
-                        } else {
-                            QueryBuilder queryBuilder = queryEncape(key, value, type);
-                            if (null != queryBuilder) {
-                                builder.mustNot(queryBuilder);
-                            }
+                        QueryBuilder queryBuilder = queryEncape(key, value, type);
+                        if (null != queryBuilder) {
+                            builder.must(queryBuilder);
+                        }
+
+                    }
+                } else if ("should".equals(logic)) {
+                    if (type.equals("null")) {
+                        builder.should(QueryBuilders.termQuery(key, 0));
+                        builder.should(QueryBuilders.existsQuery(key));
+                    } else {
+                        QueryBuilder queryBuilder = queryEncape(key, value, type);
+                        if (null != queryBuilder) {
+                            builder.should(queryBuilder);
                         }
                     }
-                } catch (Exception e) {
-                    System.out.println("key,value,type的值分别为" + key + "," + value + "," + type);
-                    e.printStackTrace();
+                } else {
+                    if (type.equals("null")) {
+                        builder.mustNot(QueryBuilders.existsQuery(key));
+                    } else {
+                        QueryBuilder queryBuilder = queryEncape(key, value, type);
+                        if (null != queryBuilder) {
+                            builder.mustNot(queryBuilder);
+                        }
+                    }
                 }
             }
         }

@@ -49,4 +49,8 @@ public class Extramodel {
 
     private Integer clueOwnerDeparment;
 
+    private Integer clueType;
+
+    private String lastCallTime;
+
 }
