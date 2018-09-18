@@ -47,7 +47,7 @@ public class ClueController {
         return ret;
     }
 
-    @GetMapping("/delete")
+        @GetMapping("/delete")
     public Result deleteClueInfo(HttpServletRequest request, HttpServletResponse response, Integer id) {
         Result ret = new Result();
         try {
