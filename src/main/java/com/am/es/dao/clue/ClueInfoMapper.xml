@@ -403,8 +403,8 @@
         clue_info.clue_type clueType,
         (SELECT sys_user.true_name FROM permission.sys_users sys_user WHERE clue_info.create_by = sys_user.user_id)AS
         clueCreateByName,
-        first_base_batch.sale_level saleLevel,
-        (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE first_base_batch.sale_level=
+        effectively_base_batch.sale_level saleClueLevel,
+        (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE effectively_base_batch.sale_level=
         dictionary.id) AS saleClueLevelName,
         clue_info.create_time clueCreateTime,
         clue_info.source_channel_code sourceChannelCode,
@@ -418,7 +418,7 @@
         activity_form.id) AS clueJoinActivitieName,
         clue_info.first_channel_code firstChannelCode,
 
-        first_base_batch.`name` firstChannelName,
+        effectively_base_batch.`name` firstChannelName,
 
         clue_info.effectively_channel_code effectivelyChannelCode,
         (SELECT base_batch.`name` FROM crmbase.base_batch base_batch WHERE clue_info.effectively_channel_code=
@@ -459,8 +459,8 @@
         clue_describe.last_call_time lastCallTime,
         (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE dictionary.id=clue_describe.Urgency)AS
         urgencyName,
-        first_base_batch.`level` clueQuality,
-        (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE first_base_batch.`level`= dictionary.id)
+        effectively_base_batch.`level` clueQuality,
+        (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE effectively_base_batch.`level`= dictionary.id)
         AS clueQualityName,
         clue_describe.TrafficState trafficState,
         (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE clue_describe.TrafficState=
@@ -502,6 +502,7 @@
         LEFT JOIN crmbase.base_province_area province_area ON province_area.identity_guid=custom_info.province
         LEFT JOIN crmbase.base_province_area city_area ON city_area.identity_guid=custom_info.city
         LEFT JOIN crmbase.base_batch first_base_batch ON first_base_batch.id=clue_info.first_channel_code
+        LEFT JOIN crmbase.base_batch effectively_base_batch ON effectively_base_batch.id=clue_info.effectively_channel_code
         <where>
             clue_info.id IN
             <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
@@ -522,8 +523,8 @@
          clue_info.clue_type clueType,
         (SELECT sys_user.true_name FROM permission.sys_users sys_user WHERE clue_info.create_by = sys_user.user_id)AS
         clueCreateByName,
-        first_base_batch.sale_level saleLevel,
-        (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE first_base_batch.sale_level=
+        effectively_base_batch.sale_level saleClueLevel,
+        (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE effectively_base_batch.sale_level=
         dictionary.id) AS saleClueLevelName,
         clue_info.create_time clueCreateTime,
         clue_info.source_channel_code sourceChannelCode,
@@ -578,8 +579,8 @@
         clue_describe.last_call_time lastCallTime,
         (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE dictionary.id=clue_describe.Urgency)AS
         urgencyName,
-        first_base_batch.`level` clueQuality,
-        (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE first_base_batch.`level`= dictionary.id)
+        effectively_base_batch.`level` clueQuality,
+        (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE effectively_base_batch.`level`= dictionary.id)
         AS clueQualityName,
         clue_describe.TrafficState trafficState,
         (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE clue_describe.TrafficState=
@@ -621,6 +622,7 @@
         LEFT JOIN crmbase.base_province_area province_area ON province_area.identity_guid=custom_info.province
         LEFT JOIN crmbase.base_province_area city_area ON city_area.identity_guid=custom_info.city
         LEFT JOIN crmbase.base_batch first_base_batch ON first_base_batch.id=clue_info.first_channel_code
+        LEFT JOIN crmbase.base_batch effectively_base_batch ON effectively_base_batch.id=clue_info.effectively_channel_code
     </select>
     <select id="selectByCustomIdList" resultType="java.lang.Integer">
         select
