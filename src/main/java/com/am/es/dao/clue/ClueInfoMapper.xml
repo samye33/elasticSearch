@@ -629,7 +629,7 @@
         DISTINCT
           id
         from clue_info
-        where id IN
+        where custom_id IN
         <foreach collection="list" item="item" open="(" close=")" separator=",">
             #{item}
         </foreach>
