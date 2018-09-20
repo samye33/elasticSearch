@@ -56,10 +56,6 @@ public class ClueQueryServiceImpl implements ClueQueryService {
         }
         //刪除所有数据
 //        searchClueQueryRepository.deleteAll();
-        //同步数据库所有数据
-//        List<ClueQueryResponseModel> lists = clueInfoMapper.selectAll();
-//        System.out.println("this data length is:" + lists.size());
-//        searchClueQueryRepository.saveAll(lists);
         return res;
     }
 
@@ -101,21 +97,10 @@ public class ClueQueryServiceImpl implements ClueQueryService {
     @Override
     public PageClueInfo test() {
         PageClueInfo pages = new PageClueInfo();
-        BoolQueryBuilder builder = QueryBuilders.boolQuery();
-        builder.must(QueryBuilders.termQuery("clueOwner", 0));
-        builder.must(QueryBuilders.termQuery("clueOwnerDeparment", 0));
-        BoolQueryBuilder builders = QueryBuilders.boolQuery();
-        builders.should(QueryBuilders.rangeQuery("clueCreateTime.keyword").from("2018-09-14 00:00:00").to("2018-09-14 23:59:59"));
-        builders.should(QueryBuilders.rangeQuery("repeatConsultationTime.keyword").from("2018-09-12 00:00:00").to("2018-09-12 23:59:59"));
-        builder.must(builders);
-        NativeSearchQueryBuilder nativeSearchQueryBuilder = new NativeSearchQueryBuilder();
-        nativeSearchQueryBuilder.withQuery(builder);
-        NativeSearchQuery query = nativeSearchQueryBuilder.build();
-        System.out.println(query.getQuery().toString());
-        Page<ClueQueryResponseModel> search = searchClueQueryRepository.search(query);
-        List<ClueQueryResponseModel> list = search.getContent();
-        pages.setTotal(search.getTotalElements());
-        pages.setList(list);
+        //同步数据库所有数据
+        List<ClueQueryResponseModel> lists = clueInfoMapper.selectAll();
+        System.out.println("this data length is:" + lists.size());
+        searchClueQueryRepository.saveAll(lists);
         return pages;
     }
 }
