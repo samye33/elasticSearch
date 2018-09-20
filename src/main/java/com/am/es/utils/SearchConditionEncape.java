@@ -187,7 +187,7 @@ public class SearchConditionEncape {
                 }
                 break;
             case "wildcard":
-                QueryBuilders.wildcardQuery(key, value + "*");
+                queryBuilder=QueryBuilders.wildcardQuery(key, value + "*");
                 break;
 
             case "queryString":
@@ -196,7 +196,7 @@ public class SearchConditionEncape {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                QueryBuilders.queryStringQuery(value).field(key);
+                queryBuilder=QueryBuilders.queryStringQuery(value).field(key);
                 break;
             default:
                 break;
