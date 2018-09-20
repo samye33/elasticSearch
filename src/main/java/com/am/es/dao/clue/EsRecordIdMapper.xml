@@ -58,6 +58,7 @@
         WHERE form=#{form} AND type=#{type}
         GROUP BY
 	      id
+	    LIMIT 30000
     </select>
 
     <update id="updateFlagByAll" parameterType="java.util.Map">
