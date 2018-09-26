@@ -418,11 +418,10 @@
         activity_form.id) AS clueJoinActivitieName,
         clue_info.first_channel_code firstChannelCode,
 
-        effectively_base_batch.`name` firstChannelName,
+        first_base_batch.`name` firstChannelName,
 
         clue_info.effectively_channel_code effectivelyChannelCode,
-        (SELECT base_batch.`name` FROM crmbase.base_batch base_batch WHERE clue_info.effectively_channel_code=
-        base_batch.id) AS effectivelyChannelName,
+        effectively_base_batch.`name` effectivelyChannelName,
         clue_info.clue_consult_type clueConsultTypeId,
         (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE clue_info.clue_consult_type=
         dictionary.id) AS clueConsultTypeName,
@@ -541,8 +540,7 @@
         first_base_batch.`name` firstChannelName,
 
         clue_info.effectively_channel_code effectivelyChannelCode,
-        (SELECT base_batch.`name` FROM crmbase.base_batch base_batch WHERE clue_info.effectively_channel_code=
-        base_batch.id) AS effectivelyChannelName,
+        effectively_base_batch.`name` effectivelyChannelName,
         clue_info.clue_consult_type clueConsultTypeId,
         (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE clue_info.clue_consult_type=
         dictionary.id) AS clueConsultTypeName,
