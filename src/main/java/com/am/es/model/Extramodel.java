@@ -11,8 +11,6 @@ public class Extramodel {
 
     private Integer channelCodeSub;
 
-    private Integer clueJoinActivitie;
-
     private Integer firstChannelCode;
 
     private Integer effectivelyChannelCode;

@@ -22,8 +22,6 @@ public class ClueQueryResponseModel extends Extramodel implements Serializable {
     private String sourceChannelName;
     //关联字段channel_code_sub
     private String channelCodeSubName;
-
-    private String clueJoinActivitieName;
     //first_channel_code（首次客户来源）
     private String firstChannelName;
     //effectively_channel_code(末次客户来源)
