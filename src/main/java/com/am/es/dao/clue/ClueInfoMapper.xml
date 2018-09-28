@@ -413,8 +413,6 @@
         clue_info.channel_code_sub channelCodeSub,
         (SELECT base_batch.`name` FROM crmbase.base_batch base_batch WHERE clue_info.channel_code_sub= base_batch.id) AS
         channelCodeSubName,
-        activityChannel.activity_id clueJoinActivitie,
-        (SELECT activity_form.`name` FROM crmproduct.activity activity_form WHERE activityChannel.activity_id=activity_form.id) AS clueJoinActivitieName,
         clue_info.first_channel_code firstChannelCode,
 
         first_base_batch.`name` firstChannelName,
@@ -501,7 +499,6 @@
         LEFT JOIN crmbase.base_province_area city_area ON city_area.identity_guid=custom_info.city
         LEFT JOIN crmbase.base_batch first_base_batch ON first_base_batch.id=clue_info.first_channel_code
         LEFT JOIN crmbase.base_batch effectively_base_batch ON effectively_base_batch.id=clue_info.effectively_channel_code
-        LEFT JOIN (SELECT batch_id,MAX(activity_id)activity_id FROM crmproduct.activity_channel GROUP BY batch_id )AS activityChannel ON activityChannel.batch_id=clue_info.effectively_channel_code
         <where>
             clue_info.id IN
             <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
@@ -532,8 +529,6 @@
         clue_info.channel_code_sub channelCodeSub,
         (SELECT base_batch.`name` FROM crmbase.base_batch base_batch WHERE clue_info.channel_code_sub= base_batch.id) AS
         channelCodeSubName,
-        activityChannel.activity_id clueJoinActivitie,
-        (SELECT activity_form.`name` FROM crmproduct.activity activity_form WHERE activityChannel.activity_id=activity_form.id) AS clueJoinActivitieName,
         clue_info.first_channel_code firstChannelCode,
 
         first_base_batch.`name` firstChannelName,
@@ -620,7 +615,6 @@
         LEFT JOIN crmbase.base_province_area city_area ON city_area.identity_guid=custom_info.city
         LEFT JOIN crmbase.base_batch first_base_batch ON first_base_batch.id=clue_info.first_channel_code
         LEFT JOIN crmbase.base_batch effectively_base_batch ON effectively_base_batch.id=clue_info.effectively_channel_code
-        LEFT JOIN (SELECT batch_id,MAX(activity_id)activity_id FROM crmproduct.activity_channel GROUP BY batch_id )AS activityChannel ON activityChannel.batch_id=clue_info.effectively_channel_code
     </select>
     <select id="selectByCustomIdList" resultType="java.lang.Integer">
         select
