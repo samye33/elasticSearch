@@ -141,6 +141,15 @@ public class SearchConditionEncape {
 
     private QueryBuilder queryEncape(String key, String value, String type) {
         QueryBuilder queryBuilder = null;
+        if (key.equals("perminssion")) {
+            if (value.equals("match_all")) {
+                queryBuilder = QueryBuilders.matchAllQuery();
+            } else {
+                String[] userIds = value.split(",");
+                queryBuilder = QueryBuilders.termsQuery("clueOwner", userIds);
+            }
+            return queryBuilder;
+        }
         switch (type) {
             case "term":
                 if (value.startsWith("[") && value.endsWith("]")) {
@@ -187,7 +196,7 @@ public class SearchConditionEncape {
                 }
                 break;
             case "wildcard":
-                queryBuilder=QueryBuilders.wildcardQuery(key, value + "*");
+                queryBuilder = QueryBuilders.wildcardQuery(key, value + "*");
                 break;
 
             case "queryString":
@@ -196,7 +205,7 @@ public class SearchConditionEncape {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                queryBuilder=QueryBuilders.queryStringQuery(value).field(key);
+                queryBuilder = QueryBuilders.queryStringQuery(value).field(key);
                 break;
             default:
                 break;
