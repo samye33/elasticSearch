@@ -467,6 +467,7 @@
 
         custom_info.true_name trueName,
         custom_info.parent_name contactName,
+        custom_info.mail mail,
         custom_info.province provinceCode,
         province_area.`name` provinceName,
         custom_info.city cityCode,
@@ -516,7 +517,7 @@
         clue_info.remark remark,
         clue_info.suggest_contact_time suggestContactTime,
         clue_info.create_by clueCreateBy,
-         clue_info.clue_type clueType,
+        clue_info.clue_type clueType,
         (SELECT sys_user.true_name FROM permission.sys_users sys_user WHERE clue_info.create_by = sys_user.user_id)AS
         clueCreateByName,
         effectively_base_batch.sale_level saleClueLevel,
@@ -584,6 +585,7 @@
         custom_info.true_name trueName,
         custom_info.parent_name contactName,
         custom_info.province provinceCode,
+        custom_info.mail mail,
         province_area.`name` provinceName,
         custom_info.city cityCode,
         city_area.`name` cityName,

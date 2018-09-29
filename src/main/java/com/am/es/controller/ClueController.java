@@ -105,7 +105,7 @@ public class ClueController {
             PageClueInfo page=clueInfoService.test();
             ret.setData(page);
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
         return ret;
     }
