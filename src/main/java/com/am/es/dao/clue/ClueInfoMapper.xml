@@ -448,11 +448,10 @@
 
         clue_describe.convenience_course_time convenienceCourseTime,
         clue_describe.sale_connet_count saleConnetCount,
-        clue_describe.last_communicate_time lastCommunicateTime,
         clue_describe.sale_dial_count saleDialCount,
         clue_describe.sale_failure_follow_count saleFailureFollowCount,
         clue_describe.next_communicate_time nextCommunicateTime,
-        clue_describe.last_call_time lastCallTime,
+        clue_describe.last_call_time lastCommunicateTime,
         (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE dictionary.id=clue_describe.Urgency)AS
         urgencyName,
         effectively_base_batch.`level` clueQuality,
@@ -565,11 +564,10 @@
 
         clue_describe.convenience_course_time convenienceCourseTime,
         clue_describe.sale_connet_count saleConnetCount,
-        clue_describe.last_communicate_time lastCommunicateTime,
         clue_describe.sale_dial_count saleDialCount,
         clue_describe.sale_failure_follow_count saleFailureFollowCount,
         clue_describe.next_communicate_time nextCommunicateTime,
-        clue_describe.last_call_time lastCallTime,
+        clue_describe.last_call_time lastCommunicateTime,
         (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE dictionary.id=clue_describe.Urgency)AS
         urgencyName,
         effectively_base_batch.`level` clueQuality,
