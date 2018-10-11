@@ -104,4 +104,6 @@ public class ClueQueryResponseModel extends Extramodel implements Serializable {
     private String recommenderContacat;
 
     private String mail;
+
+    private Integer listenInvitationStatus;
 }

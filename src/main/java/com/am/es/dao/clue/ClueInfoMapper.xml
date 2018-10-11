@@ -447,6 +447,7 @@
         AS clueStatusName,
 
         clue_describe.convenience_course_time convenienceCourseTime,
+        clue_describe.listen_invitation_status listenInvitationStatus,
         clue_describe.sale_connet_count saleConnetCount,
         clue_describe.sale_dial_count saleDialCount,
         clue_describe.sale_failure_follow_count saleFailureFollowCount,
@@ -563,6 +564,7 @@
         AS clueStatusName,
 
         clue_describe.convenience_course_time convenienceCourseTime,
+        clue_describe.listen_invitation_status listenInvitationStatus,
         clue_describe.sale_connet_count saleConnetCount,
         clue_describe.sale_dial_count saleDialCount,
         clue_describe.sale_failure_follow_count saleFailureFollowCount,

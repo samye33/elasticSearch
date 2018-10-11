@@ -55,6 +55,7 @@ public class ClueQueryServiceImpl implements ClueQueryService {
             }
         }
         //刪除所有数据
+//        System.out.println("I'm clear all data");
 //        searchClueQueryRepository.deleteAll();
         return res;
     }
