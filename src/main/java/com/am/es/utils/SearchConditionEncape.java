@@ -38,7 +38,7 @@ public class SearchConditionEncape {
         String notStr = map.get("not");
         String sortStr = map.get("sort");
         JSONArray mustArr = null, shouldArr = null, notArr = null;
-        JSONObject jsonSort = null;
+        JSONArray jsonSortArr = null;
         if (StringUtils.isNotBlank(mustStr)) {
             mustArr = JSONArray.parseArray(mustStr);
             builder = recursionEncape(builder, mustArr, "must");
@@ -59,17 +59,20 @@ public class SearchConditionEncape {
             nativeSearchQueryBuilder.withPageable(page);
         }
         if (StringUtils.isNotBlank(sortStr)) {
-            jsonSort = JSONObject.parseObject(sortStr);
-            String key = jsonSort.getString("key");
-            String value = jsonSort.getString("value");
-            FieldSortBuilder sort = null;
-            if (("desc").equals(value)) {
-                sort = SortBuilders.fieldSort(key).order(SortOrder.DESC);
-            } else {
-                sort = SortBuilders.fieldSort(key).order(SortOrder.ASC);
+            jsonSortArr = JSONArray.parseArray(sortStr);
+            for (int i = 0; i < jsonSortArr.size(); i++) {
+                String key = jsonSortArr.getJSONObject(i).getString("key");
+                String value = jsonSortArr.getJSONObject(i).getString("value");
+                FieldSortBuilder sort = null;
+                if (("desc").equals(value)) {
+                    sort = SortBuilders.fieldSort(key).order(SortOrder.DESC);
+                } else {
+                    sort = SortBuilders.fieldSort(key).order(SortOrder.ASC);
+                }
+                //将排序设置到构建中
+                nativeSearchQueryBuilder.withSort(sort);
             }
-            //将排序设置到构建中
-            nativeSearchQueryBuilder.withSort(sort);
+
         }
         NativeSearchQuery query = nativeSearchQueryBuilder.build();
         System.out.println(query.getQuery().toString());
