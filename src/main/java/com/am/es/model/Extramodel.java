@@ -51,4 +51,10 @@ public class Extramodel {
 
     private String lastCallTime;
 
+    private Integer subStatus;
+
+    private Integer departmentClueStatus;
+
+    private Integer intentionStatus;
+
 }

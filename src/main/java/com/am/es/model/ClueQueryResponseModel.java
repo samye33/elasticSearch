@@ -11,6 +11,8 @@ public class ClueQueryResponseModel extends Extramodel implements Serializable {
 
     private Integer id;
 
+    private String clueNo;
+
     private String remark;
 
     private String suggestContactTime;
@@ -106,4 +108,10 @@ public class ClueQueryResponseModel extends Extramodel implements Serializable {
     private String mail;
 
     private Integer listenInvitationStatus;
+
+    private String subStatusName;
+
+    private String departmentClueStatusName;
+
+    private String intentionStatusName;
 }

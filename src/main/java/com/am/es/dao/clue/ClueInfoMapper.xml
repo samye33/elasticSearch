@@ -397,6 +397,7 @@
     <select id="selectQueryClueInfo" resultType="com.am.es.model.ClueQueryResponseModel">
         SELECT
         clue_info.id,
+        clue_info.clue_no clueNo,
         clue_info.remark remark,
         clue_info.suggest_contact_time suggestContactTime,
         clue_info.create_by clueCreateBy,
@@ -436,6 +437,12 @@
         clue_status.show_recommender_contact showRecommenderContacat,
         clue_status.repeat_consultation_time repeatConsultationTime,
         clue_status.clue_owner clueOwner,
+        clue_status.sub_status subStatus,
+        (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE clue_status.subStatus= dictionary.id) AS subStatusName,
+        clue_status.department_clue_status departmentClueStatus,
+        (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE clue_status.departmentClueStatus= dictionary.id) AS departmentClueStatusName,
+        clue_status.intention_status intentionStatus,
+        (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE clue_status.intentionStatus= dictionary.id) AS intentionStatusName,
         (SELECT sys_user.true_name FROM permission.sys_users sys_user WHERE clue_status.clue_owner = sys_user.user_id)AS
         clueOwnerName,
         clue_status.recommender recommenderName,
@@ -514,6 +521,7 @@
     <select id="selectAll" resultType="com.am.es.model.ClueQueryResponseModel">
         SELECT
         clue_info.id,
+        clue_info.clue_no clueNo,
         clue_info.remark remark,
         clue_info.suggest_contact_time suggestContactTime,
         clue_info.create_by clueCreateBy,
@@ -553,8 +561,13 @@
         clue_status.show_recommender_contact showRecommenderContacat,
         clue_status.repeat_consultation_time repeatConsultationTime,
         clue_status.clue_owner clueOwner,
-        (SELECT sys_user.true_name FROM permission.sys_users sys_user WHERE clue_status.clue_owner = sys_user.user_id)AS
-        clueOwnerName,
+        clue_status.sub_status subStatus,
+        (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE clue_status.subStatus= dictionary.id) AS subStatusName,
+        clue_status.department_clue_status departmentClueStatus,
+        (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE clue_status.departmentClueStatus= dictionary.id) AS departmentClueStatusName,
+        clue_status.intention_status intentionStatus,
+        (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE clue_status.intentionStatus= dictionary.id) AS intentionStatusName,
+        (SELECT sys_user.true_name FROM permission.sys_users sys_user WHERE clue_status.clue_owner = sys_user.user_id)AS clueOwnerName,
         clue_status.recommender recommenderName,
         clue_status.clue_school_manager_owner clueSchoolManagerOwnerId,
         (SELECT sys_user.true_name FROM permission.sys_users sys_user WHERE clue_status.clue_school_manager_owner =
