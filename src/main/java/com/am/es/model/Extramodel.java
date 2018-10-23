@@ -59,4 +59,6 @@ public class Extramodel {
 
     private Integer subIntentionStatus;
 
+    private Integer primaryDepartment;
+
 }
