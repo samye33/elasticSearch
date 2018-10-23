@@ -114,4 +114,6 @@ public class ClueQueryResponseModel extends Extramodel implements Serializable {
     private String departmentClueStatusName;
 
     private String intentionStatusName;
+
+    private String subIntentionStatusName;
 }

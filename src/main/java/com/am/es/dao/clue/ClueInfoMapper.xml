@@ -438,13 +438,17 @@
         clue_status.repeat_consultation_time repeatConsultationTime,
         clue_status.clue_owner clueOwner,
         clue_status.sub_status subStatus,
-        (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE clue_status.sub_status= dictionary.id) AS subStatusName,
+        (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE clue_status.sub_status= dictionary.id)
+        AS subStatusName,
         clue_status.department_clue_status departmentClueStatus,
-        (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE clue_status.department_clue_status= dictionary.id) AS departmentClueStatusName,
+        (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE clue_status.department_clue_status=
+        dictionary.id) AS departmentClueStatusName,
         clue_status.intention_status intentionStatus,
-        (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE clue_status.intention_status= dictionary.id) AS intentionStatusName,
-        (SELECT sys_user.true_name FROM permission.sys_users sys_user WHERE clue_status.clue_owner = sys_user.user_id)AS
-        clueOwnerName,
+        (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE clue_status.intention_status=
+        dictionary.id) AS intentionStatusName,
+        clue_status.sub_intention_status subIntentionStatus,
+        (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE clue_status.sub_intention_status= dictionary.id) AS subIntentionStatusName,
+        (SELECT sys_user.true_name FROM permission.sys_users sys_user WHERE clue_status.clue_owner = sys_user.user_id)AS clueOwnerName,
         clue_status.recommender recommenderName,
         clue_status.clue_school_manager_owner clueSchoolManagerOwnerId,
         (SELECT sys_user.true_name FROM permission.sys_users sys_user WHERE clue_status.clue_school_manager_owner =
@@ -463,7 +467,8 @@
         (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE dictionary.id=clue_describe.Urgency)AS
         urgencyName,
         effectively_base_batch.`level` clueQuality,
-        (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE effectively_base_batch.`level`= dictionary.id)
+        (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE effectively_base_batch.`level`=
+        dictionary.id)
         AS clueQualityName,
         clue_describe.TrafficState trafficState,
         (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE clue_describe.TrafficState=
@@ -506,7 +511,8 @@
         LEFT JOIN crmbase.base_province_area province_area ON province_area.identity_guid=custom_info.province
         LEFT JOIN crmbase.base_province_area city_area ON city_area.identity_guid=custom_info.city
         LEFT JOIN crmbase.base_batch first_base_batch ON first_base_batch.id=clue_info.first_channel_code
-        LEFT JOIN crmbase.base_batch effectively_base_batch ON effectively_base_batch.id=clue_info.effectively_channel_code
+        LEFT JOIN crmbase.base_batch effectively_base_batch ON
+        effectively_base_batch.id=clue_info.effectively_channel_code
         <where>
             clue_info.id IN
             <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
@@ -567,6 +573,8 @@
         (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE clue_status.department_clue_status= dictionary.id) AS departmentClueStatusName,
         clue_status.intention_status intentionStatus,
         (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE clue_status.intention_status= dictionary.id) AS intentionStatusName,
+        clue_status.sub_intention_status subIntentionStatus,
+        (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE clue_status.sub_intention_status= dictionary.id) AS subIntentionStatusName,
         (SELECT sys_user.true_name FROM permission.sys_users sys_user WHERE clue_status.clue_owner = sys_user.user_id)AS clueOwnerName,
         clue_status.recommender recommenderName,
         clue_status.clue_school_manager_owner clueSchoolManagerOwnerId,
@@ -634,7 +642,7 @@
     <select id="selectByCustomIdList" resultType="java.lang.Integer">
         select
         DISTINCT
-          id
+        id
         from clue_info
         where custom_id IN
         <foreach collection="list" item="item" open="(" close=")" separator=",">

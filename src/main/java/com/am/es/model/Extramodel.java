@@ -57,4 +57,6 @@ public class Extramodel {
 
     private Integer intentionStatus;
 
+    private Integer subIntentionStatus;
+
 }
