@@ -57,7 +57,9 @@ public class Extramodel {
 
     private Integer intentionStatus;
 
-    private Integer subIntentionStatus;
+    private Integer subListenStatus;
+
+    private Integer subInvalidStatus;
 
     private Integer primaryDepartment;
 
