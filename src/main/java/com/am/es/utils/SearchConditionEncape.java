@@ -152,6 +152,9 @@ public class SearchConditionEncape {
                 queryBuilder = QueryBuilders.termsQuery("clueOwner", userIds);
             }
             return queryBuilder;
+        } else if (key.equals("distributor")) {
+            queryBuilder = QueryBuilders.termQuery("primaryDepartment", value);
+            return queryBuilder;
         }
         switch (type) {
             case "term":
