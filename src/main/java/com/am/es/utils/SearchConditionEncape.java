@@ -230,7 +230,7 @@ public class SearchConditionEncape {
                 String tempStr = eArr[i];
                 //如果为最后一个直接做为值进行封装
                 if (i == eArr.length - 1) {
-                    map.put(key, tempStr.replace("\"", ""));
+                    map.put(key, tempStr);
                 } else {
                     //判断字符串中是否包含又"'{', '}','[',']'"字符
                     if ((tempStr).contains("{") || (tempStr).contains("[") || (tempStr).contains("}") || (tempStr).contains("]")) {
@@ -249,7 +249,7 @@ public class SearchConditionEncape {
                                     //跳出该循环，并从该处进行分离
                                     String jsonStr = tempStr.substring(0, j);
                                     String newKey = tempStr.substring(j + 1, tempStr.length());
-                                    map.put(key, jsonStr.replace("\"", ""));
+                                    map.put(key, jsonStr);
                                     key = newKey.replace(" ", "");
                                     //清空栈
                                     stackChar.clear();
@@ -277,7 +277,7 @@ public class SearchConditionEncape {
                                     } else {
                                         String jsonStr = tempStr.substring(0, j);
                                         String newKey = tempStr.substring(j + 1, tempStr.length());
-                                        map.put(key, jsonStr.replace("\"", ""));
+                                        map.put(key, jsonStr);
                                         key = newKey.replace(" ", "");
                                         //清空栈
                                         stack.clear();
@@ -286,7 +286,7 @@ public class SearchConditionEncape {
                                 }
                             }
                         } else {
-                            key = tempStr.replace(" ", "").replace("\"", "");
+                            key = tempStr.replace(" ", "");
                         }
                     }
                 }
