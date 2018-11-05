@@ -81,13 +81,14 @@ public class SearchConditionEncape {
 
     private BoolQueryBuilder recursionEncape(BoolQueryBuilder builder, JSONArray jsonArray, String logic) {
         //如果有子查询则用递归来进行多层查询封装
-        BoolQueryBuilder newBuilder = QueryBuilders.boolQuery();
         for (int i = 0; i < jsonArray.size(); i++) {
             //如果jsonObject对象中存在child数组，且不为空，则表示该查询存在子查询
             JSONObject jsonObject = jsonArray.getJSONObject(i);
             //如果是child不为null，则递归封装；反之则进行正常封装
             JSONObject child = jsonObject.getJSONObject("child");
+            System.out.println("The child json is:" + child);
             if (null != child) {
+                BoolQueryBuilder newBuilder = QueryBuilders.boolQuery();
                 String newLogic = child.getString("logic");
                 JSONArray childArray = child.getJSONArray("arrCondition");
                 newBuilder = recursionEncape(newBuilder, childArray, newLogic);
