@@ -6,19 +6,19 @@ server:
 spring:
   datasource:
     ds1:
-      jdbc-url: jdbc:mysql://rm-bp1fd159l08pvu616.mysql.rds.aliyuncs.com:3306/crmclues?useUnicode=true&characterEncoding=utf8&useSSL=false
+      jdbc-url: jdbc:mysql://c.all-dream.com:3306/crmclues?useUnicode=true&characterEncoding=utf8&useSSL=false
       username: root
-      password: Aomengzhibo45678!
+      password: aomengzhibo123
       driver-class-name: com.mysql.jdbc.Driver
     ds2:
-      jdbc-url: jdbc:mysql://rm-bp1fd159l08pvu616.mysql.rds.aliyuncs.com:3306/crmorder?useUnicode=true&characterEncoding=utf8&useSSL=false
+      jdbc-url: jdbc:mysql://c.all-dream.com:3306/crmorder?useUnicode=true&characterEncoding=utf8&useSSL=false
       username: root
-      password: Aomengzhibo45678!
+      password: aomengzhibo123
       driver-class-name: com.mysql.jdbc.Driver
 
   data:
     elasticsearch:
-      cluster-nodes: 127.0.0.1:9300
+      cluster-nodes: 47.96.171.132:9300
       cluster-name: clues-crm
       repositories:
         enabled: true
@@ -41,7 +41,7 @@ aliyun:
 #        password: aomengzhibo123
 #        driver-class-name: com.mysql.jdbc.Driver
 #      ds2:
-#        jdbc-url: jdbc:mysql://c.all-dream.com:3306/crmclues?useUnicode=true&characterEncoding=utf8&useSSL=false
+#        jdbc-url: jdbc:mysql://c.all-dream.com:3306/crmorder?useUnicode=true&characterEncoding=utf8&useSSL=false
 #        username: root
 #        password: aomengzhibo123
 #        driver-class-name: com.mysql.jdbc.Driver
@@ -51,3 +51,23 @@ aliyun:
 #       cluster-name: clues-crm
 #       repositories:
 #         enabled: true
+
+
+#datasource:
+#    ds1:
+#      jdbc-url: jdbc:mysql://rm-bp1fd159l08pvu616.mysql.rds.aliyuncs.com:3306/crmclues?useUnicode=true&characterEncoding=utf8&useSSL=false
+#      username: root
+#      password: Aomengzhibo45678!
+#      driver-class-name: com.mysql.jdbc.Driver
+#    ds2:
+#      jdbc-url: jdbc:mysql://rm-bp1fd159l08pvu616.mysql.rds.aliyuncs.com:3306/crmorder?useUnicode=true&characterEncoding=utf8&useSSL=false
+#      username: root
+#      password: Aomengzhibo45678!
+#      driver-class-name: com.mysql.jdbc.Driver
+#
+#  data:
+#    elasticsearch:
+#      cluster-nodes: 127.0.0.1:9300
+#      cluster-name: clues-crm
+#      repositories:
+#        enabled: true
