@@ -1,6 +1,6 @@
 logging:
   level:
-      com.am.es: DEBUG
+      com.am.es: INFO
 server:
   port: 8088
 spring:
