@@ -32,3 +32,22 @@ aliyun:
   sendMsgTimeoutMillis: 3000
   suspendTimeMillis: 100
   maxReconsumeTimes: 20
+
+#  spring:
+#    datasource:
+#      ds1:
+#        jdbc-url: jdbc:mysql://c.all-dream.com:3306/crmclues?useUnicode=true&characterEncoding=utf8&useSSL=false
+#        username: root
+#        password: aomengzhibo123
+#        driver-class-name: com.mysql.jdbc.Driver
+#      ds2:
+#        jdbc-url: jdbc:mysql://c.all-dream.com:3306/crmclues?useUnicode=true&characterEncoding=utf8&useSSL=false
+#        username: root
+#        password: aomengzhibo123
+#        driver-class-name: com.mysql.jdbc.Driver
+#    data:
+#     elasticsearch:
+#       cluster-nodes: 47.96.171.132:9300
+#       cluster-name: clues-crm
+#       repositories:
+#         enabled: true

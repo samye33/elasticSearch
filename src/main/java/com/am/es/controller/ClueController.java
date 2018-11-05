@@ -68,7 +68,6 @@ public class ClueController {
     public Result searchClueInfo(HttpServletRequest request, HttpServletResponse response, String parm) {
         Result ret = new Result();
         try {
-            System.out.println(parm);
             Map map = SearchConditionEncape.stringToMap(parm);
             PageClueInfo page = clueInfoService.getClueQueryList(map);
             ret.setStatus(HttpStatusCode.CODE_SUCCESS.getValue());

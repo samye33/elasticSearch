@@ -75,7 +75,6 @@ public class SearchConditionEncape {
 
         }
         NativeSearchQuery query = nativeSearchQueryBuilder.build();
-        System.out.println(query.getQuery().toString());
         return query;
     }
 
@@ -86,7 +85,6 @@ public class SearchConditionEncape {
             JSONObject jsonObject = jsonArray.getJSONObject(i);
             //如果是child不为null，则递归封装；反之则进行正常封装
             JSONObject child = jsonObject.getJSONObject("child");
-            System.out.println("The child json is:" + child);
             if (null != child) {
                 BoolQueryBuilder newBuilder = QueryBuilders.boolQuery();
                 String newLogic = child.getString("logic");
@@ -262,7 +260,6 @@ public class SearchConditionEncape {
                         //判断是否有逗号
                         if (tempStr.contains(",")) {
                             Stack<String> stack = new Stack<String>();
-
                             //从分离的字符串中获取上一个key的value和下一个key的name
                             for (int j = 0; j < tempStr.length(); j++) {
                                 char c = tempStr.charAt(j);
