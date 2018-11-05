@@ -6,14 +6,14 @@ server:
 spring:
   datasource:
     ds1:
-      jdbc-url: jdbc:mysql://c.all-dream.com:3306/crmclues?useUnicode=true&characterEncoding=utf8&useSSL=false
+      jdbc-url: jdbc:mysql://rm-bp1fd159l08pvu616.mysql.rds.aliyuncs.com:3306/crmclues?useUnicode=true&characterEncoding=utf8&useSSL=false
       username: root
-      password: aomengzhibo123
+      password: Aomengzhibo45678!
       driver-class-name: com.mysql.jdbc.Driver
     ds2:
-      jdbc-url: jdbc:mysql://c.all-dream.com:3306/crmorder?useUnicode=true&characterEncoding=utf8&useSSL=false
+      jdbc-url: jdbc:mysql://rm-bp1fd159l08pvu616.mysql.rds.aliyuncs.com:3306/crmorder?useUnicode=true&characterEncoding=utf8&useSSL=false
       username: root
-      password: aomengzhibo123
+      password: Aomengzhibo45678!
       driver-class-name: com.mysql.jdbc.Driver
 
   data:
