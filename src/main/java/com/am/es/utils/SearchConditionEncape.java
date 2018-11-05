@@ -75,6 +75,7 @@ public class SearchConditionEncape {
 
         }
         NativeSearchQuery query = nativeSearchQueryBuilder.build();
+        System.out.println(query.getQuery().toString());
         return query;
     }
 

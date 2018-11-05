@@ -47,7 +47,7 @@ public class ClueController {
         return ret;
     }
 
-        @GetMapping("/delete")
+    @GetMapping("/delete")
     public Result deleteClueInfo(HttpServletRequest request, HttpServletResponse response, Integer id) {
         Result ret = new Result();
         try {
@@ -69,6 +69,7 @@ public class ClueController {
         Result ret = new Result();
         try {
             Map map = SearchConditionEncape.stringToMap(parm);
+            System.out.println(map.toString());
             PageClueInfo page = clueInfoService.getClueQueryList(map);
             ret.setStatus(HttpStatusCode.CODE_SUCCESS.getValue());
             ret.setMessage(HttpStatusCode.CODE_SUCCESS.getDesc());
@@ -101,7 +102,7 @@ public class ClueController {
     public Result test(HttpServletRequest request, HttpServletResponse response) {
         Result ret = new Result();
         try {
-            PageClueInfo page=clueInfoService.test();
+            PageClueInfo page = clueInfoService.test();
             ret.setData(page);
         } catch (Exception e) {
             e.printStackTrace();
