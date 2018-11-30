@@ -120,4 +120,6 @@ public class ClueQueryResponseModel extends Extramodel implements Serializable {
     private String subInvalidStatusName;
 
     private String primaryDepartmentName;
+
+    private String finalFollowerName;
 }

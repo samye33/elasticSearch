@@ -1,0 +1,35 @@
+<configuration debug="false" scan="true" scanPeriod="10 seconds">
+
+  <contextName>logback</contextName>
+
+  <property name="path" value="./logs"></property>
+  <property name="maxHistory" value="30"/>
+
+  <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+      <level>debug</level>
+    </filter>
+    <encoder>
+      <pattern>%date %level [%thread] %logger{36} [%file : %line] %msg%n
+      </pattern>
+    </encoder>
+  </appender>
+
+  <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${path}/logback.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>${path}/logback.log.%d{yyyy-MM-dd}.log</fileNamePattern>
+      <maxHistory>${maxHistory}</maxHistory>
+    </rollingPolicy>
+    <encoder>
+      <pattern>%date %level [%thread] %logger{36} [%file : %line] %msg%n
+      </pattern>
+    </encoder>
+  </appender>
+
+  <root>
+    <appender-ref ref="console"/>
+    <appender-ref ref="file"/>
+  </root>
+
+</configuration>

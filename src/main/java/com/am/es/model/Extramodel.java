@@ -63,4 +63,6 @@ public class Extramodel {
 
     private Integer primaryDepartment;
 
+    private Integer finalFollower;
+
 }
