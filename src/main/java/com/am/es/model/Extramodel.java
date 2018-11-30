@@ -65,4 +65,6 @@ public class Extramodel {
 
     private Integer finalFollower;
 
+    private Integer grade;
+
 }

@@ -80,8 +80,6 @@ public class ClueQueryResponseModel extends Extramodel implements Serializable {
     private String provinceCityName;
     //关联字段born_date
     private String bornDate;
-    //关联字段enrollment_year
-    private String enrollmentYear;
 
     private String profession;
 
@@ -122,4 +120,6 @@ public class ClueQueryResponseModel extends Extramodel implements Serializable {
     private String primaryDepartmentName;
 
     private String finalFollowerName;
+
+    private String gradeName;
 }
