@@ -1,21 +1,22 @@
 package com.am.es.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.am.es.enums.HttpStatusCode;
-import com.am.es.model.ClueQueryResponseModel;
 import com.am.es.model.PageClueInfo;
 import com.am.es.model.Result;
 import com.am.es.service.ClueQueryService;
 import com.am.es.utils.SearchConditionEncape;
-import com.sun.org.apache.regexp.internal.RE;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -68,9 +69,10 @@ public class ClueController {
     public Result searchClueInfo(HttpServletRequest request, HttpServletResponse response, String parm) {
         Result ret = new Result();
         try {
-            Map map = SearchConditionEncape.stringToMap(parm);
-            System.out.println(map.toString());
-            PageClueInfo page = clueInfoService.getClueQueryList(map);
+//            Map map = SearchConditionEncape.stringToMap(parm);
+            JSONObject json = SearchConditionEncape.stringToJson(parm);
+            System.out.println(json.toString());
+            PageClueInfo page = clueInfoService.getClueQueryList(json);
             ret.setStatus(HttpStatusCode.CODE_SUCCESS.getValue());
             ret.setMessage(HttpStatusCode.CODE_SUCCESS.getDesc());
             ret.setData(page);

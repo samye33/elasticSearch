@@ -1,5 +1,6 @@
 package com.am.es.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.am.es.dao.clue.ClueInfoMapper;
 import com.am.es.model.ClueQueryResponseModel;
 import com.am.es.model.PageClueInfo;
@@ -61,12 +62,12 @@ public class ClueQueryServiceImpl implements ClueQueryService {
     }
 
     @Override
-    public PageClueInfo getClueQueryList(Map<String, String> map) {
+    public PageClueInfo getClueQueryList(JSONObject json) {
         PageClueInfo pages = new PageClueInfo();
-        Integer currentPage = Integer.parseInt(map.get("currentPage"));
-        Integer pageSize = Integer.parseInt(map.get("pageSize"));
+        Integer currentPage = (Integer) json.get("currentPage");
+        Integer pageSize = (Integer) json.get("pageSize");
         SearchConditionEncape searchConditionEncape = new SearchConditionEncape();
-        NativeSearchQuery query = searchConditionEncape.queryConditions(map, (currentPage - 1), pageSize);
+        NativeSearchQuery query = searchConditionEncape.queryConditions(json, (currentPage - 1), pageSize);
         Page<ClueQueryResponseModel> search = searchClueQueryRepository.search(query);
         List<ClueQueryResponseModel> list = search.getContent();
         pages.setTotal(search.getTotalElements());

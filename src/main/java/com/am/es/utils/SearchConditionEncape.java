@@ -21,34 +21,29 @@ import java.util.Stack;
 
 public class SearchConditionEncape {
     /**
-     * @param map
+     * @param json
      * @param currentPage
      * @param pageSize
      * @return org.springframework.data.elasticsearch.core.query.NativeSearchQuery
      * @author sam.ye
      * @desc
      */
-    public NativeSearchQuery queryConditions(Map<String, String> map, Integer currentPage, Integer pageSize) {
+    public NativeSearchQuery queryConditions(JSONObject json, Integer currentPage, Integer pageSize) {
         BoolQueryBuilder builder = QueryBuilders.boolQuery();
         NativeSearchQueryBuilder nativeSearchQueryBuilder = new NativeSearchQueryBuilder();
 
         //获取Must的封装条件对象
-        String mustStr = map.get("must");
-        String shouldStr = map.get("should");
-        String notStr = map.get("not");
-        String sortStr = map.get("sort");
-        JSONArray mustArr = null, shouldArr = null, notArr = null;
-        JSONArray jsonSortArr = null;
-        if (StringUtils.isNotBlank(mustStr)) {
-            mustArr = JSONArray.parseArray(mustStr);
+        JSONArray mustArr = json.getJSONArray("must");
+        JSONArray shouldArr = json.getJSONArray("should");
+        JSONArray notArr = json.getJSONArray("not");
+        JSONArray jsonSortArr = json.getJSONArray("sort");
+        if (mustArr != null) {
             builder = recursionEncape(builder, mustArr, "must");
         }
-        if (StringUtils.isNotBlank(shouldStr)) {
-            shouldArr = JSONArray.parseArray(shouldStr);
+        if (shouldArr != null) {
             builder = recursionEncape(builder, shouldArr, "should");
         }
-        if (StringUtils.isNotBlank(notStr)) {
-            notArr = JSONArray.parseArray(notStr);
+        if (notArr != null) {
             builder = recursionEncape(builder, notArr, "not");
         }
         //将搜索条件设置到构建中
@@ -58,8 +53,7 @@ public class SearchConditionEncape {
             //将分页设置到构建中
             nativeSearchQueryBuilder.withPageable(page);
         }
-        if (StringUtils.isNotBlank(sortStr)) {
-            jsonSortArr = JSONArray.parseArray(sortStr);
+        if (jsonSortArr != null) {
             for (int i = 0; i < jsonSortArr.size(); i++) {
                 String key = jsonSortArr.getJSONObject(i).getString("key");
                 String value = jsonSortArr.getJSONObject(i).getString("value");
@@ -295,5 +289,11 @@ public class SearchConditionEncape {
         }
 
         return map;
+    }
+
+    public static JSONObject stringToJson(String jsonStr) {
+        JSONObject json = JSONObject.parseObject(jsonStr);
+        System.out.println(json);
+        return json;
     }
 }

@@ -1,5 +1,6 @@
 package com.am.es.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.am.es.model.PageClueInfo;
 
 import java.util.List;
@@ -10,7 +11,7 @@ public interface ClueQueryService {
 
     List<Integer> deleteClueQuery(List<Integer> id);
 
-    PageClueInfo getClueQueryList(Map<String, String> map);
+    PageClueInfo getClueQueryList(JSONObject json);
 
     PageClueInfo queryAllClueQueryList();
 
