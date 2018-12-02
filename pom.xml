@@ -6,7 +6,7 @@
     <groupId>com.am</groupId>
     <artifactId>es</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>es</name>
     <description>Demo project for Spring Boot</description>
 
