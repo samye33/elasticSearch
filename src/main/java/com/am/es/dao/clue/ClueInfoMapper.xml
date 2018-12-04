@@ -438,6 +438,7 @@
         clue_status.repeat_consultation_time repeatConsultationTime,
         clue_status.clue_owner clueOwner,
         clue_status.final_follower finalFollower,
+        clue_status.final_follow_time finalFollowTime,
         (SELECT sys_user.true_name FROM permission.sys_users sys_user WHERE clue_status.final_follower = sys_user.user_id)AS finalFollowerName,
         clue_status.sub_status subStatus,
         (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE clue_status.sub_status= dictionary.id)
@@ -575,6 +576,7 @@
         clue_status.repeat_consultation_time repeatConsultationTime,
         clue_status.clue_owner clueOwner,
         clue_status.final_follower finalFollower,
+        clue_status.final_follow_time finalFollowTime,
         (SELECT sys_user.true_name FROM permission.sys_users sys_user WHERE clue_status.final_follower = sys_user.user_id)AS finalFollowerName,
         clue_status.sub_status subStatus,
         (SELECT dictionary.`name` FROM crmbase.base_dictionary dictionary WHERE clue_status.sub_status= dictionary.id) AS subStatusName,
