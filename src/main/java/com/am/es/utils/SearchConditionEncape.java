@@ -293,7 +293,6 @@ public class SearchConditionEncape {
 
     public static JSONObject stringToJson(String jsonStr) {
         JSONObject json = JSONObject.parseObject(jsonStr);
-        System.out.println(json);
         return json;
     }
 }
