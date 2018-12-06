@@ -18,12 +18,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/es/clue")
 public class ClueController {
-    private static final Logger logger = LoggerFactory.getLogger(ClueController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ClueController.class);
 
     @Autowired
     private ClueQueryService clueInfoService;
@@ -43,7 +42,7 @@ public class ClueController {
         } catch (Exception e) {
             ret.setStatus(HttpStatusCode.CODE_SERVER_INTERNAL_ERROR.getValue());
             ret.setMessage(HttpStatusCode.CODE_SERVER_INTERNAL_ERROR.getDesc());
-            logger.error("", e);
+            LOGGER.error("", e);
         }
         return ret;
     }
@@ -60,7 +59,7 @@ public class ClueController {
         } catch (Exception e) {
             ret.setStatus(HttpStatusCode.CODE_SERVER_INTERNAL_ERROR.getValue());
             ret.setMessage(HttpStatusCode.CODE_SERVER_INTERNAL_ERROR.getDesc());
-            logger.error("", e);
+            LOGGER.error("", e);
         }
         return ret;
     }
@@ -70,7 +69,7 @@ public class ClueController {
         Result ret = new Result();
         try {
             JSONObject json = SearchConditionEncape.stringToJson(parm);
-            System.out.println(json.toString());
+            LOGGER.debug(json.toString());
             PageClueInfo page = clueInfoService.getClueQueryList(json);
             ret.setStatus(HttpStatusCode.CODE_SUCCESS.getValue());
             ret.setMessage(HttpStatusCode.CODE_SUCCESS.getDesc());
@@ -78,7 +77,7 @@ public class ClueController {
         } catch (Exception e) {
             ret.setStatus(HttpStatusCode.CODE_SERVER_INTERNAL_ERROR.getValue());
             ret.setMessage(HttpStatusCode.CODE_SERVER_INTERNAL_ERROR.getDesc());
-            logger.error("", e);
+            LOGGER.error("", e);
         }
         return ret;
     }
@@ -94,7 +93,7 @@ public class ClueController {
         } catch (Exception e) {
             ret.setStatus(HttpStatusCode.CODE_SERVER_INTERNAL_ERROR.getValue());
             ret.setMessage(HttpStatusCode.CODE_SERVER_INTERNAL_ERROR.getDesc());
-            logger.error("", e);
+            LOGGER.error("", e);
         }
         return ret;
     }

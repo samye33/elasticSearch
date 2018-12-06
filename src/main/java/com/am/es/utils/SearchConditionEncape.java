@@ -10,6 +10,8 @@ import org.elasticsearch.index.query.RangeQueryBuilder;
 import org.elasticsearch.search.sort.FieldSortBuilder;
 import org.elasticsearch.search.sort.SortBuilders;
 import org.elasticsearch.search.sort.SortOrder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
@@ -28,6 +30,8 @@ public class SearchConditionEncape {
      * @author sam.ye
      * @desc
      */
+    private static final Logger LOGGER = LoggerFactory.getLogger(SearchConditionEncape.class);
+
     public NativeSearchQuery queryConditions(JSONObject json, Integer currentPage, Integer pageSize) {
         BoolQueryBuilder builder = QueryBuilders.boolQuery();
         NativeSearchQueryBuilder nativeSearchQueryBuilder = new NativeSearchQueryBuilder();
@@ -69,7 +73,7 @@ public class SearchConditionEncape {
 
         }
         NativeSearchQuery query = nativeSearchQueryBuilder.build();
-        System.out.println(query.getQuery().toString());
+        LOGGER.debug(query.getQuery().toString());
         return query;
     }
 
