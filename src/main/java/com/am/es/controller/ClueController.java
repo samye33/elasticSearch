@@ -68,8 +68,8 @@ public class ClueController {
     public Result searchClueInfo(HttpServletRequest request, HttpServletResponse response, String parm) {
         Result ret = new Result();
         try {
+            LOGGER.error(parm);
             JSONObject json = SearchConditionEncape.stringToJson(parm);
-            LOGGER.debug(json.toString());
             PageClueInfo page = clueInfoService.getClueQueryList(json);
             ret.setStatus(HttpStatusCode.CODE_SUCCESS.getValue());
             ret.setMessage(HttpStatusCode.CODE_SUCCESS.getDesc());
