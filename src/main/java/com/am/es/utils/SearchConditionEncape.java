@@ -30,7 +30,7 @@ public class SearchConditionEncape {
      * @author sam.ye
      * @desc
      */
-    private static final Logger LOGGER = LoggerFactory.getLogger(SearchConditionEncape.class);
+    private static Logger LOGGER = LoggerFactory.getLogger(SearchConditionEncape.class);
 
     public NativeSearchQuery queryConditions(JSONObject json, Integer currentPage, Integer pageSize) {
         BoolQueryBuilder builder = QueryBuilders.boolQuery();
@@ -73,7 +73,7 @@ public class SearchConditionEncape {
 
         }
         NativeSearchQuery query = nativeSearchQueryBuilder.build();
-        LOGGER.debug(query.getQuery().toString());
+        LOGGER.warn(query.getQuery().toString());
         return query;
     }
 
