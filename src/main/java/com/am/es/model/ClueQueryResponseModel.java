@@ -124,4 +124,7 @@ public class ClueQueryResponseModel extends Extramodel implements Serializable {
     private String finalFollowTime;
 
     private String gradeName;
+
+    private String listenInvitationTime;
+
 }
