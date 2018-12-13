@@ -24,7 +24,7 @@ public class Schedule {
     @Autowired
     private GetClueIdService getClueIdService;
 
-    @Scheduled(cron = "0/2 * * * * ?")
+    @Scheduled(cron = "0/1 * * * * ?")
     public void scanTaskJob() {
         //定时查询clueInfo线索信息并进行同步es
         try {
