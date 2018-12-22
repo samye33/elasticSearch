@@ -17,12 +17,12 @@ spring:
       password: Aomengzhibo45678!
       driver-class-name: com.mysql.jdbc.Driver
 
-    data:
-      elasticsearch:
-        cluster-nodes: 127.0.0.1:9300
-        cluster-name: clues-crm
-        repositories:
-          enabled: true
+  data:
+    elasticsearch:
+      cluster-nodes: 127.0.0.1:9300
+      cluster-name: clues-crm
+      repositories:
+        enabled: true
 
 aliyun:
   accessKey: LTAIbvZWdIjgY3QE
